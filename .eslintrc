@@ -10,15 +10,21 @@
   ],
   "overrides": [],
   "parser": "@babel/eslint-parser",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true,
-      "modules": true,
-      "experimentalObjectRestSpread": true
+      "modules": true
     }
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "react/react-in-jsx-scope": "off"
+  }
 }
