@@ -4,4 +4,9 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  > h1 {
+    color: ${({ theme }) => theme.colors.white};
+    font-family: "Roboto";
+  }
+`;

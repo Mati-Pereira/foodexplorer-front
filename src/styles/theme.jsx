@@ -1,6 +1,3 @@
-import "@fontsource/poppins";
-import "@fontsource/roboto";
-
 export const theme = {
   colors: {
     black: "#000A0F",
@@ -9,9 +6,5 @@ export const theme = {
     label: "#C4C4CC",
     placeholder: "#7C7C8A",
     red: "#92000E",
-  },
-  fonts: {
-    poppins: '"Poppins", sans-serif',
-    roboto: '"Roboto", sans-serif,',
   },
 };
