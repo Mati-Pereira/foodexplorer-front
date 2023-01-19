@@ -6,5 +6,6 @@ export const theme = {
     label: "#C4C4CC",
     placeholder: "#7C7C8A",
     red: "#92000E",
+    input: "#0D1D25",
   },
 };
