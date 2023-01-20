@@ -1,14 +1,20 @@
+import Anchor from "../../components/Anchor";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import Anchor from "../../components/Anchor";
 import { Container, Content } from "./styles";
 import logo from "/logo.svg";
-const Login = () => {
+const Signup = () => {
   return (
     <Container>
       <img src={logo} alt="logo" />
       <Content>
-        <h1>Faça login</h1>
+        <h1>Crie sua conta</h1>
+        <Input
+          id="nome"
+          label="Seu nome"
+          placeholder="Exemplo: Maria da Silva"
+          type="text"
+        />
         <Input
           id="email"
           placeholder="Exemplo: exemplo@exemplo.com.br"
@@ -22,10 +28,10 @@ const Login = () => {
           label="Senha"
         />
         <Button text="Criar conta" />
-        <Anchor text="Crie uma Conta" to="/register" />
+        <Anchor text="Já tenho uma conta" to="/login" />
       </Content>
     </Container>
   );
 };
 
-export default Login;
+export default Signup;
