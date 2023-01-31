@@ -1,13 +1,11 @@
-import { AiOutlineSearch } from "react-icons/ai";
 import { Container, Label } from "./style";
 import PropTypes from "prop-types";
 
-const Input = ({ type, id, label, placeholder, icon }) => {
+const Input = ({ type, id, label, placeholder }) => {
   return (
     <Container>
       <Label htmlFor={id}>{label}</Label>
       <div>
-        {icon ? <AiOutlineSearch /> : null}
         <input type={type} id={id} placeholder={placeholder} />
       </div>
     </Container>

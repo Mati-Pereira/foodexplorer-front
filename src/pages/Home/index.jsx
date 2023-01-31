@@ -1,11 +1,15 @@
-import { Container } from "./styles";
+import { Container, H1 } from "./styles";
+import Header from "../../components/Header";
 import cookiesimg from "/cookies.svg";
 const Home = () => {
   return (
-    <Container>
-      <h1>Home</h1>
-      <img alt="cookies" src={cookiesimg} />
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <H1>Home</H1>
+        <img alt="cookies" src={cookiesimg} />
+      </Container>
+    </>
   );
 };
 
