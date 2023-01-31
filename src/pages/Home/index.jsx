@@ -9,7 +9,8 @@ const Home = () => {
         <Background>
           <img alt="cookies" src={cookiesimg} />
           <Text>
-            <h1>Quero Café</h1>
+            <h1>Sabores inigualáveis</h1>
+            <h5>Sinta o cuidado do preparo com ingredientes selecionados</h5>
           </Text>
         </Background>
       </Container>

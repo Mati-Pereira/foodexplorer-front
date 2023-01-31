@@ -6,7 +6,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.darkGreen};
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  height: 6.5rem;
   gap: 2rem;
   > img {
     cursor: pointer;

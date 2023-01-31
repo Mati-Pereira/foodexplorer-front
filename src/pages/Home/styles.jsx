@@ -11,18 +11,31 @@ export const Background = styled.div`
   background: linear-gradient(180deg, #091e26 0%, #00131c 100%);
   border-radius: 0.5rem;
   display: flex;
-  flex-grow: 0;
   > img {
     display: flex;
-    margin-top: -7.5rem;
     height: 150%;
-    width: 60%;
+    width: 50%;
+    margin-top: -6.25rem;
   }
 `;
 
 export const Text = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+  font-family: "Poppins";
+  color: ${({ theme }) => theme.colors.white};
+  gap: 0.5rem;
+  > h1 {
+    font-size: 2.5rem;
+    font-weight: 500;
+    height: 0;
+  }
+  > h5 {
+    font-size: 1rem;
+    font-weight: 400;
+    height: 1;
+    letter-spacing: -1px;
+  }
 `;
