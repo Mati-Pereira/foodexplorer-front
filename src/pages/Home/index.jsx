@@ -1,6 +1,7 @@
 import { Background, Container, Text } from "./styles";
 import Header from "../../components/Header";
 import cookiesimg from "/cookies.svg";
+import Footer from "../../components/Footer";
 const Home = () => {
   return (
     <>
@@ -14,6 +15,7 @@ const Home = () => {
           </Text>
         </Background>
       </Container>
+      <Footer />
     </>
   );
 };
