@@ -1,4 +1,4 @@
-import { Container, H1 } from "./styles";
+import { Background, Container, Text } from "./styles";
 import Header from "../../components/Header";
 import cookiesimg from "/cookies.svg";
 const Home = () => {
@@ -6,8 +6,12 @@ const Home = () => {
     <>
       <Header />
       <Container>
-        <H1>Home</H1>
-        <img alt="cookies" src={cookiesimg} />
+        <Background>
+          <img alt="cookies" src={cookiesimg} />
+          <Text>
+            <h1>Quero Café</h1>
+          </Text>
+        </Background>
       </Container>
     </>
   );
