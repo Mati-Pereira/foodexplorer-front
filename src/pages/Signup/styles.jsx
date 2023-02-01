@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  background-color: ${({ theme }) => theme.colors.darkGreen};
+  background-color: ${({ theme }) => theme.colors.green_700};
   padding: 4rem;
   border-radius: 0.5rem;
   display: flex;

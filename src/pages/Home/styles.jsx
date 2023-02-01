@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin-top: 100px;
+  background-color: ${({ theme }) => theme.colors.green_900};
 `;
 
 export const Background = styled.div`

@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   height: 4.8125rem;
   padding: 0 5rem;
-  background-color: ${({ theme }) => theme.colors.darkGreen};
+  background-color: ${({ theme }) => theme.colors.green_700};
 
   > span {
     color: ${({ theme }) => theme.colors.white};
