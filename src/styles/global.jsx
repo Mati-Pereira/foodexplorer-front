@@ -1,13 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-    html, body {
+  body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
+    background-color: ${({ theme }) => theme.colors.green_900};
   }
-    body{
-        background-color: ${({ theme }) => theme.colors.green_900};
-    }
 `;
