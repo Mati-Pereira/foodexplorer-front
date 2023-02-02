@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "fix": "eslint --fix --ext .js,.jsx .",
-    "lint": "pnpm run fix & pnpm run format"
+    "lint": "npm run fix & npm run format"
   },
   "dependencies": {
     "@fontsource/poppins": "^4.5.10",
@@ -19,6 +19,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-is": "^18.2.0",
+    "react-multi-carousel": "^2.8.2",
     "react-router-dom": "^6.8.0",
     "styled-components": "^5.3.6"
   },
