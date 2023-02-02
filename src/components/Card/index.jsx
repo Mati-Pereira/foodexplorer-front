@@ -29,7 +29,7 @@ Card.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
   isAdmin: PropTypes.bool,
 };

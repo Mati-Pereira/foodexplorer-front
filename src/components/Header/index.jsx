@@ -15,7 +15,7 @@ const Header = () => {
       </Input>
       <Pedidos>
         <img src={pedidos} alt="icon pedidos" />
-        <Anchor text="Pedidos (0)" />
+        <Anchor text="Pedidos (0)" to="#" />
       </Pedidos>
       <img src={sair} alt="sair icon" />
     </Container>

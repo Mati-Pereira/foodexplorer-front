@@ -4,6 +4,7 @@ import cookiesimg from "/cookies.svg";
 import Footer from "../../components/Footer";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
+
 const Home = () => {
   return (
     <>
@@ -41,44 +42,6 @@ const Home = () => {
           quantity={10}
           text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
           isAdmin
-        />
-        <Card
-          title="arroz"
-          image="/Imagens/Mask group-1.png"
-          price="10,00"
-          quantity={10}
-          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-          isAdmin
-        />
-        <Card
-          title="arroz"
-          image="/Imagens/Mask group-1.png"
-          price="10,00"
-          quantity={10}
-          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-          isAdmin
-        />
-        <Card
-          title="arroz"
-          image="/Imagens/Mask group-1.png"
-          price="10,00"
-          quantity={10}
-          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-        />
-        <Card
-          title="arroz"
-          image="/Imagens/Mask group-1.png"
-          price="10,00"
-          quantity={10}
-          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-          isAdmin
-        />
-        <Card
-          title="arroz"
-          image="/Imagens/Mask group-1.png"
-          price="10,00"
-          quantity={10}
-          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
         />
         <Card
           title="arroz"
