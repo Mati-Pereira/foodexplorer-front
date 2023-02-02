@@ -12,7 +12,7 @@ const Card = ({ image, title, text, price, quantity, isAdmin }) => {
       <Title>{title}</Title>
       <Text>{text}</Text>
       <Price>R$ {price}</Price>
-      {isAdmin && (
+      {!isAdmin && (
         <AddProduct>
           <Quantity quantity={quantity} />
           <Button text="Incluir" />
@@ -31,5 +31,5 @@ Card.propTypes = {
   text: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
-  isAdmin: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool,
 };
