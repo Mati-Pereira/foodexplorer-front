@@ -1,7 +1,7 @@
 import { Container, Image, Price, Text, Title } from "./styles";
 import PropTypes from "prop-types";
 
-const Card = ({ image, title, text, price, quantity }) => {
+const Card = ({ image, title, text, price, quantity, isAdmin }) => {
   return (
     <Container>
       <Image src={image} alt="food picture" />
@@ -9,6 +9,7 @@ const Card = ({ image, title, text, price, quantity }) => {
       <Text>{text}</Text>
       <Price>R$ {price}</Price>
       <p>Quantidade: {quantity}</p>
+      {isAdmin && <div>Ola</div>}
     </Container>
   );
 };
@@ -21,4 +22,5 @@ Card.propTypes = {
   text: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
 };
