@@ -22,6 +22,7 @@ const Home = () => {
         price="10,0"
         quantity={10}
         text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
+        isAdmin
       />
       <Footer />
     </>
