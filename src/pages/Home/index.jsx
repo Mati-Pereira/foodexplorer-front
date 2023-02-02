@@ -3,6 +3,8 @@ import Header from "../../components/Header";
 import cookiesimg from "/cookies.svg";
 import Footer from "../../components/Footer";
 import Card from "../../components/Card";
+import Section from "../../components/Section";
+
 const Home = () => {
   return (
     <>
@@ -16,14 +18,55 @@ const Home = () => {
           </Text>
         </Background>
       </Container>
-      <Card
-        title="arroz"
-        image="/Imagens/Mask group-1.png"
-        price="10,0"
-        quantity={10}
-        text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-        isAdmin
-      />
+      <Section>
+        <Card
+          title="arroz"
+          image="/Imagens/Mask group-2.png"
+          price="10,00"
+          quantity={10}
+          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
+          isAdmin
+        />
+        <Card
+          title="arroz"
+          image="/Imagens/Mask group-1.png"
+          price="10,00"
+          quantity={10}
+          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
+          isAdmin
+        />
+        <Card
+          title="arroz"
+          image="/Imagens/Mask group-1.png"
+          price="10,00"
+          quantity={10}
+          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
+          isAdmin
+        />
+        <Card
+          title="arroz"
+          image="/Imagens/Mask group-1.png"
+          price="10,00"
+          quantity={10}
+          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
+          isAdmin
+        />
+        <Card
+          title="arroz"
+          image="/Imagens/Mask group-1.png"
+          price="10,00"
+          quantity={10}
+          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
+          isAdmin
+        />
+        <Card
+          title="arroz"
+          image="/Imagens/Mask group-1.png"
+          price="10,00"
+          quantity={10}
+          text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
+        />
+      </Section>
       <Footer />
     </>
   );
