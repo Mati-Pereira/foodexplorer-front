@@ -1,11 +1,12 @@
 import { Container } from "./styles";
 import PropTypes from "prop-types";
+import Slider from "react-carousel-styled";
 
 const Section = ({ children }) => {
   return (
     <Container>
       <h2>Section</h2>
-      {children}
+      <Slider>{children}</Slider>
     </Container>
   );
 };
