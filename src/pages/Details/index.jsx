@@ -1,10 +1,13 @@
-import { Container, Content, Tags, Text } from "./styles";
+import { AddProduct, Container, Content, Tags, Text } from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import DetailsAnchor from "../../components/DetailsAnchor";
 import Tag from "../../components/Tag";
+import Quantity from "../../components/Quantity";
+import Button from "../../components/Button";
+import PropTypes from "prop-types";
 
-const Details = () => {
+const Details = ({ isAdmin = false }) => {
   return (
     <Container>
       <Header />
@@ -26,11 +29,25 @@ const Details = () => {
             <Tag text="Miojo" />
             <Tag text="Agora Vais" />
           </Tags>
+          {!isAdmin ? (
+            <AddProduct>
+              <Quantity quantity={5} />
+              <Button text="Incluir" />
+            </AddProduct>
+          ) : (
+            <AddProduct>
+              <Button text="Editar" />
+            </AddProduct>
+          )}
         </Text>
       </Content>
       <Footer />
     </Container>
   );
+};
+
+Details.propTypes = {
+  isAdmin: PropTypes.bool,
 };
 
 export default Details;

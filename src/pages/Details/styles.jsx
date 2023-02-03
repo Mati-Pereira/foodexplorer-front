@@ -37,8 +37,9 @@ export const Text = styled.div`
   }
   > p {
     font-weight: 400;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: ${({ theme }) => theme.colors.gray_300};
+    margin-bottom: 2rem;
   }
 `;
 
@@ -46,4 +47,17 @@ export const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+`;
+
+export const AddProduct = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+  > div {
+    padding: 0 3rem;
+    button {
+      max-width: 100px;
+    }
+  }
 `;

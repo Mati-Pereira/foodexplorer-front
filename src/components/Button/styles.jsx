@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.red};
   border-radius: 0.5rem;
-  height: 4rem;
+  height: 3rem;
   cursor: pointer;
   transition: 0.25s ease-in-out all;
   &:active {
