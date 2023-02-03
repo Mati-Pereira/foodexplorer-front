@@ -5,7 +5,16 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  > a {
+    max-width: 62.5rem;
+  }
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 62.5rem;
+`;
