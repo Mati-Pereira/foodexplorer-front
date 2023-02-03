@@ -15,7 +15,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 3;
+  flex-grow: 10;
   width: 100%;
   max-width: 62.5rem;
   font-family: "Poppins", sans-serif;
