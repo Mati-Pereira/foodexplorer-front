@@ -8,7 +8,7 @@ const Details = () => {
   return (
     <Container>
       <Header />
-      <DetailsAnchor to="#" />
+      <DetailsAnchor to="/" />
       <Content>
         <img src="/Imagens/Mask group-5.png" />
         <Text>
@@ -21,6 +21,9 @@ const Details = () => {
             <Tag text="Olá Mundo" />
             <Tag text="Quero Café" />
             <Tag text="Vamonos" />
+            <Tag text="Agora Vais" />
+            <Tag text="Top" />
+            <Tag text="Miojo" />
             <Tag text="Agora Vais" />
           </Tags>
         </Text>

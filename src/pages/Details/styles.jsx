@@ -42,4 +42,8 @@ export const Text = styled.div`
   }
 `;
 
-export const Tags = styled.div``;
+export const Tags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+`;

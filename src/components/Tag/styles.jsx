@@ -8,4 +8,5 @@ export const Container = styled.span`
   font-size: 0.875rem;
   font-weight: 500;
   font-family: "Poppins", sans-serif;
+  border-radius: 0.5rem;
 `;
