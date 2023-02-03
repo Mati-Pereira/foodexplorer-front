@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 50%;
   height: 4.8125rem;
-  padding: 0 5rem;
   background-color: ${({ theme }) => theme.colors.green_700};
-
+  width: 100%;
   > span {
     color: ${({ theme }) => theme.colors.white};
     font-size: 0.875rem;
