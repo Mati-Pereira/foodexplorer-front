@@ -1,9 +1,22 @@
-import { Container } from "./styles";
+import { Container, Content, FirstRow } from "./styles";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import Input from "../../components/Input";
+import DetailsAnchor from "../../components/DetailsAnchor";
+import FileInput from "../../components/FileInput";
 
 const AddProduct = () => {
   return (
     <Container>
-      <h1>Olá</h1>
+      <Header />
+      <DetailsAnchor to="#" />
+      <Content>
+        <h1>Adicionar Prato</h1>
+        <FirstRow>
+          <FileInput />
+        </FirstRow>
+      </Content>
+      <Footer />
     </Container>
   );
 };

@@ -2,6 +2,7 @@ export const theme = {
   colors: {
     black: "##00070A",
     white: "#FFFFFF",
+    green_500: "#0D161B",
     green_700: "#001119",
     green_900: "#000A0F",
     gray_300: "#E1E1E6",
