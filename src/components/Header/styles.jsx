@@ -50,7 +50,7 @@ export const Input = styled.div`
     color: ${({ theme }) => theme.colors.white};
     width: 100%;
     &::placeholder {
-      color: ${({ theme }) => theme.colors.placeholder};
+      color: ${({ theme }) => theme.colors.gray_600};
     }
   }
 `;

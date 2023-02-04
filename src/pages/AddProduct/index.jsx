@@ -14,6 +14,12 @@ const AddProduct = () => {
         <h1>Adicionar Prato</h1>
         <FirstRow>
           <FileInput />
+          <Input
+            label="Nome"
+            placeholder="Ex.: Salada Ceasar"
+            id="nome"
+            type="text"
+          />
         </FirstRow>
       </Content>
       <Footer />
