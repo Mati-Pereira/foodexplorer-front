@@ -35,6 +35,7 @@ export const Content = styled.div`
     font-size: 0.875rem;
     color: ${({ theme }) => theme.colors.white};
     cursor: pointer;
+    white-space: nowrap;
   }
   > svg {
     font-size: 2rem;

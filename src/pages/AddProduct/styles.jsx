@@ -20,6 +20,7 @@ export const Content = styled.div`
   justify-content: center;
   flex-grow: 12;
   max-width: 1000px;
+  width: 100%;
   margin: auto;
   > h1 {
     color: ${({ theme }) => theme.colors.gray_300};
@@ -31,7 +32,7 @@ export const Content = styled.div`
 
 export const FirstRow = styled.div`
   display: flex;
-  justify-content: baseline;
-  align-items: stretch;
-  background-color: red;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
 `;

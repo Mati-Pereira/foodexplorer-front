@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import Input from "../../components/Input";
 import DetailsAnchor from "../../components/DetailsAnchor";
 import FileInput from "../../components/FileInput";
+import Selectinput from "../../components/SelectInput";
 
 const AddProduct = () => {
   return (
@@ -20,6 +21,7 @@ const AddProduct = () => {
             id="nome"
             type="text"
           />
+          <Selectinput />
         </FirstRow>
       </Content>
       <Footer />
