@@ -81,6 +81,9 @@ export const Rows = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
   width: 100%;
   gap: 2rem;
+  > div:last-child {
+  }
 `;

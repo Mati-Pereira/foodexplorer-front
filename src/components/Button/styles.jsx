@@ -9,6 +9,8 @@ export const Container = styled.div`
   height: 3rem;
   cursor: pointer;
   transition: 0.25s ease-in-out all;
+  width: fit-content;
+  padding: 0 2rem;
   &:active {
     transform: scale(0.98);
   }

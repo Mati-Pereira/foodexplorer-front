@@ -11,6 +11,7 @@ export const theme = {
     gray_500: "#76797B",
     gray_600: "#636773",
     gray_700: "#192227",
+    salmon: "#AB4D55",
     red: "#92000E",
     input: "#0D1D25",
     blue: "#82F3FF",

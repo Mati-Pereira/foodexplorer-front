@@ -17,8 +17,13 @@ import SelectInput from "../../components/SelectInput";
 import EditTag from "../../components/EditTag";
 import InputPrice from "../../components/InputPrice";
 import Textarea from "../../components/Textarea";
+import Button from "../../components/Button";
+import { useTheme } from "styled-components";
 
 const AddProduct = () => {
+  const {
+    colors: { salmon },
+  } = useTheme();
   return (
     <Container>
       <Header />
@@ -53,6 +58,7 @@ const AddProduct = () => {
           <ThirdRow>
             <Textarea />
           </ThirdRow>
+          <Button color={salmon} text="Salvar alterações" />
         </Rows>
       </Content>
       <Footer />
