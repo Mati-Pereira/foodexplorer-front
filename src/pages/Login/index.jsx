@@ -14,12 +14,14 @@ const Login = () => {
           placeholder="Exemplo: exemplo@exemplo.com.br"
           type="email"
           label="Email"
+          form
         />
         <Input
           id="password"
           placeholder="No mínimo 6 caracteres"
           type="password"
           label="Senha"
+          form
         />
         <Button text="Criar conta" />
         <Anchor text="Crie uma Conta" to="/register" />

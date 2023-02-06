@@ -14,18 +14,21 @@ const Signup = () => {
           label="Seu nome"
           placeholder="Exemplo: Maria da Silva"
           type="text"
+          form
         />
         <Input
           id="email"
           placeholder="Exemplo: exemplo@exemplo.com.br"
           type="email"
           label="Email"
+          form
         />
         <Input
           id="password"
           placeholder="No mínimo 6 caracteres"
           type="password"
           label="Senha"
+          form
         />
         <Button text="Criar conta" />
         <Anchor text="Já tenho uma conta" to="/login" />
