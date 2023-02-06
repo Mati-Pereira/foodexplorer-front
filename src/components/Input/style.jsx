@@ -16,7 +16,7 @@ export const Container = styled.div`
     height: 3rem;
     padding: 0.24rem;
     svg {
-      color: ${({ theme }) => theme.colors.gray_500};
+      color: ${({ theme }) => theme.colors.gray_400};
       padding: 0.75rem 0 0.75rem 0.875rem;
     }
     input {
@@ -37,6 +37,6 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${({ theme }) => theme.colors.gray_500};
+  color: ${({ theme }) => theme.colors.gray_400};
   font-family: "Roboto", sans-serif;
 `;

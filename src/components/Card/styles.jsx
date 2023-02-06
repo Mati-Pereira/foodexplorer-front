@@ -33,7 +33,7 @@ export const Text = styled.p`
   font-weight: 400;
   font-family: "Roboto";
   font-size: 0.875rem;
-  color: ${({ theme }) => theme.colors.gray_500};
+  color: ${({ theme }) => theme.colors.gray_400};
 `;
 
 export const Price = styled.span`

@@ -1,10 +1,11 @@
-import { Container, Content, FirstRow } from "./styles";
+import { Container, Content, FirstRow, SecondRow } from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Input from "../../components/Input";
 import DetailsAnchor from "../../components/DetailsAnchor";
 import FileInput from "../../components/FileInput";
 import SelectInput from "../../components/SelectInput";
+import EditTag from "../../components/EditTag";
 
 const AddProduct = () => {
   return (
@@ -23,6 +24,12 @@ const AddProduct = () => {
           />
           <SelectInput />
         </FirstRow>
+        <SecondRow>
+          <EditTag text="Pão" />
+          <EditTag text="Arroz" />
+          <EditTag text="Açucar" />
+          <EditTag text="Feijão" />
+        </SecondRow>
       </Content>
       <Footer />
     </Container>

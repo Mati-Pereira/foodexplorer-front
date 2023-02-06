@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const Label = styled.label`
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
-  color: ${({ theme }) => theme.colors.gray_500};
+  color: ${({ theme }) => theme.colors.gray_400};
   font-weight: 400;
 `;
 

@@ -36,3 +36,12 @@ export const FirstRow = styled.div`
   width: 100%;
   gap: 2rem;
 `;
+
+export const SecondRow = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+`;
+
+export const Tags = styled.div``;
