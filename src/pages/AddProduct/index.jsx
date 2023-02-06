@@ -22,7 +22,7 @@ const AddProduct = () => {
   return (
     <Container>
       <Header />
-      <DetailsAnchor to="#" />
+      <DetailsAnchor to="/" />
       <Content>
         <h1>Adicionar Prato</h1>
         <Rows>

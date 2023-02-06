@@ -6,7 +6,7 @@ const InputPrice = ({ type, id, label }) => {
     <Container>
       <Label htmlFor={id}>{label}</Label>
       <div>
-        <input type={type} id={id} defaultValue="R$ 0,00" />
+        <input type={type} id={id} placeholder="R$ 0,00" />
       </div>
     </Container>
   );

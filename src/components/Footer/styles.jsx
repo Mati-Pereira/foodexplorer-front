@@ -5,7 +5,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 50%;
-  height: 4.8125rem;
+  height: 4.5rem;
   background-color: ${({ theme }) => theme.colors.green_700};
   width: 100%;
   > span {

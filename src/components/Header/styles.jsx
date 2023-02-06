@@ -6,7 +6,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.green_700};
   justify-content: center;
   align-items: center;
-  height: 6.5rem;
+  height: 4.5rem;
   gap: 2rem;
   > img {
     cursor: pointer;
@@ -19,7 +19,7 @@ export const Pedidos = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.6875rem;
-  padding: 1rem 3rem;
+  padding: 0.75rem 3rem;
   border-radius: 0.5rem;
   cursor: pointer;
 `;
@@ -33,7 +33,7 @@ export const Input = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.875rem;
-  padding: 1rem 5rem;
+  padding: 0.75rem 5rem;
   background-color: ${({ theme }) => theme.colors.input};
   border-radius: 0.5rem;
   width: 33%;

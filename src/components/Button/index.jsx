@@ -1,10 +1,12 @@
 import { Container } from "./styles";
 import PropTypes from "prop-types";
 
-const Button = ({ text }) => {
+const Button = ({ text, ...rest }) => {
   return (
     <Container>
-      <button>{text}</button>
+      <button {...rest} type="submit">
+        {text}
+      </button>
     </Container>
   );
 };
