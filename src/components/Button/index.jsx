@@ -1,9 +1,9 @@
 import { Container } from "./styles";
 import PropTypes from "prop-types";
 
-const Button = ({ text, ...rest }) => {
+const Button = ({ text, color, ...rest }) => {
   return (
-    <Container>
+    <Container color={color}>
       <button {...rest} type="submit">
         {text}
       </button>
@@ -15,4 +15,5 @@ export default Button;
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };

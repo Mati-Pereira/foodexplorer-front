@@ -4,8 +4,12 @@ import Button from "../Button";
 import Quantity from "../Quantity";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
+import { useTheme } from "styled-components";
 
 const Card = ({ image, title, text, price, quantity, isAdmin }) => {
+  const {
+    colors: { red },
+  } = useTheme();
   return (
     <Container>
       <Image src={image} alt="food picture" />
@@ -15,7 +19,7 @@ const Card = ({ image, title, text, price, quantity, isAdmin }) => {
       {!isAdmin && (
         <AddProduct>
           <Quantity quantity={quantity} />
-          <Button text="Incluir" />
+          <Button text="Incluir" color={red} />
         </AddProduct>
       )}
       {isAdmin ? <BsPencil /> : <AiOutlineHeart />}

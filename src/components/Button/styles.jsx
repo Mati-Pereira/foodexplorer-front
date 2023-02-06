@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.red};
+  background-color: ${(props) => props.color};
   border-radius: 0.5rem;
   height: 3rem;
   cursor: pointer;

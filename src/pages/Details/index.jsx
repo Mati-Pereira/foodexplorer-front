@@ -6,8 +6,12 @@ import Tag from "../../components/Tag";
 import Quantity from "../../components/Quantity";
 import Button from "../../components/Button";
 import PropTypes from "prop-types";
+import { useTheme } from "styled-components";
 
 const Details = ({ isAdmin = false }) => {
+  const {
+    colors: { red },
+  } = useTheme();
   return (
     <Container>
       <Header />
@@ -32,11 +36,11 @@ const Details = ({ isAdmin = false }) => {
           {!isAdmin ? (
             <AddProduct>
               <Quantity quantity={5} />
-              <Button text="Incluir" />
+              <Button text="Incluir" color={red} />
             </AddProduct>
           ) : (
             <AddProduct>
-              <Button text="Editar" />
+              <Button text="Editar" color={red} />
             </AddProduct>
           )}
         </Text>
