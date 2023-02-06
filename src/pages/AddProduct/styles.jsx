@@ -44,4 +44,10 @@ export const SecondRow = styled.div`
   gap: 2rem;
 `;
 
-export const Tags = styled.div``;
+export const Tags = styled.div`
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  flex-grow: 1;
+  background-color: ${({ theme }) => theme.colors.green_500};
+`;

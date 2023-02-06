@@ -19,7 +19,7 @@ export const Select = styled.select`
   border: none;
   border-radius: 0.5rem;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.green_300};
+  background-color: ${({ theme }) => theme.colors.green_500};
   color: ${({ theme }) => theme.colors.gray_600};
   width: 200px;
   padding: 1rem;
