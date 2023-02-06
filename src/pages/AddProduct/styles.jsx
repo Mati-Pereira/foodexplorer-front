@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-items: flex-start;
   height: 100vh;
   width: 100%;
+
   > a {
     max-width: 62.5rem;
     margin: auto;
@@ -16,9 +17,9 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  flex-grow: 12;
+  flex-grow: 10;
   max-width: 1000px;
   width: 100%;
   margin: auto;
@@ -27,21 +28,8 @@ export const Content = styled.div`
     font-weight: 500;
     font-size: 2rem;
     font-family: "Poppins", sans-serif;
+    margin: 1rem 0;
   }
-`;
-
-export const FirstRow = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 2rem;
-`;
-
-export const SecondRow = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  gap: 3rem;
 `;
 
 export const TagsContainer = styled.div`
@@ -66,4 +54,33 @@ export const Tags = styled.div`
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
   padding: 0.5rem;
+`;
+
+export const FirstRow = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
+`;
+
+export const SecondRow = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 3rem;
+`;
+
+export const ThirdRow = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 3rem;
+`;
+
+export const Rows = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 2rem;
 `;
