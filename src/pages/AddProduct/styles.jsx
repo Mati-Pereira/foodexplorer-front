@@ -50,4 +50,6 @@ export const Tags = styled.div`
   width: 100%;
   flex-grow: 1;
   background-color: ${({ theme }) => theme.colors.green_500};
+  border-radius: 0.5rem;
+  height: 3rem;
 `;

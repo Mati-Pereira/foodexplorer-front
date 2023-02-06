@@ -6,6 +6,7 @@ import DetailsAnchor from "../../components/DetailsAnchor";
 import FileInput from "../../components/FileInput";
 import SelectInput from "../../components/SelectInput";
 import EditTag from "../../components/EditTag";
+import InputPrice from "../../components/InputPrice";
 
 const AddProduct = () => {
   return (
@@ -31,6 +32,7 @@ const AddProduct = () => {
             <EditTag text="Açucar" edit change />
             <EditTag text="Feijão" edit change />
           </Tags>
+          <InputPrice id="price" type="text" label="Preço" />
         </SecondRow>
       </Content>
       <Footer />
