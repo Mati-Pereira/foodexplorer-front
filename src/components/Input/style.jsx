@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+  flex-grow: 1;
   > div {
     display: flex;
     align-items: center;

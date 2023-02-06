@@ -41,15 +41,29 @@ export const SecondRow = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: 2rem;
+  gap: 3rem;
+`;
+
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  flex-grow: 3;
+  > label {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: ${({ theme }) => theme.colors.gray_400};
+    font-family: "Roboto", sans-serif;
+  }
 `;
 
 export const Tags = styled.div`
   display: flex;
   justify-content: left;
   width: 100%;
-  flex-grow: 1;
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
-  height: 3rem;
+  padding: 0.5rem;
 `;

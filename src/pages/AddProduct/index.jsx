@@ -1,4 +1,11 @@
-import { Container, Content, FirstRow, SecondRow, Tags } from "./styles";
+import {
+  Container,
+  Content,
+  FirstRow,
+  SecondRow,
+  Tags,
+  TagsContainer,
+} from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Input from "../../components/Input";
@@ -26,12 +33,17 @@ const AddProduct = () => {
           <SelectInput />
         </FirstRow>
         <SecondRow>
-          <Tags>
-            <EditTag text="Pão" edit={false} />
-            <EditTag text="Arroz" edit={false} />
-            <EditTag text="Açucar" edit change />
-            <EditTag text="Feijão" edit change />
-          </Tags>
+          <TagsContainer>
+            <label>
+              Ingredientes
+              <Tags>
+                <EditTag text="Pão" />
+                <EditTag text="Arroz" />
+                <EditTag text="Açucar" edit change />
+                <EditTag text="Feijão" edit change />
+              </Tags>
+            </label>
+          </TagsContainer>
           <InputPrice id="price" type="text" label="Preço" />
         </SecondRow>
       </Content>

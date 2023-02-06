@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: stretch;
   align-items: start;
   gap: 1rem;
+  width: 80%;
 `;
 
 export const Label = styled.label`
@@ -21,7 +22,7 @@ export const Select = styled.select`
   height: 100%;
   background-color: ${({ theme }) => theme.colors.green_500};
   color: ${({ theme }) => theme.colors.gray_600};
-  width: 200px;
+  width: 100%;
   padding: 1rem;
   font-size: 1rem;
   border: unset;
@@ -30,7 +31,6 @@ export const Select = styled.select`
   background-repeat: no-repeat;
   background-position: right 1rem top 50%;
   background-size: 1rem auto;
-
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray_400};
   }
