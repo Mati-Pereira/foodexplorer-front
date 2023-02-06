@@ -2,9 +2,9 @@ import { Container } from "./styles";
 import PropTypes from "prop-types";
 import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
 
-const EditTag = ({ text, edit }) => {
+const EditTag = ({ text, edit, ...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       {text}
       {!edit ? <AiOutlineClose /> : <AiOutlinePlus />}
     </Container>

@@ -25,10 +25,10 @@ const AddProduct = () => {
           <SelectInput />
         </FirstRow>
         <SecondRow>
-          <EditTag text="Pão" />
-          <EditTag text="Arroz" />
-          <EditTag text="Açucar" />
-          <EditTag text="Feijão" />
+          <EditTag text="Pão" edit={false} />
+          <EditTag text="Arroz" edit={false} />
+          <EditTag text="Açucar" edit change />
+          <EditTag text="Feijão" edit change />
         </SecondRow>
       </Content>
       <Footer />
