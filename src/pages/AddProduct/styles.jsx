@@ -7,7 +7,6 @@ export const Container = styled.div`
   align-items: flex-start;
   height: 100vh;
   width: 100%;
-
   > a {
     max-width: 62.5rem;
     margin: auto;
@@ -50,6 +49,7 @@ export const TagsContainer = styled.div`
 export const Tags = styled.div`
   display: flex;
   justify-content: left;
+  gap: 1rem;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
