@@ -3,7 +3,11 @@ import Input from "../../components/Input";
 import Anchor from "../../components/Anchor";
 import { Container, Content } from "./styles";
 import logo from "/logo.svg";
+import { useTheme } from "styled-components";
 const Login = () => {
+  const {
+    colors: { red },
+  } = useTheme();
   return (
     <Container>
       <img src={logo} alt="logo" />
@@ -23,7 +27,7 @@ const Login = () => {
           label="Senha"
           form
         />
-        <Button text="Criar conta" />
+        <Button text="Criar conta" color={red} />
         <Anchor text="Crie uma Conta" to="/register" />
       </Content>
     </Container>
