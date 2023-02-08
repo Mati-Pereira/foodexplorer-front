@@ -2,12 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 0.875rem;
+  flex-grow: 3;
+  gap: 2rem;
   > svg {
     color: ${({ theme }) => theme.colors.white};
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    cursor: pointer;
   }
 `;
 

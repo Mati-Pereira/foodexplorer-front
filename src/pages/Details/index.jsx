@@ -7,11 +7,15 @@ import Quantity from "../../components/Quantity";
 import Button from "../../components/Button";
 import PropTypes from "prop-types";
 import { useTheme } from "styled-components";
+import { useAppContext } from "../../context";
 
-const Details = ({ isAdmin = false }) => {
+const Details = () => {
   const {
     colors: { red },
   } = useTheme();
+  const {
+    state: { isAdmin },
+  } = useAppContext();
   return (
     <Container>
       <Header />
@@ -33,14 +37,14 @@ const Details = ({ isAdmin = false }) => {
             <Tag text="Miojo" />
             <Tag text="Agora Vais" />
           </Tags>
-          {!isAdmin ? (
+          {isAdmin ? (
             <AddProduct>
-              <Quantity quantity={5} />
-              <Button text="Incluir" color={red} />
+              <Button text="Editar" color={red} />
             </AddProduct>
           ) : (
             <AddProduct>
-              <Button text="Editar" color={red} />
+              <Quantity quantity={5} />
+              <Button text="Incluir" color={red} />
             </AddProduct>
           )}
         </Text>

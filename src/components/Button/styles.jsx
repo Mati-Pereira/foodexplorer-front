@@ -6,6 +6,7 @@ export const Container = styled.div`
   align-items: center;
   background-color: ${(props) => props.color};
   border-radius: 0.5rem;
+  flex-grow: 1;
   height: 3rem;
   cursor: pointer;
   transition: 0.25s ease-in-out all;
