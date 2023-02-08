@@ -19,4 +19,7 @@ export const Container = styled.div`
     color: ${({ theme }) => theme.colors.white};
     width: 6.25rem;
   }
+  > svg {
+    cursor: pointer;
+  }
 `;

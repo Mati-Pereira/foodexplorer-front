@@ -20,16 +20,22 @@ import InputPrice from "../../components/InputPrice";
 import Textarea from "../../components/Textarea";
 import Button from "../../components/Button";
 import { useTheme } from "styled-components";
-// import { useState } from "react";
+import { useState } from "react";
 import InputTag from "../../components/InputTag";
 
 const EditProduct = () => {
-  // const [tags, setTags] = useState([]);
-  // const [inputTag, setInputTag] = useState("");
+  const [tags, setTags] = useState([]);
+  const [inputTag, setInputTag] = useState("");
+
+  const handleClickNewTag = () => {
+    setTags([...tags, inputTag]);
+    setInputTag("");
+  };
 
   const {
     colors: { salmon, green_500 },
   } = useTheme();
+
   return (
     <Container>
       <Header />
@@ -53,9 +59,13 @@ const EditProduct = () => {
                 Ingredientes
                 <Tags>
                   <EditTag text="Pão" />
-                  <EditTag text="Arroz" />
-                  <EditTag text="Açucar" edit change />
-                  <InputTag />
+                  {tags.map((tag, index) => (
+                    <EditTag text={tag} key={index} />
+                  ))}
+                  <InputTag
+                    onChange={(e) => setInputTag(e.target.value)}
+                    onClick={handleClickNewTag}
+                  />
                 </Tags>
               </label>
             </TagsContainer>
