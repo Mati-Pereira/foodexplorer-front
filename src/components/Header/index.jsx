@@ -4,11 +4,18 @@ import pedidos from "/pedidos.svg";
 import sair from "/sair.svg";
 import logo from "/logo.svg";
 import { BsSearch } from "react-icons/bs";
+import { useAppContext } from "../../context";
 
 const Header = () => {
+  const {
+    state: { isAdmin },
+  } = useAppContext();
   return (
     <Container>
-      <Logo src={logo} alt="logo" />
+      <div>
+        <Logo src={logo} alt="logo" />
+        {isAdmin ? <span>admin</span> : null}
+      </div>
       <Input>
         <BsSearch />
         <input type="text" placeholder="Busque por pratos ou ingredientes" />

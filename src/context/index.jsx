@@ -1,12 +1,11 @@
 import { createContext, useContext, useReducer } from "react";
 import PropTypes from "prop-types";
 
-const AppContext = createContext(initialState);
-
 const initialState = {
   isAdmin: false,
-  isLoggedIn: false,
 };
+
+const AppContext = createContext(initialState);
 
 function reducer(state, action) {
   switch (action.type) {
@@ -17,7 +16,6 @@ function reducer(state, action) {
 
 export default function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   return (
     <AppContext.Provider
       value={{

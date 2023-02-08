@@ -11,6 +11,17 @@ export const Container = styled.div`
   > img {
     cursor: pointer;
   }
+  > div {
+    span {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 0.75rem;
+      font-family: "Roboto", sans-serif;
+      color: ${({ theme }) => theme.colors.blue};
+      margin-top: -5px;
+    }
+  }
 `;
 
 export const Pedidos = styled.div`
