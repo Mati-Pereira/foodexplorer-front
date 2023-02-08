@@ -1,24 +1,17 @@
 import { createContext, useContext, useReducer } from "react";
 import PropTypes from "prop-types";
 
-const AppContext = createContext({});
+const AppContext = createContext(initialState);
 
 const initialState = {
-  counter: 0,
+  isAdmin: false,
+  isLoggedIn: false,
 };
 
 function reducer(state, action) {
   switch (action.type) {
-    case "INCREMENT":
-      return {
-        ...state,
-        counter: state.counter + 1,
-      };
-    case "DECREMENT":
-      return {
-        ...state,
-        counter: state.counter - 1,
-      };
+    case "LOGIN":
+      return { ...state, isLoggedIn: true };
   }
 }
 
