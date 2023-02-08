@@ -8,14 +8,17 @@ import "@fontsource/roboto";
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 import AuthRoutes from "./routes/AuthRoutes";
+import AppProvider from "./context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <AppRoutes />
-      </ThemeProvider>
-    </BrowserRouter>
+    <AppProvider>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <AppRoutes />
+        </ThemeProvider>
+      </BrowserRouter>
+    </AppProvider>
   </React.StrictMode>
 );
