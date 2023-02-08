@@ -19,11 +19,29 @@ import InputPrice from "../../components/InputPrice";
 import Textarea from "../../components/Textarea";
 import Button from "../../components/Button";
 import { useTheme } from "styled-components";
+import { useState } from "react";
+import InputTag from "../../components/InputTag";
 
 const AddProduct = () => {
+  const [tags, setTags] = useState([]);
+  const [inputTag, setInputTag] = useState("");
+  const [inputPrice, setInputPrice] = useState(0);
+
+  const handleClickNewTag = () => {
+    setTags([...tags, inputTag]);
+    setInputTag("");
+  };
+
+  const handleDeleteTag = (index) => {
+    const newTags = [...tags];
+    newTags.splice(index, 1);
+    setTags(newTags);
+  };
+
   const {
     colors: { salmon },
   } = useTheme();
+
   return (
     <Container>
       <Header />
@@ -46,14 +64,24 @@ const AddProduct = () => {
               <label>
                 Ingredientes
                 <Tags>
-                  <EditTag text="Pão" />
-                  <EditTag text="Arroz" />
-                  <EditTag text="Açucar" edit change />
-                  <EditTag text="Feijão" edit change />
+                  {tags.map((tag, index) => (
+                    <EditTag text={tag} key={index} onClick={handleDeleteTag} />
+                  ))}
+                  <InputTag
+                    onChange={(e) => setInputTag(e.target.value)}
+                    onClick={handleClickNewTag}
+                    value={inputTag}
+                  />
                 </Tags>
               </label>
             </TagsContainer>
-            <InputPrice id="price" type="text" label="Preço" />
+            <InputPrice
+              id="price"
+              type="text"
+              label="Preço"
+              onChange={(e) => setInputPrice(e.target.value)}
+              value={inputPrice}
+            />
           </SecondRow>
           <ThirdRow>
             <Textarea />

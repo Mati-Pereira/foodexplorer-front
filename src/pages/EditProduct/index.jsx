@@ -28,8 +28,6 @@ const EditProduct = () => {
   const [inputTag, setInputTag] = useState("");
   const [inputPrice, setInputPrice] = useState(0);
 
-  console.log(inputPrice);
-
   const handleClickNewTag = () => {
     setTags([...tags, inputTag]);
     setInputTag("");
