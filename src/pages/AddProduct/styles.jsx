@@ -53,7 +53,7 @@ export const Tags = styled.div`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 `;
 
 export const FirstRow = styled.div`
@@ -67,7 +67,7 @@ export const SecondRow = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: 3rem;
+  gap: 4rem;
 `;
 
 export const ThirdRow = styled.div`

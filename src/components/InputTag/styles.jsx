@@ -17,7 +17,7 @@ export const Container = styled.div`
     outline: none;
     font-size: 1rem;
     color: ${({ theme }) => theme.colors.white};
-    width: 6.25rem;
+    width: 4.5rem;
   }
   > svg {
     cursor: pointer;

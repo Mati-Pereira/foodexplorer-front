@@ -7,7 +7,7 @@ const InputTag = ({ onClick, onChange, value, ...rest }) => {
     <Container>
       <input
         type="text"
-        placeholder="Adicione um ingrediente"
+        placeholder="Adicionar"
         {...rest}
         onChange={onChange}
         value={value}
