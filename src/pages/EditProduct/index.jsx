@@ -20,8 +20,13 @@ import InputPrice from "../../components/InputPrice";
 import Textarea from "../../components/Textarea";
 import Button from "../../components/Button";
 import { useTheme } from "styled-components";
+// import { useState } from "react";
+import InputTag from "../../components/InputTag";
 
 const EditProduct = () => {
+  // const [tags, setTags] = useState([]);
+  // const [inputTag, setInputTag] = useState("");
+
   const {
     colors: { salmon, green_500 },
   } = useTheme();
@@ -50,7 +55,7 @@ const EditProduct = () => {
                   <EditTag text="Pão" />
                   <EditTag text="Arroz" />
                   <EditTag text="Açucar" edit change />
-                  <EditTag text="Feijão" edit change />
+                  <InputTag />
                 </Tags>
               </label>
             </TagsContainer>
