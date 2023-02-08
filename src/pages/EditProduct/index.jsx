@@ -26,6 +26,9 @@ import InputTag from "../../components/InputTag";
 const EditProduct = () => {
   const [tags, setTags] = useState([]);
   const [inputTag, setInputTag] = useState("");
+  const [inputPrice, setInputPrice] = useState(0);
+
+  console.log(inputPrice);
 
   const handleClickNewTag = () => {
     setTags([...tags, inputTag]);
@@ -75,7 +78,13 @@ const EditProduct = () => {
                 </Tags>
               </label>
             </TagsContainer>
-            <InputPrice id="price" type="text" label="Preço" />
+            <InputPrice
+              id="price"
+              type="text"
+              label="Preço"
+              onChange={(e) => setInputPrice(e.target.value)}
+              value={inputPrice}
+            />
           </SecondRow>
           <ThirdRow>
             <Textarea />
