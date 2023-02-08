@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import PropTypes from "prop-types";
 
 const initialState = {
-  isAdmin: false,
+  isAdmin: true,
 };
 
 const AppContext = createContext(initialState);

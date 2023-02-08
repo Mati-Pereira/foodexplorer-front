@@ -20,10 +20,16 @@ const Header = () => {
         <BsSearch />
         <input type="text" placeholder="Busque por pratos ou ingredientes" />
       </Input>
-      <Pedidos>
-        <img src={pedidos} alt="icon pedidos" />
-        <Anchor text="Pedidos (0)" to="#" />
-      </Pedidos>
+      {isAdmin ? (
+        <Pedidos>
+          <Anchor text="Novo Prato" to="/add" />
+        </Pedidos>
+      ) : (
+        <Pedidos>
+          <img src={pedidos} alt="icon pedidos" />
+          <Anchor text="Pedidos (0)" to="#" />
+        </Pedidos>
+      )}
       <img src={sair} alt="sair icon" />
     </Container>
   );
