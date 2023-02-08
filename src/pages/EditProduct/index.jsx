@@ -32,6 +32,12 @@ const EditProduct = () => {
     setInputTag("");
   };
 
+  const handleDeleteTag = (index) => {
+    const newTags = [...tags];
+    newTags.splice(index, 1);
+    setTags(newTags);
+  };
+
   const {
     colors: { salmon, green_500 },
   } = useTheme();
@@ -58,13 +64,13 @@ const EditProduct = () => {
               <label>
                 Ingredientes
                 <Tags>
-                  <EditTag text="Pão" />
                   {tags.map((tag, index) => (
-                    <EditTag text={tag} key={index} />
+                    <EditTag text={tag} key={index} onClick={handleDeleteTag} />
                   ))}
                   <InputTag
                     onChange={(e) => setInputTag(e.target.value)}
                     onClick={handleClickNewTag}
+                    value={inputTag}
                   />
                 </Tags>
               </label>

@@ -2,7 +2,7 @@ import { Container } from "./styles";
 import PropTypes from "prop-types";
 import { AiOutlinePlus } from "react-icons/ai";
 
-const InputTag = ({ onClick, onChange, ...rest }) => {
+const InputTag = ({ onClick, onChange, value, ...rest }) => {
   return (
     <Container>
       <input
@@ -10,6 +10,7 @@ const InputTag = ({ onClick, onChange, ...rest }) => {
         placeholder="Adicione um ingrediente"
         {...rest}
         onChange={onChange}
+        value={value}
       />
       <AiOutlinePlus onClick={onClick} />
     </Container>
@@ -19,6 +20,7 @@ const InputTag = ({ onClick, onChange, ...rest }) => {
 InputTag.propTypes = {
   onClick: PropTypes.func,
   onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default InputTag;

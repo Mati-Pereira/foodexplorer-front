@@ -49,6 +49,7 @@ export const TagsContainer = styled.div`
 export const Tags = styled.div`
   display: flex;
   justify-content: left;
+  flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.green_500};
