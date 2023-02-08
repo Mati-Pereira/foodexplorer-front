@@ -1,19 +1,18 @@
 import { Container } from "./styles";
 import PropTypes from "prop-types";
-import { AiOutlineClose, AiOutlinePlus } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 
-const EditTag = ({ text, edit, ...rest }) => {
+const EditTag = ({ text, ...rest }) => {
   return (
     <Container {...rest}>
       {text}
-      {!edit ? <AiOutlineClose /> : <AiOutlinePlus />}
+      <AiOutlineClose />
     </Container>
   );
 };
 
 EditTag.propTypes = {
   text: PropTypes.string.isRequired,
-  edit: PropTypes.bool,
 };
 
 export default EditTag;
