@@ -8,6 +8,7 @@ export const signIn = createAsyncThunk(
     try {
       const response = await api.post("/sessions", { email, password });
       const { access_token } = response.data;
+      localStorage.setItem("access_token", access_token);
       api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
       return response.data;
     } catch (error) {
@@ -26,7 +27,6 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
-  token: null,
 };
 
 const authSlice = createSlice({
@@ -34,8 +34,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     signOut: (state) => {
+      localStorage.clear();
       state.user = null;
       state.isAdmin = false;
+      state.loading = false;
     },
   },
   extraReducers: (builder) => {
@@ -46,7 +48,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.user = action.payload.user;
       state.isAdmin = action.payload.is_admin;
-      state.token = action.payload.access_token;
     });
     builder.addCase(signIn.rejected, (state, action) => {
       state.loading = false;

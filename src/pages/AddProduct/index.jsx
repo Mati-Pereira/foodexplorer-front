@@ -24,7 +24,7 @@ import { useState } from "react";
 import InputTag from "../../components/InputTag";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const AddProduct = () => {
@@ -40,7 +40,7 @@ const AddProduct = () => {
   const [inputPrice, setInputPrice] = useState("");
 
   const [image, setImage] = useState();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleClickNewIngredient = () => {
     setIngredients([...ingredients, inputIngredient]);
@@ -97,8 +97,6 @@ const AddProduct = () => {
       })
     );
 
-    console.log(dataToSend);
-
     await api
       .post("/products", dataToSend)
       .then(() => {
@@ -110,6 +108,8 @@ const AddProduct = () => {
         }
         toast.error(error.message);
       });
+
+    navigate(-1);
   };
 
   const {
