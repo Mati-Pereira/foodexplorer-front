@@ -7,12 +7,7 @@ export const signIn = createAsyncThunk(
   async ({ email, password }, thunkAPI) => {
     try {
       const response = await api.post("/sessions", { email, password });
-      const { user, is_admin, access_token } = response.data;
-      localStorage.setItem(
-        "@foodExplorer:user",
-        JSON.stringify({ user, is_admin })
-      );
-      localStorage.setItem("@foodExplorer:token", access_token);
+      const { access_token } = response.data;
       api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
       return response.data;
     } catch (error) {
