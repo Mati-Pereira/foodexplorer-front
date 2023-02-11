@@ -8,13 +8,8 @@ export const Container = styled.div`
   border-radius: 0.5rem;
   flex-grow: 1;
   height: 3rem;
+  width: 100%;
   cursor: pointer;
-  transition: 0.25s ease-in-out all;
-  width: fit-content;
-  padding: 0 2rem;
-  &:active {
-    transform: scale(0.98);
-  }
   > button {
     border: none;
     background-color: transparent;

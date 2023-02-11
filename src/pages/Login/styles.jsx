@@ -9,11 +9,12 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: ${({ theme }) => theme.colors.green_700};
   padding: 4rem;
   border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
+  width: 25rem;
   gap: 2rem;
   > h1 {
     color: ${({ theme }) => theme.colors.white};
@@ -24,5 +25,14 @@ export const Content = styled.div`
   }
   > a {
     text-align: center;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  div {
+    width: 100%;
   }
 `;

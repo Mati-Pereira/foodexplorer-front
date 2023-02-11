@@ -12,6 +12,7 @@ export const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.green_700};
   padding: 4rem;
   border-radius: 0.5rem;
+  width: 25rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -19,10 +20,16 @@ export const Content = styled.div`
     color: ${({ theme }) => theme.colors.white};
     font-family: "Poppins";
   }
-  > div {
-    width: 21.25rem;
-  }
   > a {
     text-align: center;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  div {
+    width: 100%;
   }
 `;

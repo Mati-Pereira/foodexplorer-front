@@ -1,19 +1,24 @@
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Anchor from "../../components/Anchor";
-import { Container, Content } from "./styles";
+import { Container, Content, Form } from "./styles";
 import logo from "/logo.svg";
 import { useTheme } from "styled-components";
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const {
-    colors: { red },
+    colors: { red, white },
   } = useTheme();
   return (
     <Container>
       <img src={logo} alt="logo" />
       <Content>
         <h1>Faça login</h1>
-        <form>
+        <Form>
           <Input
             id="email"
             placeholder="Exemplo: exemplo@exemplo.com.br"
@@ -28,8 +33,15 @@ const Login = () => {
             label="Senha"
             form
           />
-          <Button text="Criar conta" color={red} />
-        </form>
+          <Button color={red}>
+            {" "}
+            {isLoading ? (
+              <ThreeDots height="80" width="80" radius="9" color={white} />
+            ) : (
+              "Login"
+            )}
+          </Button>
+        </Form>
         <Anchor text="Crie uma Conta" to="/register" />
       </Content>
     </Container>

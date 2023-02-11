@@ -2,7 +2,7 @@ import { useTheme } from "styled-components";
 import Anchor from "../../components/Anchor";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
-import { Container, Content } from "./styles";
+import { Container, Content, Form } from "./styles";
 import logo from "/logo.svg";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
@@ -19,7 +19,8 @@ const Signup = () => {
     colors: { red, white },
   } = useTheme();
 
-  const handleSignup = async () => {
+  const handleSignup = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
     console.log(username, email, password);
     await api
@@ -40,41 +41,43 @@ const Signup = () => {
       <img src={logo} alt="logo" />
       <Content>
         <h1>Crie sua conta</h1>
-        <Input
-          id="nome"
-          label="Seu nome"
-          placeholder="Exemplo: Maria da Silva"
-          type="text"
-          required
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Input
-          id="email"
-          placeholder="Exemplo: exemplo@exemplo.com.br"
-          type="email"
-          label="Email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Input
-          id="password"
-          placeholder="No mínimo 6 caracteres"
-          min={6}
-          type="password"
-          label="Senha"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button color={red} type="submit" onClick={handleSignup}>
-          {isLoading ? (
-            <ThreeDots height="80" width="80" radius="9" color={white} />
-          ) : (
-            "Criar conta"
-          )}
-        </Button>
+        <Form onSubmit={handleSignup}>
+          <Input
+            id="nome"
+            label="Seu nome"
+            placeholder="Exemplo: Maria da Silva"
+            type="text"
+            required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            id="email"
+            placeholder="Exemplo: exemplo@exemplo.com.br"
+            type="email"
+            label="Email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            id="password"
+            placeholder="No mínimo 6 caracteres"
+            min={6}
+            type="password"
+            label="Senha"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button color={red} type="submit">
+            {isLoading ? (
+              <ThreeDots height="80" width="80" radius="9" color={white} />
+            ) : (
+              "Criar conta"
+            )}
+          </Button>
+        </Form>
         <Anchor text="Já tenho uma conta" to="/login" />
       </Content>
     </Container>
