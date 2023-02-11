@@ -16,7 +16,7 @@ const Header = () => {
 
   const handleSignOut = async () => {
     dispatch(signOut());
-    await persistor.pause();
+    persistor.pause();
     await persistor.flush().then(() => {
       return persistor.purge();
     });

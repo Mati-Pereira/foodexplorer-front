@@ -26,6 +26,7 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
+  token: null,
 };
 
 const authSlice = createSlice({
@@ -45,6 +46,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.user = action.payload.user;
       state.isAdmin = action.payload.is_admin;
+      state.token = action.payload.access_token;
     });
     builder.addCase(signIn.rejected, (state, action) => {
       state.loading = false;
