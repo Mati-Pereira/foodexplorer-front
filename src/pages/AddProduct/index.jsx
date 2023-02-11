@@ -24,7 +24,7 @@ import { useState } from "react";
 import InputTag from "../../components/InputTag";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const AddProduct = () => {
@@ -37,11 +37,10 @@ const AddProduct = () => {
   const [ingredients, setIngredients] = useState([]);
   const [inputIngredient, setInputIngredient] = useState("");
 
-  const [inputPrice, setInputPrice] = useState(0);
+  const [inputPrice, setInputPrice] = useState("");
 
   const [image, setImage] = useState();
-  console.log(image);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleClickNewIngredient = () => {
     setIngredients([...ingredients, inputIngredient]);
@@ -86,37 +85,32 @@ const AddProduct = () => {
 
     const dataToSend = new FormData();
 
-    dataToSend.append("image", image);
-    dataToSend.append(
+    dataToSend.set("image", image);
+    dataToSend.set(
       "data",
       JSON.stringify({
         name,
         category,
         description,
         ingredients,
-        price: String(inputPrice),
-        image,
+        price: inputPrice,
       })
     );
+
+    console.log(dataToSend);
 
     await api
       .post("/products", dataToSend)
       .then(() => {
         toast.success("Produto criado com sucesso!");
       })
-      .catch(() => {
-        toast.error("Erro ao criar produto.");
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        }
+        toast.error(error.message);
       });
   };
-
-  console.log({
-    name,
-    category,
-    description,
-    ingredients,
-    inputPrice,
-    image,
-  });
 
   const {
     colors: { salmon },
@@ -134,7 +128,7 @@ const AddProduct = () => {
       <DetailsAnchor to="/" />
       <Content>
         <h1>Adicionar Prato</h1>
-        <Form onSubmit={handleCreateProduct}>
+        <Form>
           <Rows>
             <FirstRow>
               <FileInput onChange={handleImageProduct} required />
@@ -184,7 +178,9 @@ const AddProduct = () => {
                 required
               />
             </ThirdRow>
-            <Button color={salmon}>Salvar alterações</Button>
+            <Button color={salmon} type="submit" onClick={handleCreateProduct}>
+              Salvar alterações
+            </Button>
           </Rows>
         </Form>
       </Content>

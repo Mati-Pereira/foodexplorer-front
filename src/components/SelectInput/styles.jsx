@@ -31,6 +31,7 @@ export const Select = styled.select`
   background-repeat: no-repeat;
   background-position: right 1rem top 50%;
   background-size: 1rem auto;
+  outline: transparent;
   &::placeholder {
     color: ${({ theme }) => theme.colors.gray_400};
   }

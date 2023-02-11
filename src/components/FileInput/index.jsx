@@ -7,15 +7,17 @@ const FileInput = ({ onChange, ...rest }) => {
     <Container>
       <Label>Imagem do Prato</Label>
       <Content>
-        <AiOutlineUpload />
-        <label htmlFor="file">Selecione Imagem</label>
-        <input
-          type="file"
-          id="file"
-          accept="image/png, image/jpeg"
-          onChange={onChange}
-          {...rest}
-        />
+        <label htmlFor="file">
+          <AiOutlineUpload />
+          Selecione Imagem
+          <input
+            type="file"
+            id="file"
+            accept="image/png, image/jpeg"
+            onChange={onChange}
+            {...rest}
+          />
+        </label>
       </Content>
     </Container>
   );
