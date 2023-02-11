@@ -50,7 +50,7 @@ const authSlice = createSlice({
     });
     builder.addCase(signIn.fulfilled, (state, action) => {
       state.loading = false;
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isAdmin = action.payload.is_admin;
     });
     builder.addCase(signIn.rejected, (state, action) => {
