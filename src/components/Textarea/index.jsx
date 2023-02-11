@@ -1,6 +1,6 @@
 import { Container } from "./styles";
 
-const Textarea = () => {
+const Textarea = ({ ...rest }) => {
   return (
     <Container>
       <label htmlFor="description">Descrição</label>
@@ -9,6 +9,7 @@ const Textarea = () => {
         id="description"
         rows={10}
         placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
+        {...rest}
       />
     </Container>
   );

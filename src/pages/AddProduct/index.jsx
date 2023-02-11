@@ -2,6 +2,7 @@ import {
   Container,
   Content,
   FirstRow,
+  Form,
   Rows,
   SecondRow,
   Tags,
@@ -21,26 +22,111 @@ import Button from "../../components/Button";
 import { useTheme } from "styled-components";
 import { useState } from "react";
 import InputTag from "../../components/InputTag";
+import { toast } from "react-toastify";
+import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const AddProduct = () => {
-  const [tags, setTags] = useState([]);
-  const [inputTag, setInputTag] = useState("");
+  const [name, setName] = useState("");
+
+  const [category, setCategory] = useState("refeicao");
+
+  const [description, setDescription] = useState("");
+
+  const [ingredients, setIngredients] = useState([]);
+  const [inputIngredient, setInputIngredient] = useState("");
+
   const [inputPrice, setInputPrice] = useState(0);
 
-  const handleClickNewTag = () => {
-    setTags([...tags, inputTag]);
-    setInputTag("");
+  const [image, setImage] = useState();
+  console.log(image);
+  const navigate = useNavigate();
+
+  const handleClickNewIngredient = () => {
+    setIngredients([...ingredients, inputIngredient]);
+    setInputIngredient("");
   };
 
-  const handleDeleteTag = (index) => {
-    const newTags = [...tags];
+  const handleDeleteIngredient = (index) => {
+    const newTags = [...ingredients];
     newTags.splice(index, 1);
-    setTags(newTags);
+    setIngredients(newTags);
   };
+
+  const handleSelectedCategory = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleDescriptionProduct = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleImageProduct = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleCreateProduct = async (e) => {
+    e.preventDefault();
+
+    if (inputIngredient.length) {
+      return toast.error("Existem ingredientes no input do formulário.");
+    }
+
+    if (
+      !name ||
+      !category ||
+      !description ||
+      !ingredients.length ||
+      !inputPrice ||
+      !image
+    ) {
+      return toast.error("Preencha todos os campos.");
+    }
+
+    const dataToSend = new FormData();
+
+    dataToSend.append("image", image);
+    dataToSend.append(
+      "data",
+      JSON.stringify({
+        name,
+        category,
+        description,
+        ingredients,
+        price: String(inputPrice),
+        image,
+      })
+    );
+
+    await api
+      .post("/products", dataToSend)
+      .then(() => {
+        toast.success("Produto criado com sucesso!");
+      })
+      .catch(() => {
+        toast.error("Erro ao criar produto.");
+      });
+  };
+
+  console.log({
+    name,
+    category,
+    description,
+    ingredients,
+    inputPrice,
+    image,
+  });
 
   const {
     colors: { salmon },
   } = useTheme();
+
+  useEffect(() => {
+    if (image) {
+      toast.success("Imagem selecionada com sucesso!");
+    }
+  }, [image]);
 
   return (
     <Container>
@@ -48,48 +134,59 @@ const AddProduct = () => {
       <DetailsAnchor to="/" />
       <Content>
         <h1>Adicionar Prato</h1>
-        <Rows>
-          <FirstRow>
-            <FileInput />
-            <Input
-              label="Nome"
-              placeholder="Ex.: Salada Ceasar"
-              id="nome"
-              type="text"
-            />
-            <SelectInput />
-          </FirstRow>
-          <SecondRow>
-            <TagsContainer>
-              <label>
-                Ingredientes
-                <Tags>
-                  {tags.map((tag, index) => (
-                    <EditTag text={tag} key={index} onClick={handleDeleteTag} />
-                  ))}
-                  <InputTag
-                    onChange={(e) => setInputTag(e.target.value)}
-                    onClick={handleClickNewTag}
-                    value={inputTag}
-                  />
-                </Tags>
-              </label>
-            </TagsContainer>
-            <InputPrice
-              id="price"
-              type="text"
-              label="Preço"
-              onChange={(e) => setInputPrice(e.target.value)}
-              value={inputPrice}
-            />
-          </SecondRow>
-          <ThirdRow>
-            <Textarea />
-          </ThirdRow>
-          <Button color={salmon} text="Salvar alterações">
-            Salvar alterações
-          </Button>
-        </Rows>
+        <Form onSubmit={handleCreateProduct}>
+          <Rows>
+            <FirstRow>
+              <FileInput onChange={handleImageProduct} required />
+              <Input
+                label="Nome"
+                placeholder="Ex.: Salada Ceasar"
+                id="nome"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+              <SelectInput onChange={handleSelectedCategory} value={category} />
+            </FirstRow>
+            <SecondRow>
+              <TagsContainer>
+                <label>
+                  Ingredientes
+                  <Tags>
+                    {ingredients.map((tag, index) => (
+                      <EditTag
+                        text={tag}
+                        key={index}
+                        onClick={handleDeleteIngredient}
+                      />
+                    ))}
+                    <InputTag
+                      onChange={(e) => setInputIngredient(e.target.value)}
+                      onClick={handleClickNewIngredient}
+                      value={inputIngredient}
+                    />
+                  </Tags>
+                </label>
+              </TagsContainer>
+              <InputPrice
+                id="price"
+                type="text"
+                label="Preço"
+                onChange={(e) => setInputPrice(e.target.value)}
+                value={inputPrice}
+                required
+              />
+            </SecondRow>
+            <ThirdRow>
+              <Textarea
+                onChange={handleDescriptionProduct}
+                value={description}
+                required
+              />
+            </ThirdRow>
+            <Button color={salmon}>Salvar alterações</Button>
+          </Rows>
+        </Form>
       </Content>
       <Footer />
     </Container>
