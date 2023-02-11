@@ -20,7 +20,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(signIn({ email, password }));
+    dispatch(signIn({ email, password }));
     navigate("/");
   };
 
