@@ -33,8 +33,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     signOut: (state) => {
-      localStorage.removeItem("@foodExplorer:token");
-      localStorage.removeItem("@foodExplorer:user");
       state.user = null;
       state.isAdmin = false;
     },

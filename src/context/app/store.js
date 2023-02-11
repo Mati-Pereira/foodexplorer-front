@@ -1,13 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth.thunk";
-import sessionStorage from "redux-persist/es/storage/session";
+import storage from "redux-persist/es/storage";
 import { combineReducers } from "@reduxjs/toolkit";
-import persistReducer from "redux-persist/es/persistReducer";
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 
 const persistConfig = {
-  storage: sessionStorage,
+  storage,
   key: "auth",
-  whitelist: ["auth"],
+  version: 1,
 };
 
 const reducer = combineReducers({
@@ -18,6 +26,12 @@ const persistedReducer = persistReducer(persistConfig, reducer);
 
 export const store = configureStore({
   reducer: {
-    auth: persistedReducer,
+    persisted: persistedReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });

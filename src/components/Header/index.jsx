@@ -6,10 +6,23 @@ import logo from "/logo.svg";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../context/features/auth.thunk";
+import { persistor } from "../../main";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { isAdmin } = useSelector((state) => state.auth);
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    dispatch(signOut());
+    await persistor.pause();
+    await persistor.flush().then(() => {
+      return persistor.purge();
+    });
+    navigate("/login");
+  };
+
   return (
     <Container>
       <div>
@@ -30,7 +43,7 @@ const Header = () => {
           <Anchor text="Pedidos (0)" to="#" />
         </Pedidos>
       )}
-      <img src={sair} alt="sair icon" onClick={() => dispatch(signOut())} />
+      <img src={sair} alt="sair icon" onClick={handleSignOut} />
     </Container>
   );
 };

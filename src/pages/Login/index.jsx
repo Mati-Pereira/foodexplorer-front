@@ -16,11 +16,11 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.persisted.auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(signIn({ email, password }));
+    await dispatch(signIn({ email, password }));
     navigate("/");
   };
 
