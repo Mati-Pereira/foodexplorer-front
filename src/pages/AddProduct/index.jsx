@@ -86,7 +86,9 @@ const AddProduct = () => {
           <ThirdRow>
             <Textarea />
           </ThirdRow>
-          <Button color={salmon} text="Salvar alterações" />
+          <Button color={salmon} text="Salvar alterações">
+            Salvar alterações
+          </Button>
         </Rows>
       </Content>
       <Footer />

@@ -4,12 +4,10 @@ import pedidos from "/pedidos.svg";
 import sair from "/sair.svg";
 import logo from "/logo.svg";
 import { BsSearch } from "react-icons/bs";
-import { useAppContext } from "../../context";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const {
-    state: { isAdmin },
-  } = useAppContext();
+  const { isAdmin } = useSelector((state) => state.auth);
   return (
     <Container>
       <div>

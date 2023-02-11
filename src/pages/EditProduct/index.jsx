@@ -88,8 +88,8 @@ const EditProduct = () => {
             <Textarea />
           </ThirdRow>
           <Buttons>
-            <Button color={green_500} text="Excluir Prato" />
-            <Button color={salmon} text="Salvar alterações" />
+            <Button color={green_500}>Excluir prato</Button>
+            <Button color={salmon}>Salvar alterações</Button>
           </Buttons>
         </Rows>
       </Content>

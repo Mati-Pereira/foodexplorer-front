@@ -19,7 +19,7 @@ const Card = ({ image, title, text, price, quantity, isAdmin }) => {
       {!isAdmin && (
         <AddProduct>
           <Quantity quantity={quantity} />
-          <Button text="Incluir" color={red} />
+          <Button color={red}>Incluir</Button>
         </AddProduct>
       )}
       {isAdmin ? <BsPencil /> : <AiOutlineHeart />}

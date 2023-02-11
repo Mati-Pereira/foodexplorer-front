@@ -6,10 +6,24 @@ import logo from "/logo.svg";
 import { useTheme } from "styled-components";
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../../context/features/auth.thunk";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(signIn({ email, password }));
+    navigate("/");
+  };
+
   const {
     colors: { red, white },
   } = useTheme();
@@ -18,28 +32,26 @@ const Login = () => {
       <img src={logo} alt="logo" />
       <Content>
         <h1>Faça login</h1>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Input
             id="email"
             placeholder="Exemplo: exemplo@exemplo.com.br"
             type="email"
             label="Email"
-            form
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             id="password"
             placeholder="No mínimo 6 caracteres"
+            min={6}
             type="password"
             label="Senha"
-            form
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Button color={red}>
-            {" "}
-            {isLoading ? (
-              <ThreeDots height="80" width="80" radius="9" color={white} />
-            ) : (
-              "Login"
-            )}
+            {loading ? <ThreeDots color={white} /> : "Login"}
           </Button>
         </Form>
         <Anchor text="Crie uma Conta" to="/register" />

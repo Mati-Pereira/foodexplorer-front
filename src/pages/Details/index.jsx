@@ -39,12 +39,12 @@ const Details = () => {
           </Tags>
           {isAdmin ? (
             <AddProduct>
-              <Button text="Editar" color={red} />
+              <Button color={red}>Editar</Button>
             </AddProduct>
           ) : (
             <AddProduct>
               <Quantity quantity={5} />
-              <Button text="Incluir" color={red} />
+              <Button color={red}>Incluir</Button>
             </AddProduct>
           )}
         </Text>

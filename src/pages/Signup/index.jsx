@@ -72,7 +72,15 @@ const Signup = () => {
           />
           <Button color={red} type="submit">
             {isLoading ? (
-              <ThreeDots height="80" width="80" radius="9" color={white} />
+              <ThreeDots
+                color={white}
+                wrapperStyle={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              />
             ) : (
               "Criar conta"
             )}

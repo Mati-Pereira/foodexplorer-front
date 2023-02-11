@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 
 const Button = ({ children, color, ...rest }) => {
   return (
-    <Container color={color}>
-      <button {...rest}>{children}</button>
+    <Container color={color} {...rest}>
+      {children}
     </Container>
   );
 };
