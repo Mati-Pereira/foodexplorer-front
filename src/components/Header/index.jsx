@@ -4,10 +4,12 @@ import pedidos from "/pedidos.svg";
 import sair from "/sair.svg";
 import logo from "/logo.svg";
 import { BsSearch } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../../context/features/auth.thunk";
 
 const Header = () => {
   const { isAdmin } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   return (
     <Container>
       <div>
@@ -28,7 +30,7 @@ const Header = () => {
           <Anchor text="Pedidos (0)" to="#" />
         </Pedidos>
       )}
-      <img src={sair} alt="sair icon" />
+      <img src={sair} alt="sair icon" onClick={() => dispatch(signOut())} />
     </Container>
   );
 };
