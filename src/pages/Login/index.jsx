@@ -13,21 +13,23 @@ const Login = () => {
       <img src={logo} alt="logo" />
       <Content>
         <h1>Faça login</h1>
-        <Input
-          id="email"
-          placeholder="Exemplo: exemplo@exemplo.com.br"
-          type="email"
-          label="Email"
-          form
-        />
-        <Input
-          id="password"
-          placeholder="No mínimo 6 caracteres"
-          type="password"
-          label="Senha"
-          form
-        />
-        <Button text="Criar conta" color={red} />
+        <form>
+          <Input
+            id="email"
+            placeholder="Exemplo: exemplo@exemplo.com.br"
+            type="email"
+            label="Email"
+            form
+          />
+          <Input
+            id="password"
+            placeholder="No mínimo 6 caracteres"
+            type="password"
+            label="Senha"
+            form
+          />
+          <Button text="Criar conta" color={red} />
+        </form>
         <Anchor text="Crie uma Conta" to="/register" />
       </Content>
     </Container>

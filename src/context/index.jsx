@@ -1,16 +1,26 @@
 import { createContext, useContext, useReducer } from "react";
 import PropTypes from "prop-types";
+import { api } from "../services/api";
 
 const initialState = {
   isAdmin: false,
+  isLoggedIn: false,
+  username: "",
+  email: "",
+  password: "",
 };
 
 const AppContext = createContext(initialState);
 
-function reducer(state, action) {
+async function reducer(state, action) {
   switch (action.type) {
-    case "LOGIN":
-      return { ...state, isLoggedIn: true };
+    case "SIGN_UP":
+      return {
+        ...state,
+        username: action.username,
+        email: action.email,
+        password: action.password,
+      };
   }
 }
 
