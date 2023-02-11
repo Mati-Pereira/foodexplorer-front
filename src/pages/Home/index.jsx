@@ -42,29 +42,6 @@ const Home = () => {
             text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
             isAdmin
           />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-          />
         </Section>
         <Section title="Sobremesas">
           <Card
@@ -91,29 +68,6 @@ const Home = () => {
             text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
             isAdmin
           />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-          />
         </Section>
         <Section title="Bebidas">
           <Card
@@ -139,29 +93,6 @@ const Home = () => {
             quantity={10}
             text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
             isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
           />
         </Section>
       </Container>
