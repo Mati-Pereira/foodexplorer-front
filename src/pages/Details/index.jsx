@@ -7,15 +7,13 @@ import Quantity from "../../components/Quantity";
 import Button from "../../components/Button";
 import PropTypes from "prop-types";
 import { useTheme } from "styled-components";
-import { useAppContext } from "../../context";
+import { useSelector } from "react-redux";
 
 const Details = () => {
   const {
     colors: { red },
   } = useTheme();
-  const {
-    state: { isAdmin },
-  } = useAppContext();
+  const { isAdmin } = useSelector((state) => state.auth);
   return (
     <Container>
       <Header />

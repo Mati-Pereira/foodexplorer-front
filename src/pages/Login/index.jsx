@@ -51,7 +51,20 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <Button color={red}>
-            {loading ? <ThreeDots color={white} /> : "Login"}
+            {loading ? (
+              <ThreeDots
+                color={white}
+                wrapperStyle={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                  width: "100%",
+                }}
+              />
+            ) : (
+              "Login"
+            )}
           </Button>
         </Form>
         <Anchor text="Crie uma Conta" to="/register" />
