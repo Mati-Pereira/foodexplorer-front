@@ -15,7 +15,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((state) => state.persisted.auth);
+  const { loading } = useSelector((state) => state.auth);
 
   const handleSubmit = (e) => {
     e.preventDefault();

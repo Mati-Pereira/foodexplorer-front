@@ -10,10 +10,6 @@ import { ToastContainer } from "react-toastify";
 import { Routes } from "./routes";
 import { Provider } from "react-redux";
 import { store } from "./context/app/store";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
-
-export let persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -31,10 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     />
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <PersistGate loading={null} persistor={persistor}>
-          <GlobalStyle />
-          <Routes />
-        </PersistGate>
+        <GlobalStyle />
+        <Routes />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

@@ -4,7 +4,8 @@ import AppRoutes from "./AppRoutes";
 import { useSelector } from "react-redux";
 
 export const Routes = () => {
-  const state = useSelector((state) => state);
+  const auth = useSelector((state) => state.auth);
+  console.log(auth);
   return (
     <BrowserRouter>
       <AuthRoutes />

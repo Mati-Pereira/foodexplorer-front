@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const { isAdmin } = useSelector((state) => state.persisted.auth);
+  const { isAdmin } = useSelector((state) => state.auth);
   const [allProducts, setAllProducts] = useState([]);
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);

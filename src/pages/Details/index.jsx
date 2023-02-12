@@ -13,7 +13,7 @@ const Details = () => {
   const {
     colors: { red },
   } = useTheme();
-  const { isAdmin } = useSelector((state) => state.persisted.auth);
+  const { isAdmin } = useSelector((state) => state.auth);
   return (
     <Container>
       <Header />

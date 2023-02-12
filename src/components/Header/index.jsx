@@ -6,20 +6,15 @@ import logo from "/logo.svg";
 import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../context/features/auth.thunk";
-import { persistor } from "../../main";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { isAdmin } = useSelector((state) => state.persisted.auth);
+  const { isAdmin } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     dispatch(signOut());
-    persistor.pause();
-    await persistor.flush().then(() => {
-      return persistor.purge();
-    });
     navigate("/login");
   };
 
