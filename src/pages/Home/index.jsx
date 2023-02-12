@@ -7,8 +7,10 @@ import Section from "../../components/Section";
 import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
   const [allProducts, setAllProducts] = useState([]);
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
@@ -30,7 +32,6 @@ const Home = () => {
     setSobremesas(sobremesa);
     setBebidas(bebida);
   }, [allProducts]);
-  console.log(refeicoes);
   return (
     <>
       <Header />
@@ -49,7 +50,7 @@ const Home = () => {
               price={item.price}
               text={item.description}
               image={item.image}
-              isAdmin
+              isAdmin={isAdmin}
             />
           ))}
         </Section>
@@ -60,7 +61,7 @@ const Home = () => {
               price={item.price}
               text={item.description}
               image={item.image}
-              isAdmin
+              isAdmin={isAdmin}
             />
           ))}
         </Section>
@@ -71,7 +72,7 @@ const Home = () => {
               price={item.price}
               text={item.description}
               image={item.image}
-              isAdmin
+              isAdmin={isAdmin}
             />
           ))}
         </Section>

@@ -16,7 +16,6 @@ import { api } from "../../services/api";
 const apiMiddleware = () => (next) => (action) => {
   if (action.type === REHYDRATE) {
     const token = localStorage.getItem("access_token");
-    console.log(token);
     if (token) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }

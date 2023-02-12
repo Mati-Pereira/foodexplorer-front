@@ -6,14 +6,14 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { useTheme } from "styled-components";
 
-const Card = ({ image, title, text, price, quantity, isAdmin }) => {
+const Card = ({ image, name, text, price, quantity, isAdmin }) => {
   const {
     colors: { red },
   } = useTheme();
   return (
     <Container>
       <Image src={image} alt="food picture" />
-      <Title>{title}</Title>
+      <Title>{name}</Title>
       <Text>{text}</Text>
       <Price>R$ {price}</Price>
       {!isAdmin && (
@@ -31,7 +31,7 @@ export default Card;
 
 Card.propTypes = {
   image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
