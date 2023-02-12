@@ -4,8 +4,33 @@ import cookiesimg from "/cookies.svg";
 import Footer from "../../components/Footer";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
+import { useEffect } from "react";
+import { api } from "../../services/api";
+import { useState } from "react";
 
 const Home = () => {
+  const [allProducts, setAllProducts] = useState([]);
+  const [refeicoes, setRefeicoes] = useState([]);
+  const [sobremesas, setSobremesas] = useState([]);
+  const [bebidas, setBebidas] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      await api.get("/products").then((res) => setAllProducts(res.data));
+    })();
+  }, []);
+
+  useEffect(() => {
+    const refeicao = allProducts.filter((item) => item.category === "refeicao");
+    const sobremesa = allProducts.filter(
+      (item) => item.category === "sobremesa"
+    );
+    const bebida = allProducts.filter((item) => item.category === "bebida");
+    setRefeicoes(refeicao);
+    setSobremesas(sobremesa);
+    setBebidas(bebida);
+  }, [allProducts]);
+  console.log(refeicoes);
   return (
     <>
       <Header />
@@ -18,82 +43,37 @@ const Home = () => {
           </Text>
         </Background>
         <Section title="Refeições">
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-2.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
+          {refeicoes.map((item) => (
+            <Card
+              key={item.id}
+              price={item.price}
+              text={item.description}
+              image={item.image}
+              isAdmin
+            />
+          ))}
         </Section>
         <Section title="Sobremesas">
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-2.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
+          {sobremesas.map((item) => (
+            <Card
+              key={item.id}
+              price={item.price}
+              text={item.description}
+              image={item.image}
+              isAdmin
+            />
+          ))}
         </Section>
         <Section title="Bebidas">
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-2.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
-          <Card
-            title="arroz"
-            image="/Imagens/Mask group-1.png"
-            price="10,00"
-            quantity={10}
-            text="sakdmloksadnkl jkfnsldjfnlsdjnf jdnsfl dklsnflkfndlk"
-            isAdmin
-          />
+          {bebidas.map((item) => (
+            <Card
+              key={item.id}
+              price={item.price}
+              text={item.description}
+              image={item.image}
+              isAdmin
+            />
+          ))}
         </Section>
       </Container>
       <Footer />
