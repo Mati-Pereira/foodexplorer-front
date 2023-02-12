@@ -4,6 +4,10 @@ import AppRoutes from "./AppRoutes";
 import { useSelector } from "react-redux";
 
 export const Routes = () => {
-  const { user } = useSelector((state) => state.persisted.auth);
-  return <BrowserRouter>{user ? <AppRoutes /> : <AuthRoutes />}</BrowserRouter>;
+  const state = useSelector((state) => state);
+  return (
+    <BrowserRouter>
+      <AuthRoutes />
+    </BrowserRouter>
+  );
 };

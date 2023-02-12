@@ -20,15 +20,14 @@ export const signIn = createAsyncThunk(
     const { access_token } = response.data;
     localStorage.setItem("access_token", access_token);
     api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
-    return toast(response.data.message);
+    return await response.data;
   }
 );
 
 const initialState = {
   isAdmin: false,
-  user: null,
+  user: "",
   loading: false,
-  error: null,
 };
 
 const authSlice = createSlice({
@@ -47,13 +46,13 @@ const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(signIn.fulfilled, (state, action) => {
+      console.log(action);
       state.loading = false;
       state.user = action.payload.user;
       state.isAdmin = action.payload.is_admin;
     });
-    builder.addCase(signIn.rejected, (state, action) => {
+    builder.addCase(signIn.rejected, (state) => {
       state.loading = false;
-      state.error = action.payload;
     });
   },
 });

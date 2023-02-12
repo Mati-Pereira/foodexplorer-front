@@ -22,7 +22,6 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log(username, email, password);
     await api
       .post("/users", { username, email, password })
       .then(() => toast.success("Cadastro realizado com sucesso!"))
