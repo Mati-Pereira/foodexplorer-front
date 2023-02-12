@@ -17,17 +17,18 @@ const Home = () => {
   const [bebidas, setBebidas] = useState([]);
 
   useEffect(() => {
-    (async () => {
+    async function getAll() {
       await api.get("/products").then((res) => setAllProducts(res.data));
-    })();
+    }
+    getAll();
   }, []);
 
   useEffect(() => {
-    const refeicao = allProducts.filter((item) => item.category === "refeicao");
+    const refeicao = allProducts.filter((item) => item.category == "refeicao");
     const sobremesa = allProducts.filter(
-      (item) => item.category === "sobremesa"
+      (item) => item.category == "sobremesa"
     );
-    const bebida = allProducts.filter((item) => item.category === "bebida");
+    const bebida = allProducts.filter((item) => item.category == "bebida");
     setRefeicoes(refeicao);
     setSobremesas(sobremesa);
     setBebidas(bebida);

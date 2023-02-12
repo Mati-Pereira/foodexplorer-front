@@ -30,10 +30,10 @@ const Card = ({ image, name, text, price, quantity, isAdmin }) => {
 export default Card;
 
 Card.propTypes = {
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  quantity: PropTypes.number.isRequired,
+  image: PropTypes.string,
+  name: PropTypes.string,
+  text: PropTypes.string,
+  price: PropTypes.string,
+  quantity: PropTypes.number,
   isAdmin: PropTypes.bool,
 };
