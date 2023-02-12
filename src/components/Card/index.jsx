@@ -5,6 +5,7 @@ import Quantity from "../Quantity";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { useTheme } from "styled-components";
+import { api } from "../../services/api";
 
 const Card = ({ image, name, text, price, quantity, isAdmin }) => {
   const {
@@ -12,7 +13,7 @@ const Card = ({ image, name, text, price, quantity, isAdmin }) => {
   } = useTheme();
   return (
     <Container>
-      <Image src={image} alt="food picture" />
+      <Image src={`${api.defaults.baseURL}/${image}`} alt="food picture" />
       <Title>{name}</Title>
       <Text>{text}</Text>
       <Price>R$ {price}</Price>
