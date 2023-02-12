@@ -6,32 +6,21 @@ import logo from "/logo.svg";
 import { useTheme } from "styled-components";
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../context/features/auth.thunk";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.persisted.auth);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(signIn({ email, password }))
-      .then(() => {
-        toast.success("Login realizado com sucesso!");
-        navigate("/");
-      })
-      .catch((error) => {
-        if (error.response) {
-          toast.error(error.response.data.message);
-        }
-        toast.error(error.message);
-      });
+    dispatch(signIn({ email, password }));
+    navigate("/");
   };
 
   const {

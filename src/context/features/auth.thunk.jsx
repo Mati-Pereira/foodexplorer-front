@@ -4,21 +4,23 @@ import { toast } from "react-toastify";
 
 export const signIn = createAsyncThunk(
   "auth/signIn",
-  async ({ email, password }, thunkAPI) => {
-    try {
-      const response = await api.post("/sessions", { email, password });
-      const { access_token } = response.data;
-      localStorage.setItem("access_token", access_token);
-      api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
-      return response.data;
-    } catch (error) {
-      if (error.response) {
-        toast(error.response.data.message);
-      } else {
-        toast("Não foi possível entrar");
-      }
-      return thunkAPI.rejectWithValue({ error });
-    }
+  async ({ email, password }) => {
+    const response = await api
+      .post("/sessions", { email, password })
+      .then(() => {
+        toast.success("Login realizado com sucesso!");
+      })
+      .catch((error) => {
+        if (error.response) {
+          return toast(error.response.data.message);
+        } else {
+          return toast(error.message);
+        }
+      });
+    const { access_token } = response.data;
+    localStorage.setItem("access_token", access_token);
+    api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+    return toast(response.data.message);
   }
 );
 
