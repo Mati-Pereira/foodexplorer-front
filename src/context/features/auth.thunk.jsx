@@ -5,28 +5,26 @@ import { toast } from "react-toastify";
 export const signIn = createAsyncThunk(
   "auth/signIn",
   async ({ email, password }) => {
-    const response = await api
-      .post("/sessions", { email, password })
-      .then(() => {
-        toast.success("Login realizado com sucesso!");
-      })
-      .catch((error) => {
-        if (error.response) {
-          return toast(error.response.data.message);
-        } else {
-          return toast(error.message);
-        }
-      });
-    const { access_token } = response.data;
-    localStorage.setItem("access_token", access_token);
-    api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
-    return await response.data;
+    try {
+      const response = await api.post("/sessions", { email, password });
+      toast.success("Login realizado com sucesso!");
+      const { access_token } = response.data;
+      localStorage.setItem("access_token", access_token);
+      api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        return toast(error.response.data.message);
+      } else {
+        return toast(error.message);
+      }
+    }
   }
 );
 
 const initialState = {
   isAdmin: false,
-  user: "",
+  user: null,
   loading: false,
 };
 
@@ -46,13 +44,14 @@ const authSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(signIn.fulfilled, (state, action) => {
-      console.log(action);
       state.loading = false;
       state.user = action.payload.user;
-      state.isAdmin = action.payload.is_admin;
+      state.isAdmin = Boolean(action.payload.is_admin);
     });
     builder.addCase(signIn.rejected, (state) => {
       state.loading = false;
+      state.user = null;
+      state.isAdmin = false;
     });
   },
 });

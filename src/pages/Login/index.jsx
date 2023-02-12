@@ -17,9 +17,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const algo = dispatch(signIn({ email, password }));
+    dispatch(signIn({ email, password }));
+    navigate("/");
   };
 
   const {
