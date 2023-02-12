@@ -6,7 +6,7 @@ import Home from "../pages/Home";
 import { useSelector } from "react-redux";
 
 const AppRoutes = () => {
-  const { isAdmin } = useSelector((state) => state.auth);
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
   return (
     <Routes>
       <Route path="/" element={<Home />} />

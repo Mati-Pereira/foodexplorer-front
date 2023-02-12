@@ -9,7 +9,7 @@ import { signOut } from "../../context/features/auth.thunk";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const { isAdmin } = useSelector((state) => state.auth);
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
