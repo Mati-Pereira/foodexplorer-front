@@ -5,10 +5,10 @@ import { Container, Content, Form } from "./styles";
 import logo from "/logo.svg";
 import { useTheme } from "styled-components";
 import { useState } from "react";
-import { ThreeDots } from "react-loader-spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../context/features/auth.thunk";
 import { useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   const {
-    colors: { red, white },
+    colors: { red },
   } = useTheme();
   return (
     <Container>
@@ -49,22 +49,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button color={red}>
-            {loading ? (
-              <ThreeDots
-                color={white}
-                wrapperStyle={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: "100%",
-                  width: "100%",
-                }}
-              />
-            ) : (
-              "Login"
-            )}
-          </Button>
+          <Button color={red}>{loading ? <Loading /> : "Login"}</Button>
         </Form>
         <Anchor text="Crie uma Conta" to="/register" />
       </Content>

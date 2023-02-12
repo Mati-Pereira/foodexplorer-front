@@ -19,6 +19,7 @@ import EditTag from "../../components/EditTag";
 import InputPrice from "../../components/InputPrice";
 import Textarea from "../../components/Textarea";
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 import { useTheme } from "styled-components";
 import { useState } from "react";
 import InputTag from "../../components/InputTag";
@@ -40,6 +41,9 @@ const AddProduct = () => {
   const [inputPrice, setInputPrice] = useState("");
 
   const [image, setImage] = useState();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleClickNewIngredient = () => {
@@ -67,7 +71,7 @@ const AddProduct = () => {
 
   const handleCreateProduct = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     if (inputIngredient.length) {
       return toast.error("Existem ingredientes no input do formulário.");
     }
@@ -108,7 +112,7 @@ const AddProduct = () => {
         }
         toast.error(error.message);
       });
-
+    setIsLoading(false);
     navigate(-1);
   };
 
@@ -179,7 +183,7 @@ const AddProduct = () => {
               />
             </ThirdRow>
             <Button color={salmon} type="submit" onClick={handleCreateProduct}>
-              Salvar alterações
+              {isLoading ? <Loading /> : "Salvar alterações"}
             </Button>
           </Rows>
         </Form>

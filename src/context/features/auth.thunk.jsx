@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
-
+import { persistor } from "../app/store";
 export const signIn = createAsyncThunk(
   "auth/signIn",
   async ({ email, password }) => {
@@ -33,10 +33,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     signOut: (state) => {
-      localStorage.clear();
       state.user = null;
       state.isAdmin = false;
       state.loading = false;
+      persistor.purge();
     },
   },
   extraReducers: (builder) => {
