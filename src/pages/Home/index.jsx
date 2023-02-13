@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import ProductNotFound from "../../components/ProductNotFound";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -44,40 +45,52 @@ const Home = () => {
           </Text>
         </Background>
         <Section title="Refeições">
-          {refeicoes.map((item) => (
-            <Card
-              key={item.id}
-              price={item.price}
-              text={item.description}
-              image={item.image}
-              isAdmin={isAdmin}
-              id={item.id}
-            />
-          ))}
+          {refeicoes.length ? (
+            refeicoes.map((item) => (
+              <Card
+                key={item.id}
+                price={item.price}
+                text={item.description}
+                image={item.image}
+                isAdmin={isAdmin}
+                id={item.id}
+              />
+            ))
+          ) : (
+            <ProductNotFound />
+          )}
         </Section>
         <Section title="Sobremesas">
-          {sobremesas.map((item) => (
-            <Card
-              key={item.id}
-              price={item.price}
-              text={item.description}
-              image={item.image}
-              isAdmin={isAdmin}
-              id={item.id}
-            />
-          ))}
+          {sobremesas.length ? (
+            sobremesas.map((item) => (
+              <Card
+                key={item.id}
+                price={item.price}
+                text={item.description}
+                image={item.image}
+                isAdmin={isAdmin}
+                id={item.id}
+              />
+            ))
+          ) : (
+            <ProductNotFound />
+          )}
         </Section>
         <Section title="Bebidas">
-          {bebidas.map((item) => (
-            <Card
-              key={item.id}
-              price={item.price}
-              text={item.description}
-              image={item.image}
-              isAdmin={isAdmin}
-              id={item.id}
-            />
-          ))}
+          {bebidas.length ? (
+            bebidas.map((item) => (
+              <Card
+                key={item.id}
+                price={item.price}
+                text={item.description}
+                image={item.image}
+                isAdmin={isAdmin}
+                id={item.id}
+              />
+            ))
+          ) : (
+            <ProductNotFound />
+          )}
         </Section>
       </Container>
       <Footer />

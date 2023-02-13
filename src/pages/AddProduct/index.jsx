@@ -97,7 +97,7 @@ const AddProduct = () => {
         category,
         description,
         ingredients,
-        price: inputPrice,
+        price: String(inputPrice),
       })
     );
 
@@ -105,14 +105,15 @@ const AddProduct = () => {
       .post("/products", dataToSend)
       .then(() => {
         toast.success("Produto criado com sucesso!");
+        setIsLoading(false);
       })
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message);
         }
         toast.error(error.message);
+        setIsLoading(false);
       });
-    setIsLoading(false);
     navigate(-1);
   };
 
@@ -170,7 +171,7 @@ const AddProduct = () => {
                 id="price"
                 type="text"
                 label="Preço"
-                onChange={(e) => setInputPrice(e.target.value)}
+                onChange={(value) => setInputPrice(value)}
                 value={inputPrice}
                 required
               />
