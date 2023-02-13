@@ -38,7 +38,7 @@ const AddProduct = () => {
   const [ingredients, setIngredients] = useState([]);
   const [inputIngredient, setInputIngredient] = useState("");
 
-  const [inputPrice, setInputPrice] = useState("");
+  const [price, setPrice] = useState("");
 
   const [image, setImage] = useState();
 
@@ -81,7 +81,7 @@ const AddProduct = () => {
       !category ||
       !description ||
       !ingredients.length ||
-      !inputPrice ||
+      !price ||
       !image
     ) {
       return toast.error("Preencha todos os campos.");
@@ -97,7 +97,7 @@ const AddProduct = () => {
         category,
         description,
         ingredients,
-        price: String(inputPrice),
+        price,
       })
     );
 
@@ -171,8 +171,8 @@ const AddProduct = () => {
                 id="price"
                 type="text"
                 label="Preço"
-                onChange={(value) => setInputPrice(value)}
-                value={inputPrice}
+                onChange={(e) => setPrice(e.target.value)}
+                value={price}
                 required
               />
             </SecondRow>

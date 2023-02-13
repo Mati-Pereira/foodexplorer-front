@@ -1,24 +1,28 @@
+import Cleave from "cleave.js/react";
 import { Container, Label } from "./styles";
 import PropTypes from "prop-types";
-import CurrencyInput from "react-currency-input-field";
+import { useState } from "react";
 
-const InputPrice = ({ type, id, label, onChange, ...rest }) => {
+const InputPrice = ({ type, id, label, ...rest }) => {
+  const [value, setValue] = useState(0);
+
   return (
     <Container>
       <Label htmlFor={id}>{label}</Label>
       <div>
-        <CurrencyInput
+        <Cleave
+          options={{
+            numeral: true,
+            numeralThousandsGroupStyle: "thousand",
+            prefix: "R$ ",
+            delimiter: ".",
+            decimal: ",",
+          }}
           type={type}
           id={id}
-          placeholder="R$ 0,00"
-          onValueChange={onChange}
-          maxLength={12}
-          allowNegativeValue={false}
-          prefix="R$ "
-          groupSeparator="."
-          decimalSeparator=","
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
           alt="Preço"
-          fixedDecimalLength={2}
           {...rest}
         />
       </div>
@@ -27,10 +31,11 @@ const InputPrice = ({ type, id, label, onChange, ...rest }) => {
 };
 
 InputPrice.propTypes = {
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  id: PropTypes.string,
   label: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default InputPrice;
