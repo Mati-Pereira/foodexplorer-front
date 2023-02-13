@@ -22,26 +22,44 @@ import Button from "../../components/Button";
 import { useTheme } from "styled-components";
 import { useState } from "react";
 import InputTag from "../../components/InputTag";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { api } from "../../services/api";
 
 const EditProduct = () => {
-  const [tags, setTags] = useState([]);
-  const [inputTag, setInputTag] = useState("");
-  const [inputPrice, setInputPrice] = useState(0);
+  const { id } = useParams();
+  const [productDetail, setProductDetail] = useState([]);
+  const [name, setName] = useState(productDetail.name);
+  const [description, setDescription] = useState(productDetail.description);
+  const [price, setPrice] = useState("");
+  const [ingredients, setIngredients] = useState([]);
+  const [inputIngredient, setInputIngredient] = useState("");
 
-  const handleClickNewTag = () => {
-    setTags([...tags, inputTag]);
-    setInputTag("");
+  const handleDeleteIngredients = (index) => {
+    const newIngredients = [...ingredients];
+    newIngredients.splice(index, 1);
+    setIngredients(newIngredients);
   };
 
-  const handleDeleteTag = (index) => {
-    const newTags = [...tags];
-    newTags.splice(index, 1);
-    setTags(newTags);
+  const handleAddIngredients = () => {
+    const newIngredients = [...ingredients];
+    newIngredients.push(inputIngredient);
+    setIngredients(newIngredients);
+  };
+
+  const handleDescriptions = (e) => {
+    setDescription(e.target.value);
   };
 
   const {
     colors: { salmon, green_500 },
   } = useTheme();
+
+  useEffect(() => {
+    api.get(`http://localhost:3000/products/${id}`).then((response) => {
+      setProductDetail(response.data);
+    });
+  }, [id]);
 
   return (
     <Container>
@@ -54,9 +72,11 @@ const EditProduct = () => {
             <FileInput />
             <Input
               label="Nome"
-              placeholder="Ex.: Salada Ceasar"
+              placeholder={"Ex.: Salada Ceasar"}
               id="nome"
               type="text"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
             />
             <SelectInput />
           </FirstRow>
@@ -65,13 +85,17 @@ const EditProduct = () => {
               <label>
                 Ingredientes
                 <Tags>
-                  {tags.map((tag, index) => (
-                    <EditTag text={tag} key={index} onClick={handleDeleteTag} />
+                  {ingredients.map((tag, index) => (
+                    <EditTag
+                      text={tag}
+                      key={index}
+                      onClick={handleDeleteIngredients}
+                    />
                   ))}
                   <InputTag
-                    onChange={(e) => setInputTag(e.target.value)}
-                    onClick={handleClickNewTag}
-                    value={inputTag}
+                    onChange={(e) => setInputIngredient(e.target.value)}
+                    onClick={handleAddIngredients}
+                    value={inputIngredient}
                   />
                 </Tags>
               </label>
@@ -80,12 +104,12 @@ const EditProduct = () => {
               id="price"
               type="text"
               label="Preço"
-              onChange={(e) => setInputPrice(e.target.value)}
-              value={inputPrice}
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
             />
           </SecondRow>
           <ThirdRow>
-            <Textarea />
+            <Textarea onChange={handleDescriptions} value={description} />
           </ThirdRow>
           <Buttons>
             <Button color={green_500}>Excluir prato</Button>

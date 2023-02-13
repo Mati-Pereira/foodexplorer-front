@@ -7,6 +7,8 @@ import { BsSearch } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../context/features/auth.thunk";
 import { useNavigate } from "react-router-dom";
+import { persistor } from "../../context/app/store";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -15,6 +17,10 @@ const Header = () => {
 
   const handleSignOut = async () => {
     dispatch(signOut());
+    await persistor.flush();
+    await persistor.purge();
+    localStorage.clear();
+    toast.success("Você saiu com sucesso!");
     navigate("/login");
   };
 

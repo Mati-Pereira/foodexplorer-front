@@ -51,6 +51,7 @@ const Home = () => {
               text={item.description}
               image={item.image}
               isAdmin={isAdmin}
+              id={item.id}
             />
           ))}
         </Section>
@@ -62,6 +63,7 @@ const Home = () => {
               text={item.description}
               image={item.image}
               isAdmin={isAdmin}
+              id={item.id}
             />
           ))}
         </Section>
@@ -73,6 +75,7 @@ const Home = () => {
               text={item.description}
               image={item.image}
               isAdmin={isAdmin}
+              id={item.id}
             />
           ))}
         </Section>

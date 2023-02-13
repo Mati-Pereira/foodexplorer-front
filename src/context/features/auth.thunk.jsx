@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
-import { persistor } from "../app/store";
+
 export const signIn = createAsyncThunk(
   "auth/signIn",
   async ({ email, password }) => {
@@ -9,6 +9,7 @@ export const signIn = createAsyncThunk(
       const response = await api.post("/sessions", { email, password });
       toast.success("Login realizado com sucesso!");
       const { access_token } = response.data;
+      localStorage.setItem("access_token", access_token);
       api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
       return response.data;
     } catch (error) {
@@ -36,7 +37,6 @@ const authSlice = createSlice({
       state.user = null;
       state.isAdmin = false;
       state.loading = false;
-      persistor.purge();
     },
   },
   extraReducers: (builder) => {

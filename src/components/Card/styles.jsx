@@ -8,12 +8,14 @@ export const Container = styled.div`
   border-radius: 0.5rem;
   padding: 1.5rem 1.5rem 2.875rem 1.5rem;
   position: relative;
-  > svg {
-    position: absolute;
-    top: 1rem;
-    right: 1.125rem;
-    color: ${({ theme }) => theme.colors.gray_300};
-    font-size: 1.25rem;
+  > a {
+    svg {
+      position: absolute;
+      top: 1rem;
+      right: 1.125rem;
+      color: ${({ theme }) => theme.colors.gray_300};
+      font-size: 1.25rem;
+    }
   }
 `;
 

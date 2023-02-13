@@ -22,7 +22,7 @@ const AppRoutes = () => {
       {isAdmin ? (
         <>
           <Route path="/add" element={<AddProduct />} />
-          <Route path="/edit" element={<EditProduct />} />
+          <Route path="/edit/:id" element={<EditProduct />} />
         </>
       ) : (
         <Route path="*" element={<Navigate to="/" />} />

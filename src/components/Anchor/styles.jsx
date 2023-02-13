@@ -8,4 +8,5 @@ export const Container = styled(Link)`
   font-family: "Poppins";
   font-weight: 500;
   font-size: 0.875rem;
+  padding: 0.75rem 2rem;
 `;

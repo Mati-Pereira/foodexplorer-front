@@ -6,8 +6,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { useTheme } from "styled-components";
 import { api } from "../../services/api";
+import { Link } from "react-router-dom";
 
-const Card = ({ image, name, text, price, quantity, isAdmin }) => {
+const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
   const {
     colors: { red },
   } = useTheme();
@@ -23,7 +24,13 @@ const Card = ({ image, name, text, price, quantity, isAdmin }) => {
           <Button color={red}>Incluir</Button>
         </AddProduct>
       )}
-      {isAdmin ? <BsPencil /> : <AiOutlineHeart />}
+      {isAdmin ? (
+        <Link to={`edit/${id}`}>
+          <BsPencil />
+        </Link>
+      ) : (
+        <AiOutlineHeart />
+      )}
     </Container>
   );
 };
@@ -37,4 +44,5 @@ Card.propTypes = {
   price: PropTypes.string,
   quantity: PropTypes.number,
   isAdmin: PropTypes.bool,
+  id: PropTypes.number,
 };

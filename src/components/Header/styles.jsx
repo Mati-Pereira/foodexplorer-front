@@ -30,7 +30,6 @@ export const Pedidos = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.6875rem;
-  padding: 0.75rem 3rem;
   border-radius: 0.5rem;
   cursor: pointer;
 `;

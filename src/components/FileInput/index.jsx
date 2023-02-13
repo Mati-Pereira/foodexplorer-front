@@ -24,7 +24,7 @@ const FileInput = ({ onChange, ...rest }) => {
 };
 
 FileInput.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
 };
 
 export default FileInput;
