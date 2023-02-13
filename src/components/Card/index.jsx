@@ -17,7 +17,7 @@ const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
       <Image src={`${api.defaults.baseURL}/${image}`} alt="food picture" />
       <Title>{name}</Title>
       <Text>{text}</Text>
-      <Price>R$ {price}</Price>
+      <Price>{price}</Price>
       {!isAdmin && (
         <AddProduct>
           <Quantity quantity={quantity} />
