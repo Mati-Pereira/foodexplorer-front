@@ -1,4 +1,3 @@
-import Cleave from "cleave.js/react";
 import { Container, Label } from "./styles";
 import PropTypes from "prop-types";
 import { useState } from "react";
@@ -10,19 +9,13 @@ const InputPrice = ({ type, id, label, ...rest }) => {
     <Container>
       <Label htmlFor={id}>{label}</Label>
       <div>
-        <Cleave
-          options={{
-            numeral: true,
-            numeralThousandsGroupStyle: "thousand",
-            prefix: "R$ ",
-            delimiter: ".",
-            decimal: ",",
-          }}
+        <input
           type={type}
           id={id}
           value={value}
           onChange={(event) => setValue(event.target.value)}
           alt="Preço"
+          placeholder="R$ 0,00"
           {...rest}
         />
       </div>
