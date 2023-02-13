@@ -1,8 +1,8 @@
 import {
-  Buttons,
   Container,
   Content,
   FirstRow,
+  Form,
   Rows,
   SecondRow,
   Tags,
@@ -19,53 +19,126 @@ import EditTag from "../../components/EditTag";
 import InputPrice from "../../components/InputPrice";
 import Textarea from "../../components/Textarea";
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 import { useTheme } from "styled-components";
 import { useState } from "react";
 import InputTag from "../../components/InputTag";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { api } from "../../services/api";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-const EditProduct = () => {
+const AddProduct = () => {
   const { id } = useParams();
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("refeicao");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [category, setCategory] = useState("");
   const [ingredients, setIngredients] = useState([]);
   const [inputIngredient, setInputIngredient] = useState("");
+  const [price, setPrice] = useState();
+  const [image, setImage] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleDeleteIngredients = (index) => {
-    const newIngredients = [...ingredients];
-    newIngredients.splice(index, 1);
-    setIngredients(newIngredients);
+  const navigate = useNavigate();
+
+  const handleClickNewIngredient = () => {
+    setIngredients([...ingredients, inputIngredient]);
+    setInputIngredient("");
   };
 
-  const handleAddIngredients = () => {
-    const newIngredients = [...ingredients];
-    newIngredients.push(inputIngredient);
-    setIngredients(newIngredients);
+  const handleDeleteIngredient = (index) => {
+    const newTags = [...ingredients];
+    newTags.splice(index, 1);
+    setIngredients(newTags);
   };
 
-  const handleDescriptions = (e) => {
+  const handlePriceChange = (values) => {
+    setPrice(values.floatValue);
+  };
+
+  const handleSelectedCategory = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleDescriptionProduct = (e) => {
     setDescription(e.target.value);
   };
 
+  const handleImageProduct = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  const handleCreateProduct = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if (inputIngredient.length) {
+      return toast.error("Existem ingredientes no input do formulário.");
+    }
+
+    if (
+      !name ||
+      !category ||
+      !description ||
+      !ingredients.length ||
+      !price ||
+      !image
+    ) {
+      return toast.error("Preencha todos os campos.");
+    }
+
+    const dataToSend = new FormData();
+
+    dataToSend.set("image", image);
+    dataToSend.set(
+      "data",
+      JSON.stringify({
+        name,
+        category,
+        description,
+        ingredients,
+        price,
+      })
+    );
+
+    await api
+      .post("/products", dataToSend)
+      .then(() => {
+        toast.success("Produto criado com sucesso!");
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message);
+        }
+        toast.error(error.message);
+        setIsLoading(false);
+      });
+    navigate(-1);
+  };
+
   const {
-    colors: { salmon, green_500 },
+    colors: { salmon },
   } = useTheme();
 
   useEffect(() => {
-    api.get(`http://localhost:3000/products/${id}`).then((response) => {
+    if (image) {
+      toast.success("Imagem selecionada com sucesso!");
+    }
+  }, [image]);
+
+  useEffect(() => {
+    api.get(`products/${id}`).then((response) => {
+      console.log(response.data);
       setName(response.data.name);
+      setCategory(response.data.category);
       setDescription(response.data.description);
       setIngredients(
         response.data.ingredients.map((ingredient) => ingredient.name)
       );
-      setCategory(response.data.category);
       setPrice(response.data.price);
+      setImage(response.data.image);
     });
-  }, [id]);
+  }, []);
 
   return (
     <Container>
@@ -73,63 +146,66 @@ const EditProduct = () => {
       <DetailsAnchor to="/" />
       <Content>
         <h1>Editar Prato</h1>
-        <Rows>
-          <FirstRow>
-            <FileInput />
-            <Input
-              label="Nome"
-              placeholder={"Ex.: Salada Ceasar"}
-              id="nome"
-              type="text"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-            />
-            <SelectInput
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            />
-          </FirstRow>
-          <SecondRow>
-            <TagsContainer>
-              <label>
-                Ingredientes
-                <Tags>
-                  {ingredients.map((tag, index) => (
-                    <EditTag
-                      text={tag}
-                      key={index}
-                      onClick={handleDeleteIngredients}
-                      value={ingredients}
+        <Form>
+          <Rows>
+            <FirstRow>
+              <FileInput onChange={handleImageProduct} required />
+              <Input
+                label="Nome"
+                placeholder="Ex.: Salada Ceasar"
+                id="nome"
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                required
+              />
+              <SelectInput onChange={handleSelectedCategory} value={category} />
+            </FirstRow>
+            <SecondRow>
+              <TagsContainer>
+                <label>
+                  Ingredientes
+                  <Tags>
+                    {ingredients.map((tag, index) => (
+                      <EditTag
+                        text={tag}
+                        key={index}
+                        onClick={handleDeleteIngredient}
+                      />
+                    ))}
+                    <InputTag
+                      onChange={(e) => setInputIngredient(e.target.value)}
+                      onClick={handleClickNewIngredient}
+                      value={inputIngredient}
                     />
-                  ))}
-                  <InputTag
-                    onChange={(e) => setInputIngredient(e.target.value)}
-                    onClick={handleAddIngredients}
-                  />
-                </Tags>
-              </label>
-            </TagsContainer>
-            <InputPrice
-              id="price"
-              type="text"
-              label="Preço"
-              onChange={(value) => setPrice(value)}
-              name="Preço"
-              price={price}
-            />
-          </SecondRow>
-          <ThirdRow>
-            <Textarea onChange={handleDescriptions} value={description} />
-          </ThirdRow>
-          <Buttons>
-            <Button color={green_500}>Excluir prato</Button>
-            <Button color={salmon}>Salvar alterações</Button>
-          </Buttons>
-        </Rows>
+                  </Tags>
+                </label>
+              </TagsContainer>
+              <InputPrice
+                id="price"
+                type="text"
+                label="Preço"
+                onChange={handlePriceChange}
+                value={price}
+                required
+              />
+            </SecondRow>
+            <ThirdRow>
+              <Textarea
+                onChange={handleDescriptionProduct}
+                value={description}
+                required
+              />
+            </ThirdRow>
+            <Button color={salmon} type="submit" onClick={handleCreateProduct}>
+              {isLoading ? <Loading /> : "Salvar alterações"}
+            </Button>
+          </Rows>
+        </Form>
       </Content>
       <Footer />
     </Container>
   );
 };
 
-export default EditProduct;
+export default AddProduct;

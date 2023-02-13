@@ -38,7 +38,7 @@ const AddProduct = () => {
   const [ingredients, setIngredients] = useState([]);
   const [inputIngredient, setInputIngredient] = useState("");
 
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState();
 
   const [image, setImage] = useState();
 
@@ -101,7 +101,7 @@ const AddProduct = () => {
         category,
         description,
         ingredients,
-        price: price.toString(),
+        price,
       })
     );
 

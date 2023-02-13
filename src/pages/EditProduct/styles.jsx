@@ -49,12 +49,11 @@ export const TagsContainer = styled.div`
 export const Tags = styled.div`
   display: flex;
   justify-content: left;
-  flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
 `;
 
 export const FirstRow = styled.div`
@@ -68,7 +67,7 @@ export const SecondRow = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: 3rem;
+  gap: 4rem;
 `;
 
 export const ThirdRow = styled.div`
@@ -89,7 +88,10 @@ export const Rows = styled.div`
   }
 `;
 
-export const Buttons = styled.div`
+export const Form = styled.form`
   display: flex;
-  gap: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
