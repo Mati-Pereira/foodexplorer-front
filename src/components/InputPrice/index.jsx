@@ -1,21 +1,24 @@
 import { Container, Label } from "./styles";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { NumericFormat } from "react-number-format";
 
-const InputPrice = ({ type, id, label, ...rest }) => {
-  const [value, setValue] = useState(0);
-
+const InputPrice = ({ type, id, label, value, onChange, ...rest }) => {
   return (
     <Container>
       <Label htmlFor={id}>{label}</Label>
       <div>
-        <input
+        <NumericFormat
           type={type}
           id={id}
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
           alt="Preço"
           placeholder="R$ 0,00"
+          value={value}
+          thousandSeparator="."
+          decimalSeparator=","
+          prefix="R$ "
+          decimalScale={2}
+          allowNegative={false}
+          onValueChange={onChange}
           {...rest}
         />
       </div>

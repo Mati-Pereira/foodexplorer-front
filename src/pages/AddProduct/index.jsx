@@ -57,6 +57,10 @@ const AddProduct = () => {
     setIngredients(newTags);
   };
 
+  const handlePriceChange = (values) => {
+    setPrice(values.floatValue);
+  };
+
   const handleSelectedCategory = (e) => {
     setCategory(e.target.value);
   };
@@ -171,7 +175,7 @@ const AddProduct = () => {
                 id="price"
                 type="text"
                 label="Preço"
-                onChange={(e) => setPrice(e.target.value)}
+                onChange={handlePriceChange}
                 value={price}
                 required
               />
