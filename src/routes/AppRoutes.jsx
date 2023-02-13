@@ -8,13 +8,14 @@ import { useEffect } from "react";
 import { api } from "../services/api";
 
 const AppRoutes = () => {
-  const { isAdmin, token } = useSelector((state) => state.persisted.auth);
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
 
   useEffect(() => {
-    if (token) {
-      api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
+    api.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("access_token")}`;
   }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
