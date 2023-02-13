@@ -1,25 +1,24 @@
 import { Container, Label } from "./styles";
 import PropTypes from "prop-types";
-import { NumericFormat } from "react-number-format";
+import CurrencyInput from "react-currency-input-field";
 
 const InputPrice = ({ type, id, label, onChange, ...rest }) => {
   return (
     <Container>
       <Label htmlFor={id}>{label}</Label>
       <div>
-        <NumericFormat
+        <CurrencyInput
           type={type}
           id={id}
           placeholder="R$ 0,00"
-          prefix={"R$ "}
-          decimalSeparator=","
-          thousandSeparator="."
-          valueIsNumericString
-          decimalScale={2}
-          allowedDecimalSeparators={[","]}
-          onChange={onChange}
-          fixedDecimalScale={true}
+          onValueChange={onChange}
           maxLength={12}
+          allowNegativeValue={false}
+          prefix="R$ "
+          groupSeparator="."
+          decimalSeparator=","
+          alt="Preço"
+          fixedDecimalLength={2}
           {...rest}
         />
       </div>

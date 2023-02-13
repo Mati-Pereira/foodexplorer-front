@@ -32,7 +32,6 @@ const EditProduct = () => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-
   const [ingredients, setIngredients] = useState([]);
   const [inputIngredient, setInputIngredient] = useState("");
 
@@ -60,11 +59,11 @@ const EditProduct = () => {
     api.get(`http://localhost:3000/products/${id}`).then((response) => {
       setName(response.data.name);
       setDescription(response.data.description);
-      setPrice(response.data.price);
       setIngredients(
         response.data.ingredients.map((ingredient) => ingredient.name)
       );
       setCategory(response.data.category);
+      setPrice(response.data.price);
     });
   }, [id]);
 
@@ -114,8 +113,9 @@ const EditProduct = () => {
               id="price"
               type="text"
               label="Preço"
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
+              onChange={(value) => setPrice(value)}
+              name="Preço"
+              price={price}
             />
           </SecondRow>
           <ThirdRow>
