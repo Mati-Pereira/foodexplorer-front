@@ -95,3 +95,8 @@ export const Form = styled.form`
   align-items: center;
   width: 100%;
 `;
+
+export const Buttons = styled.div`
+  display: flex;
+  gap: 1rem;
+`;

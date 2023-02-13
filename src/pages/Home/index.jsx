@@ -49,6 +49,7 @@ const Home = () => {
             refeicoes.map((item) => (
               <Card
                 key={item.id}
+                name={item.name}
                 price={item.price}
                 text={item.description}
                 image={item.image}
@@ -66,6 +67,7 @@ const Home = () => {
               <Card
                 key={item.id}
                 price={item.price}
+                name={item.name}
                 text={item.description}
                 image={item.image}
                 isAdmin={isAdmin}
@@ -82,6 +84,7 @@ const Home = () => {
               <Card
                 key={item.id}
                 price={item.price}
+                name={item.name}
                 text={item.description}
                 image={item.image}
                 isAdmin={isAdmin}

@@ -1,4 +1,5 @@
 import {
+  Buttons,
   Container,
   Content,
   FirstRow,
@@ -86,7 +87,7 @@ const AddProduct = () => {
       return toast.error("Preencha todos os campos.");
     }
 
-    const dataToSend = new FormData();
+    const dataToSend = new Map();
 
     dataToSend.set("image", image);
     dataToSend.set(
@@ -100,11 +101,14 @@ const AddProduct = () => {
       })
     );
 
+    console.log(dataToSend);
+    setIsLoading(false);
     await api
-      .post("/products", dataToSend)
+      .put(`/products/${id}`, dataToSend)
       .then(() => {
         toast.success("Produto criado com sucesso!");
         setIsLoading(false);
+        navigate(-1);
       })
       .catch((error) => {
         if (error.response) {
@@ -113,11 +117,10 @@ const AddProduct = () => {
         toast.error(error.message);
         setIsLoading(false);
       });
-    navigate(-1);
   };
 
   const {
-    colors: { salmon },
+    colors: { salmon, green_700 },
   } = useTheme();
 
   useEffect(() => {
@@ -128,7 +131,6 @@ const AddProduct = () => {
 
   useEffect(() => {
     api.get(`products/${id}`).then((response) => {
-      console.log(response.data);
       setName(response.data.name);
       setCategory(response.data.category);
       setDescription(response.data.description);
@@ -197,9 +199,18 @@ const AddProduct = () => {
                 required
               />
             </ThirdRow>
-            <Button color={salmon} type="submit" onClick={handleCreateProduct}>
-              {isLoading ? <Loading /> : "Salvar alterações"}
-            </Button>
+            <Buttons>
+              <Button color={green_700} type="submit">
+                {isLoading ? <Loading /> : "Deletar Prato"}
+              </Button>
+              <Button
+                color={salmon}
+                type="submit"
+                onClick={handleCreateProduct}
+              >
+                {isLoading ? <Loading /> : "Salvar alterações"}
+              </Button>
+            </Buttons>
           </Rows>
         </Form>
       </Content>
