@@ -47,10 +47,11 @@ const AddProduct = () => {
     setInputIngredient("");
   };
 
-  const handleDeleteIngredient = (index) => {
-    const newTags = [...ingredients];
-    newTags.splice(index, 1);
-    setIngredients(newTags);
+  const handleDeleteIngredient = () => {
+    setIngredients(
+      ingredients.filter((ingredient) => ingredient !== inputIngredient)
+    );
+    setInputIngredient("");
   };
 
   const handlePriceChange = (values) => {
@@ -69,7 +70,7 @@ const AddProduct = () => {
     setImage(e.target.files[0]);
   };
 
-  const handleCreateProduct = async (e) => {
+  const handleEditProduct = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     if (inputIngredient.length) {
@@ -87,10 +88,10 @@ const AddProduct = () => {
       return toast.error("Preencha todos os campos.");
     }
 
-    const dataToSend = new Map();
+    const fileUpload = new FormData();
 
-    dataToSend.set("image", image);
-    dataToSend.set(
+    fileUpload.append("image", image);
+    fileUpload.append(
       "data",
       JSON.stringify({
         name,
@@ -100,13 +101,14 @@ const AddProduct = () => {
         price,
       })
     );
-
-    console.log(dataToSend);
-    setIsLoading(false);
     await api
-      .put(`/products/${id}`, dataToSend)
+      .put(`/products/${id}`, fileUpload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
-        toast.success("Produto criado com sucesso!");
+        toast.success("Produto atualizado com sucesso!");
         setIsLoading(false);
         navigate(-1);
       })
@@ -203,11 +205,7 @@ const AddProduct = () => {
               <Button color={green_700} type="submit">
                 {isLoading ? <Loading /> : "Deletar Prato"}
               </Button>
-              <Button
-                color={salmon}
-                type="submit"
-                onClick={handleCreateProduct}
-              >
+              <Button color={salmon} type="button" onClick={handleEditProduct}>
                 {isLoading ? <Loading /> : "Salvar alterações"}
               </Button>
             </Buttons>

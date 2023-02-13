@@ -91,10 +91,10 @@ const AddProduct = () => {
       return toast.error("Preencha todos os campos.");
     }
 
-    const dataToSend = new FormData();
+    const fileUpload = new FormData();
 
-    dataToSend.set("image", image);
-    dataToSend.set(
+    await fileUpload.append("image", image);
+    await fileUpload.append(
       "data",
       JSON.stringify({
         name,
@@ -104,12 +104,16 @@ const AddProduct = () => {
         price,
       })
     );
-
     await api
-      .post("/products", dataToSend)
+      .post("/products", fileUpload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         toast.success("Produto criado com sucesso!");
         setIsLoading(false);
+        navigate(-1);
       })
       .catch((error) => {
         if (error.response) {
@@ -118,7 +122,6 @@ const AddProduct = () => {
         toast.error(error.message);
         setIsLoading(false);
       });
-    navigate(-1);
   };
 
   const {
@@ -140,7 +143,7 @@ const AddProduct = () => {
         <Form>
           <Rows>
             <FirstRow>
-              <FileInput onChange={handleImageProduct} required />
+              <FileInput onChange={handleImageProduct} name="file" required />
               <Input
                 label="Nome"
                 placeholder="Ex.: Salada Ceasar"
@@ -187,7 +190,7 @@ const AddProduct = () => {
                 required
               />
             </ThirdRow>
-            <Button color={salmon} type="submit" onClick={handleCreateProduct}>
+            <Button color={salmon} type="button" onClick={handleCreateProduct}>
               {isLoading ? <Loading /> : "Salvar alterações"}
             </Button>
           </Rows>
