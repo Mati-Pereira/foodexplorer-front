@@ -2,7 +2,7 @@ import { Container, Label } from "./styles";
 import PropTypes from "prop-types";
 import { NumericFormat } from "react-number-format";
 
-const InputPrice = ({ type, id, label, onChange }) => {
+const InputPrice = ({ type, id, label, onChange, ...rest }) => {
   return (
     <Container>
       <Label htmlFor={id}>{label}</Label>
@@ -20,6 +20,7 @@ const InputPrice = ({ type, id, label, onChange }) => {
           onChange={onChange}
           fixedDecimalScale={true}
           maxLength={12}
+          {...rest}
         />
       </div>
     </Container>

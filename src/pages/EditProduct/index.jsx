@@ -28,10 +28,11 @@ import { api } from "../../services/api";
 
 const EditProduct = () => {
   const { id } = useParams();
-  const [productDetail, setProductDetail] = useState([]);
-  const [name, setName] = useState(productDetail.name);
-  const [description, setDescription] = useState(productDetail.description);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
+
   const [ingredients, setIngredients] = useState([]);
   const [inputIngredient, setInputIngredient] = useState("");
 
@@ -57,7 +58,13 @@ const EditProduct = () => {
 
   useEffect(() => {
     api.get(`http://localhost:3000/products/${id}`).then((response) => {
-      setProductDetail(response.data);
+      setName(response.data.name);
+      setDescription(response.data.description);
+      setPrice(response.data.price);
+      setIngredients(
+        response.data.ingredients.map((ingredient) => ingredient.name)
+      );
+      setCategory(response.data.category);
     });
   }, [id]);
 
@@ -78,7 +85,10 @@ const EditProduct = () => {
               onChange={(e) => setName(e.target.value)}
               value={name}
             />
-            <SelectInput />
+            <SelectInput
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
           </FirstRow>
           <SecondRow>
             <TagsContainer>
@@ -90,12 +100,12 @@ const EditProduct = () => {
                       text={tag}
                       key={index}
                       onClick={handleDeleteIngredients}
+                      value={ingredients}
                     />
                   ))}
                   <InputTag
                     onChange={(e) => setInputIngredient(e.target.value)}
                     onClick={handleAddIngredients}
-                    value={inputIngredient}
                   />
                 </Tags>
               </label>
