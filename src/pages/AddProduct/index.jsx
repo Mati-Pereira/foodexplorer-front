@@ -101,7 +101,7 @@ const AddProduct = () => {
         category,
         description,
         ingredients,
-        price,
+        price: price.toString(),
       })
     );
 
