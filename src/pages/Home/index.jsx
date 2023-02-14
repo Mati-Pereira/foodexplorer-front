@@ -21,17 +21,18 @@ const Home = () => {
   useEffect(() => {
     api.get("/products").then((res) => {
       setAllProducts(res.data);
+      console.log(res.data);
     });
   }, []);
 
   useEffect(() => {
     const refeicao = allProducts.filter((item) => item.category == "refeicao");
+    setRefeicoes(refeicao);
     const sobremesa = allProducts.filter(
       (item) => item.category == "sobremesa"
     );
-    const bebida = allProducts.filter((item) => item.category == "bebida");
-    setRefeicoes(refeicao);
     setSobremesas(sobremesa);
+    const bebida = allProducts.filter((item) => item.category == "bebida");
     setBebidas(bebida);
   }, [allProducts]);
 
