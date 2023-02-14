@@ -82,8 +82,8 @@ const AddProduct = () => {
       !category ||
       !description ||
       !ingredients.length ||
-      !price ||
-      !image
+      !price
+      // !image
     ) {
       return toast.error("Preencha todos os campos.");
     }
@@ -102,7 +102,11 @@ const AddProduct = () => {
       })
     );
     await api
-      .put(`/products/${id}`, fileUpload)
+      .put(`/products/${id}`, fileUpload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         toast.success("Produto atualizado com sucesso!");
         setIsLoading(false);
@@ -111,8 +115,9 @@ const AddProduct = () => {
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message);
+        } else {
+          toast.error(error.message);
         }
-        toast.error(error.message);
         setIsLoading(false);
       });
   };
@@ -123,6 +128,7 @@ const AddProduct = () => {
 
   useEffect(() => {
     api.get(`products/${id}`).then((response) => {
+      console.log(response.data);
       setName(response.data.name);
       setCategory(response.data.category);
       setDescription(response.data.description);
@@ -130,7 +136,7 @@ const AddProduct = () => {
         response.data.ingredients.map((ingredient) => ingredient.name)
       );
       setPrice(response.data.price);
-      setImage(response.data.image);
+      // setImage(response.data.image);
     });
   }, []);
 
