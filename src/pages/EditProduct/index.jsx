@@ -82,15 +82,15 @@ const AddProduct = () => {
       !category ||
       !description ||
       !ingredients.length ||
-      !price ||
-      !image
+      !price
+      // !image
     ) {
       return toast.error("Preencha todos os campos.");
     }
 
     const fileUpload = new FormData();
 
-    // fileUpload.append("image", image);
+    fileUpload.append("image", image);
     fileUpload.append(
       "data",
       JSON.stringify({
@@ -115,8 +115,9 @@ const AddProduct = () => {
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message);
+        } else {
+          toast.error(error.message);
         }
-        toast.error(error.message);
         setIsLoading(false);
       });
   };
@@ -135,7 +136,7 @@ const AddProduct = () => {
         response.data.ingredients.map((ingredient) => ingredient.name)
       );
       setPrice(response.data.price);
-      setImage(response.data.image);
+      // setImage(response.data.image);
     });
   }, []);
 
