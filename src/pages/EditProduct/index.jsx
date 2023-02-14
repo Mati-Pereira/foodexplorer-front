@@ -90,7 +90,7 @@ const AddProduct = () => {
 
     const fileUpload = new FormData();
 
-    fileUpload.append("image", image);
+    // fileUpload.append("image", image);
     fileUpload.append(
       "data",
       JSON.stringify({
@@ -102,7 +102,11 @@ const AddProduct = () => {
       })
     );
     await api
-      .put(`/products/${id}`, fileUpload)
+      .put(`/products/${id}`, fileUpload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then(() => {
         toast.success("Produto atualizado com sucesso!");
         setIsLoading(false);
@@ -123,6 +127,7 @@ const AddProduct = () => {
 
   useEffect(() => {
     api.get(`products/${id}`).then((response) => {
+      console.log(response.data);
       setName(response.data.name);
       setCategory(response.data.category);
       setDescription(response.data.description);
