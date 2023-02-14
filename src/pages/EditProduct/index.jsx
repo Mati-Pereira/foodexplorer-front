@@ -102,11 +102,7 @@ const AddProduct = () => {
       })
     );
     await api
-      .put(`/products/${id}`, fileUpload, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .put(`/products/${id}`, fileUpload)
       .then(() => {
         toast.success("Produto atualizado com sucesso!");
         setIsLoading(false);
@@ -126,12 +122,6 @@ const AddProduct = () => {
   } = useTheme();
 
   useEffect(() => {
-    if (image) {
-      toast.success("Imagem selecionada com sucesso!");
-    }
-  }, [image]);
-
-  useEffect(() => {
     api.get(`products/${id}`).then((response) => {
       setName(response.data.name);
       setCategory(response.data.category);
@@ -143,6 +133,12 @@ const AddProduct = () => {
       setImage(response.data.image);
     });
   }, []);
+
+  useEffect(() => {
+    if (image) {
+      toast.success("Imagem selecionada com sucesso!");
+    }
+  }, [image]);
 
   return (
     <Container>
@@ -203,7 +199,7 @@ const AddProduct = () => {
             </ThirdRow>
             <Buttons>
               <Button color={green_700} type="submit">
-                {isLoading ? <Loading /> : "Deletar Prato"}
+                Deletar Prato
               </Button>
               <Button color={salmon} type="button" onClick={handleEditProduct}>
                 {isLoading ? <Loading /> : "Salvar alterações"}

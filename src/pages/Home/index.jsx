@@ -12,15 +12,16 @@ import ProductNotFound from "../../components/ProductNotFound";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
+
   const [allProducts, setAllProducts] = useState([]);
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
+
   useEffect(() => {
-    async function getAll() {
-      await api("/products").then((res) => setAllProducts(res.data));
-    }
-    getAll();
+    api.get("/products").then((res) => {
+      setAllProducts(res.data);
+    });
   }, []);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const Home = () => {
     setSobremesas(sobremesa);
     setBebidas(bebida);
   }, [allProducts]);
+
   return (
     <>
       <Header />
