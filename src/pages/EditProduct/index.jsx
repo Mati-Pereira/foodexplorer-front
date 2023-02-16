@@ -82,8 +82,8 @@ const AddProduct = () => {
       !category ||
       !description ||
       !ingredients.length ||
-      !price
-      // !image
+      !price ||
+      !image
     ) {
       return toast.error("Preencha todos os campos.");
     }
@@ -128,7 +128,6 @@ const AddProduct = () => {
 
   useEffect(() => {
     api.get(`products/${id}`).then((response) => {
-      console.log(response.data);
       setName(response.data.name);
       setCategory(response.data.category);
       setDescription(response.data.description);
@@ -136,7 +135,7 @@ const AddProduct = () => {
         response.data.ingredients.map((ingredient) => ingredient.name)
       );
       setPrice(response.data.price);
-      // setImage(response.data.image);
+      setImage(response.data.image);
     });
   }, []);
 

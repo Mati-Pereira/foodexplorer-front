@@ -21,7 +21,6 @@ const Home = () => {
   useEffect(() => {
     api.get("/products").then((res) => {
       setAllProducts(res.data);
-      console.log(res.data);
     });
   }, []);
 

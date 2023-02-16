@@ -13,7 +13,7 @@ const FileInput = ({ onChange, ...rest }) => {
           <input
             type="file"
             id="file"
-            accept="image/png, image/jpeg"
+            accept="image/png image/jpeg"
             onChange={onChange}
             {...rest}
           />
