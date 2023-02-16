@@ -30,18 +30,12 @@ import { useEffect } from "react";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
-
   const [category, setCategory] = useState("refeicao");
-
   const [description, setDescription] = useState("");
-
   const [ingredients, setIngredients] = useState([]);
   const [inputIngredient, setInputIngredient] = useState("");
-
   const [price, setPrice] = useState();
-
   const [image, setImage] = useState();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -93,8 +87,8 @@ const AddProduct = () => {
 
     const fileUpload = new FormData();
 
-    await fileUpload.append("image", image);
-    await fileUpload.append(
+    fileUpload.append("image", image);
+    fileUpload.append(
       "data",
       JSON.stringify({
         name,
@@ -102,6 +96,7 @@ const AddProduct = () => {
         description,
         ingredients,
         price,
+        image: fileUpload.get("image"),
       })
     );
     await api

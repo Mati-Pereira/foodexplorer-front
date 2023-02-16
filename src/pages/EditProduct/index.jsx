@@ -82,8 +82,8 @@ const AddProduct = () => {
       !category ||
       !description ||
       !ingredients.length ||
-      !price
-      // !image
+      !price ||
+      !image
     ) {
       return toast.error("Preencha todos os campos.");
     }
@@ -101,6 +101,7 @@ const AddProduct = () => {
         price,
       })
     );
+
     await api
       .put(`/products/${id}`, fileUpload, {
         headers: {
@@ -136,7 +137,7 @@ const AddProduct = () => {
         response.data.ingredients.map((ingredient) => ingredient.name)
       );
       setPrice(response.data.price);
-      // setImage(response.data.image);
+      setImage(response.data.image);
     });
   }, []);
 
@@ -144,7 +145,7 @@ const AddProduct = () => {
     if (image) {
       toast.success("Imagem selecionada com sucesso!");
     }
-  }, [image]);
+  }, [typeof image === "object"]);
 
   return (
     <Container>
