@@ -3,7 +3,7 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const Quantity = ({ quantity = 10 }) => {
+const Quantity = ({ quantity = 1 }) => {
   const [quantityState, setQuantityState] = useState(quantity);
   return (
     <Container>

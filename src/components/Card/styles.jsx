@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   justify-items: center;
   text-align: center;
-  max-width: 18.75rem;
   background-color: ${({ theme }) => theme.colors.black};
   border-radius: 0.5rem;
-  padding: 1.5rem 1.5rem 2.875rem 1.5rem;
+  padding: 1.5rem 2.875rem 2rem;
+  max-width: 40rem;
   position: relative;
   > a {
     svg {
@@ -51,7 +51,7 @@ export const AddProduct = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   > div {
     width: 50%;
   }
