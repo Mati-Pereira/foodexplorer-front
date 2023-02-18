@@ -12,18 +12,18 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Details = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
-  console.log(data);
   const {
     colors: { red },
   } = useTheme();
   const { isAdmin } = useSelector((state) => state.persisted.auth);
   useEffect(() => {
     api
-      .get(`/details/${id}`)
+      .get(`/products/${id}`)
       .then((response) => {
         setData(response.data);
       })
@@ -34,39 +34,38 @@ const Details = () => {
           toast.error("Ocorreu um erro inesperado!");
         }
       });
-  }, []);
+  }, [id]);
   return (
     <Container>
       <Header />
       <DetailsAnchor to="/" />
       <Content>
-        <img src="/Imagens/Mask group-5.png" />
-        <Text>
-          <h1>Salada Ravanello</h1>
-          <p>
-            Rabanetes, folhas verdes e molho agridoce salpicados com gergelim. O
-            pão naan dá um toque especial.
-          </p>
-          <Tags>
-            <Tag text="Olá Mundo" />
-            <Tag text="Quero Café" />
-            <Tag text="Vamonos" />
-            <Tag text="Agora Vais" />
-            <Tag text="Top" />
-            <Tag text="Miojo" />
-            <Tag text="Agora Vais" />
-          </Tags>
-          {isAdmin ? (
-            <AddProduct>
-              <Button color={red}>Editar</Button>
-            </AddProduct>
-          ) : (
-            <AddProduct>
-              <Quantity quantity={5} />
-              <Button color={red}>Incluir</Button>
-            </AddProduct>
-          )}
-        </Text>
+        {data && (
+          <>
+            <img src={`${api.defaults?.baseURL}/${data.image}`} />
+            <Text>
+              <h1>{data.name}</h1>
+              <p>{data.description}</p>
+              <Tags>
+                {data.ingredients?.map((ingredient) => (
+                  <Tag key={ingredient.id} text={ingredient.name} />
+                ))}
+              </Tags>
+              {isAdmin ? (
+                <AddProduct>
+                  <Link to={`/edit/${id}`}>
+                    <Button color={red}>Editar</Button>
+                  </Link>
+                </AddProduct>
+              ) : (
+                <AddProduct>
+                  <Quantity quantity={5} />
+                  <Button color={red}>Incluir</Button>
+                </AddProduct>
+              )}
+            </Text>
+          </>
+        )}
       </Content>
       <Footer />
     </Container>
