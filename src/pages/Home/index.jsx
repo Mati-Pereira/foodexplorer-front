@@ -9,7 +9,6 @@ import { api } from "../../services/api";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import ProductNotFound from "../../components/ProductNotFound";
-import { Link } from "react-router-dom";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -50,16 +49,15 @@ const Home = () => {
         <Section title="Refeições">
           {refeicoes.length ? (
             refeicoes.map((item) => (
-              <Link key={item.id} to={`/details/${item.id}`}>
-                <Card
-                  name={item.name}
-                  price={item.price}
-                  text={item.description}
-                  image={item.image}
-                  isAdmin={isAdmin}
-                  id={item.id}
-                />
-              </Link>
+              <Card
+                key={item.id}
+                name={item.name}
+                price={item.price}
+                text={item.description}
+                image={item.image}
+                isAdmin={isAdmin}
+                id={item.id}
+              />
             ))
           ) : (
             <ProductNotFound />
@@ -68,16 +66,15 @@ const Home = () => {
         <Section title="Sobremesas">
           {sobremesas.length ? (
             sobremesas.map((item) => (
-              <Link key={item.id} to={`/details/${item.id}`}>
-                <Card
-                  price={item.price}
-                  name={item.name}
-                  text={item.description}
-                  image={item.image}
-                  isAdmin={isAdmin}
-                  id={item.id}
-                />
-              </Link>
+              <Card
+                key={item.id}
+                price={item.price}
+                name={item.name}
+                text={item.description}
+                image={item.image}
+                isAdmin={isAdmin}
+                id={item.id}
+              />
             ))
           ) : (
             <ProductNotFound />
@@ -86,16 +83,15 @@ const Home = () => {
         <Section title="Bebidas">
           {bebidas.length ? (
             bebidas.map((item) => (
-              <Link key={item.id} to={`/details/${item.id}`}>
-                <Card
-                  price={item.price}
-                  name={item.name}
-                  text={item.description}
-                  image={item.image}
-                  isAdmin={isAdmin}
-                  id={item.id}
-                />
-              </Link>
+              <Card
+                key={item.id}
+                price={item.price}
+                name={item.name}
+                text={item.description}
+                image={item.image}
+                isAdmin={isAdmin}
+                id={item.id}
+              />
             ))
           ) : (
             <ProductNotFound />

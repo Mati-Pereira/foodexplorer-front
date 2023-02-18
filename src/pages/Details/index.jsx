@@ -8,12 +8,33 @@ import Button from "../../components/Button";
 import PropTypes from "prop-types";
 import { useTheme } from "styled-components";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Details = () => {
+  const { id } = useParams();
+  const [data, setData] = useState({});
+  console.log(data);
   const {
     colors: { red },
   } = useTheme();
   const { isAdmin } = useSelector((state) => state.persisted.auth);
+  useEffect(() => {
+    api
+      .get(`/details/${id}`)
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        if (error.message) {
+          toast.error(error.response.data.message);
+        } else {
+          toast.error("Ocorreu um erro inesperado!");
+        }
+      });
+  }, []);
   return (
     <Container>
       <Header />

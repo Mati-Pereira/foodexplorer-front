@@ -14,10 +14,12 @@ const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
   } = useTheme();
   return (
     <Container>
-      <Image src={`${api.defaults.baseURL}/${image}`} alt="food picture" />
-      <Title>{name}</Title>
-      <Text>{text}</Text>
-      <Price>{price}</Price>
+      <Link to={`/details/${id}`}>
+        <Image src={`${api.defaults.baseURL}/${image}`} alt="food picture" />
+        <Title>{name}</Title>
+        <Text>{text}</Text>
+        <Price>{price}</Price>
+      </Link>
       {!isAdmin && (
         <AddProduct>
           <Quantity quantity={quantity} />
