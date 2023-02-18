@@ -32,13 +32,24 @@ const Header = () => {
         <input type="text" placeholder="Busque por pratos ou ingredientes" />
       </Input>
       {isAdmin ? (
-        <Pedidos>
-          <Anchor text="Novo Prato" to="/add" />
-        </Pedidos>
+        <>
+          <Anchor to="#">Meus favoritos</Anchor>
+          <Anchor to="/add">Novo Prato</Anchor>
+          <Pedidos>
+            <Anchor to="/">
+              <img src={pedidos} alt="icon pedidos" />
+              Pedidos (0)
+            </Anchor>
+          </Pedidos>
+        </>
       ) : (
         <Pedidos>
-          <img src={pedidos} alt="icon pedidos" />
-          <Anchor text="Pedidos (0)" to="#" />
+          <Anchor to="#">Meus favoritos</Anchor>
+          <Anchor to="#">Histórico de favoritos</Anchor>
+          <Anchor to="/">
+            <img src={pedidos} alt="icon pedidos" />
+            Pedidos (0)
+          </Anchor>
         </Pedidos>
       )}
       <img src={sair} alt="sair icon" onClick={handleSignOut} />

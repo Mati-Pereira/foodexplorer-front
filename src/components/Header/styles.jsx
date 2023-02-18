@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 4.5rem;
-  gap: 2rem;
+  gap: 1.5rem;
   > img {
     cursor: pointer;
   }
@@ -43,16 +43,16 @@ export const Input = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.875rem;
-  padding: 0.75rem 5rem;
+  padding: 0.75rem 1rem;
   background-color: ${({ theme }) => theme.colors.input};
   border-radius: 0.5rem;
-  width: 33%;
-
   > svg {
     color: ${({ theme }) => theme.colors.white};
     font-size: 1rem;
   }
   > input {
+    display: flex;
+    flex: 1;
     font-size: 1rem;
     background-color: transparent;
     border: none;
