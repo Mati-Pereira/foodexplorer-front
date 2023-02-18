@@ -7,4 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     background-color: ${({ theme }) => theme.colors.green_900};
   }
+  a {
+    text-decoration: none;
+  }
 `;
