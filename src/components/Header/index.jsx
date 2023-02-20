@@ -43,14 +43,16 @@ const Header = () => {
           </Pedidos>
         </>
       ) : (
-        <Pedidos>
+        <>
           <Anchor to="#">Meus favoritos</Anchor>
           <Anchor to="#">Histórico de favoritos</Anchor>
-          <Anchor to="/">
-            <img src={pedidos} alt="icon pedidos" />
-            Pedidos (0)
-          </Anchor>
-        </Pedidos>
+          <Pedidos>
+            <Anchor to="/">
+              <img src={pedidos} alt="icon pedidos" />
+              Pedidos (0)
+            </Anchor>
+          </Pedidos>
+        </>
       )}
       <img src={sair} alt="sair icon" onClick={handleSignOut} />
     </Container>
