@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../context/features/auth.thunk";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -24,8 +25,10 @@ const Header = () => {
   return (
     <Container>
       <div>
-        <Logo src={logo} alt="logo" />
-        {isAdmin ? <span>admin</span> : null}
+        <Link to="/">
+          <Logo src={logo} alt="logo" />
+          {isAdmin ? <span>admin</span> : null}
+        </Link>
       </div>
       <Input>
         <BsSearch />
@@ -33,7 +36,7 @@ const Header = () => {
       </Input>
       {isAdmin ? (
         <>
-          <Anchor to="#">Meus favoritos</Anchor>
+          <Anchor to="/favorites">Meus favoritos</Anchor>
           <Anchor to="/add">Novo Prato</Anchor>
           <Pedidos>
             <Anchor to="/">
@@ -44,7 +47,7 @@ const Header = () => {
         </>
       ) : (
         <>
-          <Anchor to="#">Meus favoritos</Anchor>
+          <Anchor to="/favorites">Meus favoritos</Anchor>
           <Anchor to="#">Histórico de favoritos</Anchor>
           <Pedidos>
             <Anchor to="/">

@@ -26,6 +26,7 @@ const initialState = {
   isAdmin: false,
   user: null,
   loading: false,
+  favorites: [],
 };
 
 const authSlice = createSlice({
@@ -36,6 +37,13 @@ const authSlice = createSlice({
       state.user = null;
       state.isAdmin = false;
       state.loading = false;
+      state.favorites = [];
+    },
+    addToFavorites: (state, action) => {
+      state.favorites.push(action.payload);
+    },
+    removeFromFavorites: (state, action) => {
+      state.favorites.splice(state.indexOf(action.payload), 1);
     },
   },
   extraReducers: (builder) => {
@@ -55,5 +63,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { signOut } = authSlice.actions;
+export const { signOut, addToFavorites, removeFromFavorites } =
+  authSlice.actions;
 export default authSlice.reducer;

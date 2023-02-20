@@ -12,7 +12,7 @@ import ProductNotFound from "../../components/ProductNotFound";
 import {
   addToFavorites,
   removeFromFavorites,
-} from "../../context/features/favoritesSlice";
+} from "../../context/features/auth.thunk";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -20,7 +20,8 @@ const Home = () => {
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
-  const favorites = useSelector((state) => state.persisted.favorite);
+  const favorites = useSelector((state) => state.persisted.auth.favorites);
+  console.log("favorite", favorites);
   const dispatch = useDispatch();
   useEffect(() => {
     api.get("/products").then((res) => {
