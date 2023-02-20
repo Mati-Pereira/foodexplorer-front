@@ -8,13 +8,15 @@ export const Container = styled.div`
   padding: 1.5rem 2.875rem 2rem;
   max-width: 40rem;
   position: relative;
-  > a {
-    svg:first-child {
-      position: absolute;
-      top: 1rem;
-      right: 0.5rem;
-      color: ${({ theme }) => theme.colors.gray_300};
-      font-size: 1.25rem;
+  > div {
+    > a {
+      svg:first-child {
+        position: absolute;
+        top: 1rem;
+        right: 0.5rem;
+        color: ${({ theme }) => theme.colors.gray_300};
+        font-size: 1.25rem;
+      }
     }
     svg:last-child {
       position: absolute;

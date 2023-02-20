@@ -129,7 +129,6 @@ const AddProduct = () => {
 
   useEffect(() => {
     api.get(`products/${id}`).then((response) => {
-      console.log(response.data);
       setName(response.data.name);
       setCategory(response.data.category);
       setDescription(response.data.description);

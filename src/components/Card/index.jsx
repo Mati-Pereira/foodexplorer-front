@@ -9,10 +9,22 @@ import { api } from "../../services/api";
 import { Link } from "react-router-dom";
 import Anchor from "../Anchor";
 
-const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
+const Card = ({
+  image,
+  name,
+  text,
+  price,
+  quantity,
+  isAdmin,
+  id,
+  isFavoriteCard,
+  handleAddFavorites,
+  handleRemoveFavorites,
+}) => {
   const {
     colors: { red_500 },
   } = useTheme();
+
   return (
     <Container>
       <Link to={`/details/${id}`}>
@@ -28,15 +40,16 @@ const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
         </AddProduct>
       )}
       {isAdmin ? (
-        <>
+        <div>
           <Anchor to={`edit/${id}`}>
-            <BsPencil />
+            <BsPencil className="edit" />
           </Anchor>
-          <Anchor to={`edit/${id}`}>
-            <AiFillHeart />
-            <AiOutlineHeart />
-          </Anchor>
-        </>
+          {isFavoriteCard ? (
+            <AiFillHeart onClick={handleRemoveFavorites} />
+          ) : (
+            <AiOutlineHeart onClick={handleAddFavorites} />
+          )}
+        </div>
       ) : (
         <AiOutlineHeart />
       )}
@@ -54,4 +67,7 @@ Card.propTypes = {
   quantity: PropTypes.number,
   isAdmin: PropTypes.bool,
   id: PropTypes.number,
+  isFavoriteCard: PropTypes.func,
+  handleAddFavorites: PropTypes.func,
+  handleRemoveFavorites: PropTypes.func,
 };

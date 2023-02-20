@@ -7,17 +7,22 @@ import Section from "../../components/Section";
 import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductNotFound from "../../components/ProductNotFound";
+import {
+  addFavorite,
+  removeFavorite,
+} from "../../context/features/favorites.slice";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
-
   const [allProducts, setAllProducts] = useState([]);
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
-
+  const dispatch = useDispatch();
+  const { favorites } = useSelector((state) => state.persisted.favorites);
+  console.log(favorites);
   useEffect(() => {
     api.get("/products").then((res) => {
       setAllProducts(res.data);
@@ -57,6 +62,8 @@ const Home = () => {
                 image={item.image}
                 isAdmin={isAdmin}
                 id={item.id}
+                handleAddFavorites={() => dispatch(addFavorite(item))}
+                handleRemoveFavorites={() => dispatch(removeFavorite(item))}
               />
             ))
           ) : (
