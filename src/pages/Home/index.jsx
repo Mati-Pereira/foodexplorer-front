@@ -7,8 +7,12 @@ import Section from "../../components/Section";
 import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProductNotFound from "../../components/ProductNotFound";
+import {
+  addToFavorites,
+  removeFromFavorites,
+} from "../../context/features/favoritesSlice";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -16,12 +20,14 @@ const Home = () => {
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
+  const favorites = useSelector((state) => state.persisted.favorite);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     api.get("/products").then((res) => {
       setAllProducts(res.data);
     });
   }, []);
-
   useEffect(() => {
     const refeicao = allProducts.filter((item) => item.category == "refeicao");
     setRefeicoes(refeicao);
@@ -55,6 +61,10 @@ const Home = () => {
                 image={item.image}
                 isAdmin={isAdmin}
                 id={item.id}
+                handleAddFavorites={() => dispatch(addToFavorites(item))}
+                handleRemoveFavorites={() =>
+                  dispatch(removeFromFavorites(item))
+                }
               />
             ))
           ) : (

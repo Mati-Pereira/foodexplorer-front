@@ -19,6 +19,7 @@ const Card = ({
   id,
   handleAddFavorites,
   handleRemoveFavorites,
+  isFavorite,
 }) => {
   const {
     colors: { red_500 },
@@ -43,8 +44,11 @@ const Card = ({
           <Anchor to={`edit/${id}`}>
             <BsPencil className="edit" />
           </Anchor>
-          <AiFillHeart onClick={handleRemoveFavorites} />
-          <AiOutlineHeart onClick={handleAddFavorites} />
+          {isFavorite ? (
+            <AiFillHeart onClick={handleRemoveFavorites} />
+          ) : (
+            <AiOutlineHeart onClick={handleAddFavorites} />
+          )}
         </div>
       ) : (
         <AiOutlineHeart />
@@ -65,4 +69,5 @@ Card.propTypes = {
   id: PropTypes.number,
   handleAddFavorites: PropTypes.func,
   handleRemoveFavorites: PropTypes.func,
+  isFavorite: PropTypes.bool,
 };

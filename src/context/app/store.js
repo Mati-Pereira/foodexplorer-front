@@ -11,7 +11,7 @@ const persistConfig = {
 };
 const persistedReducer = combineReducers({
   auth: authReducer,
-  favorites: favoritesReducer,
+  favorite: favoritesReducer,
 });
 
 const persisted = persistReducer(persistConfig, persistedReducer);
