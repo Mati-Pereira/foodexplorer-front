@@ -51,7 +51,7 @@ const Login = () => {
           />
           <Button color={red}>{loading ? <Loading /> : "Login"}</Button>
         </Form>
-        <Anchor text="Crie uma Conta" to="/register" />
+        <Anchor to="/register">Crie uma Conta</Anchor>
       </Content>
     </Container>
   );

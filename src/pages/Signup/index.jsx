@@ -85,7 +85,7 @@ const Signup = () => {
             )}
           </Button>
         </Form>
-        <Anchor text="Já tenho uma conta" to="/login" />
+        <Anchor to="/login">Já tenho uma conta</Anchor>
       </Content>
     </Container>
   );
