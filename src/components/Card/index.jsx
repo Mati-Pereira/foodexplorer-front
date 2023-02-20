@@ -24,7 +24,7 @@ const Card = ({
   const {
     colors: { red_500 },
   } = useTheme();
-
+  console.log(isFavorite);
   return (
     <Container>
       <Link to={`/details/${id}`}>

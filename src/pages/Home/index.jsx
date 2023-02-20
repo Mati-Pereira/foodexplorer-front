@@ -22,7 +22,7 @@ const Home = () => {
   const [bebidas, setBebidas] = useState([]);
   const favorites = useSelector((state) => state.persisted.favorite);
   const dispatch = useDispatch();
-
+  console.log(favorites);
   useEffect(() => {
     api.get("/products").then((res) => {
       setAllProducts(res.data);
@@ -65,6 +65,9 @@ const Home = () => {
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
                 }
+                isFavorite={favorites.some(
+                  (favorite) => favorite.id === item.id
+                )}
               />
             ))
           ) : (
@@ -82,6 +85,13 @@ const Home = () => {
                 image={item.image}
                 isAdmin={isAdmin}
                 id={item.id}
+                handleAddFavorites={() => dispatch(addToFavorites(item))}
+                handleRemoveFavorites={() =>
+                  dispatch(removeFromFavorites(item))
+                }
+                isFavorite={favorites.some(
+                  (favorite) => favorite.id === item.id
+                )}
               />
             ))
           ) : (
@@ -99,6 +109,13 @@ const Home = () => {
                 image={item.image}
                 isAdmin={isAdmin}
                 id={item.id}
+                handleAddFavorites={() => dispatch(addToFavorites(item))}
+                handleRemoveFavorites={() =>
+                  dispatch(removeFromFavorites(item))
+                }
+                isFavorite={favorites.some(
+                  (favorite) => favorite.id === item.id
+                )}
               />
             ))
           ) : (
