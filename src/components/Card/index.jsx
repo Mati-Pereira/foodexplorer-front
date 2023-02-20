@@ -32,8 +32,10 @@ const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
           <Anchor to={`edit/${id}`}>
             <BsPencil />
           </Anchor>
-          <AiOutlineHeart />
-          <AiFillHeart />
+          <Anchor to={`edit/${id}`}>
+            <AiFillHeart />
+            <AiOutlineHeart />
+          </Anchor>
         </>
       ) : (
         <AiOutlineHeart />

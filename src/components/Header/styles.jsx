@@ -25,7 +25,7 @@ export const Container = styled.header`
 `;
 
 export const Pedidos = styled.div`
-  background-color: ${({ theme }) => theme.colors.red};
+  background-color: ${({ theme }) => theme.colors.red_500};
   display: flex;
   justify-content: center;
   align-items: center;

@@ -23,7 +23,7 @@ export const Container = styled.div`
       font-size: 1.25rem;
     }
     a {
-      color: ${({ theme }) => theme.colors.red_300};
+      color: ${({ theme }) => theme.colors.red_500_300};
       font-family: "Roboto";
       font-size: 0.75rem;
       font-weight: 400;
