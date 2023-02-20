@@ -18,7 +18,7 @@ const Details = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const {
-    colors: { red },
+    colors: { red_500 },
   } = useTheme();
   const { isAdmin } = useSelector((state) => state.persisted.auth);
   useEffect(() => {

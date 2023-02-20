@@ -11,7 +11,7 @@ import Anchor from "../Anchor";
 
 const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
   const {
-    colors: { red },
+    colors: { red_500 },
   } = useTheme();
   return (
     <Container>

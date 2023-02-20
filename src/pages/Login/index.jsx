@@ -24,7 +24,7 @@ const Login = () => {
   };
 
   const {
-    colors: { red },
+    colors: { red_500 },
   } = useTheme();
   return (
     <Container>
