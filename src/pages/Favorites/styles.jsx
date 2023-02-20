@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -20,10 +20,12 @@ export const Content = styled.div`
     font-family: "Poppins";
     font-size: 2rem;
     font-weight: 500;
+    padding: 1rem 0;
   }
 `;
 
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 3rem;
 `;

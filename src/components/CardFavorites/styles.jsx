@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 0.8125rem;
   > img {
     width: 4.5rem;
     height: 4.5rem;
@@ -15,13 +16,17 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    gap: 0.25rem;
     span {
       color: ${({ theme }) => theme.colors.gray_300};
       font-family: "Poppins";
       font-size: 1.25rem;
     }
     a {
-      color: ${({ theme }) => theme.colors.red};
+      color: ${({ theme }) => theme.colors.red_300};
+      font-family: "Roboto";
+      font-size: 0.75rem;
+      font-weight: 400;
     }
   }
 `;
