@@ -37,7 +37,6 @@ const authSlice = createSlice({
       state.user = null;
       state.isAdmin = false;
       state.loading = false;
-      state.favorites = [];
     },
     addToFavorites: (state, action) => {
       state.favorites.push(action.payload);
