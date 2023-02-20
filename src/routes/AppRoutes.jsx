@@ -4,6 +4,7 @@ import Details from "../pages/Details";
 import EditProduct from "../pages/EditProduct";
 import Home from "../pages/Home";
 import { useSelector } from "react-redux";
+import Favorites from "../pages/Favorites";
 
 const AppRoutes = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -11,6 +12,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/favorites" element={<Favorites />} />
       <Route path="/details/:id" element={<Details />} />
       {isAdmin ? (
         <>
