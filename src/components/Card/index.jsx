@@ -24,7 +24,7 @@ const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
       {!isAdmin && (
         <AddProduct>
           <Quantity quantity={quantity} />
-          <Button color={red}>Incluir</Button>
+          <Button color={red_500}>Incluir</Button>
         </AddProduct>
       )}
       {isAdmin ? (

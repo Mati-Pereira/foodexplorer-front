@@ -69,7 +69,7 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button color={red} type="submit">
+          <Button color={red_500} type="submit">
             {isLoading ? (
               <ThreeDots
                 color={white}

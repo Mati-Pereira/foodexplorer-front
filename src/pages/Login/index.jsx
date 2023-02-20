@@ -49,7 +49,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button color={red}>{loading ? <Loading /> : "Login"}</Button>
+          <Button color={red_500}>{loading ? <Loading /> : "Login"}</Button>
         </Form>
         <Anchor to="/register">Crie uma Conta</Anchor>
       </Content>

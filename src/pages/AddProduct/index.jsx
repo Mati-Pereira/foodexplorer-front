@@ -120,7 +120,7 @@ const AddProduct = () => {
   };
 
   const {
-    colors: { salmon },
+    colors: { red_300 },
   } = useTheme();
 
   useEffect(() => {
@@ -185,7 +185,7 @@ const AddProduct = () => {
                 required
               />
             </ThirdRow>
-            <Button color={salmon} type="button" onClick={handleCreateProduct}>
+            <Button color={red_300} type="button" onClick={handleCreateProduct}>
               {isLoading ? <Loading /> : "Salvar alterações"}
             </Button>
           </Rows>

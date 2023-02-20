@@ -124,7 +124,7 @@ const AddProduct = () => {
   };
 
   const {
-    colors: { salmon, green_700 },
+    colors: { red_300, green_700 },
   } = useTheme();
 
   useEffect(() => {
@@ -208,7 +208,7 @@ const AddProduct = () => {
               <Button color={green_700} type="submit">
                 Deletar Prato
               </Button>
-              <Button color={salmon} type="button" onClick={handleEditProduct}>
+              <Button color={red_300} type="button" onClick={handleEditProduct}>
                 {isLoading ? <Loading /> : "Salvar alterações"}
               </Button>
             </Buttons>

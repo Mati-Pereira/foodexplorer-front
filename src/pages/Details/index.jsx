@@ -54,13 +54,13 @@ const Details = () => {
               {isAdmin ? (
                 <AddProduct>
                   <Link to={`/edit/${id}`}>
-                    <Button color={red}>Editar</Button>
+                    <Button color={red_500}>Editar</Button>
                   </Link>
                 </AddProduct>
               ) : (
                 <AddProduct>
                   <Quantity quantity={5} />
-                  <Button color={red}>Incluir</Button>
+                  <Button color={red_500}>Incluir</Button>
                 </AddProduct>
               )}
             </Text>
