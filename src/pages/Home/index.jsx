@@ -21,8 +21,7 @@ const Home = () => {
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
   const dispatch = useDispatch();
-  const { favorites } = useSelector((state) => state.persisted.favorites);
-  console.log(favorites);
+
   useEffect(() => {
     api.get("/products").then((res) => {
       setAllProducts(res.data);

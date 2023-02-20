@@ -17,7 +17,6 @@ const Card = ({
   quantity,
   isAdmin,
   id,
-  isFavoriteCard,
   handleAddFavorites,
   handleRemoveFavorites,
 }) => {
@@ -44,11 +43,8 @@ const Card = ({
           <Anchor to={`edit/${id}`}>
             <BsPencil className="edit" />
           </Anchor>
-          {isFavoriteCard ? (
-            <AiFillHeart onClick={handleRemoveFavorites} />
-          ) : (
-            <AiOutlineHeart onClick={handleAddFavorites} />
-          )}
+          <AiFillHeart onClick={handleRemoveFavorites} />
+          <AiOutlineHeart onClick={handleAddFavorites} />
         </div>
       ) : (
         <AiOutlineHeart />
