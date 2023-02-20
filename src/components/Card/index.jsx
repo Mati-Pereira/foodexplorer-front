@@ -28,11 +28,13 @@ const Card = ({ image, name, text, price, quantity, isAdmin, id }) => {
         </AddProduct>
       )}
       {isAdmin ? (
-        <Anchor to={`edit/${id}`}>
-          <BsPencil />
+        <>
+          <Anchor to={`edit/${id}`}>
+            <BsPencil />
+          </Anchor>
           <AiOutlineHeart />
           <AiFillHeart />
-        </Anchor>
+        </>
       ) : (
         <AiOutlineHeart />
       )}

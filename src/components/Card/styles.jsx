@@ -16,6 +16,13 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.colors.gray_300};
       font-size: 1.25rem;
     }
+    svg:last-child {
+      position: absolute;
+      top: 3rem;
+      right: 0.5rem;
+      color: ${({ theme }) => theme.colors.gray_300};
+      font-size: 1.25rem;
+    }
   }
 `;
 
