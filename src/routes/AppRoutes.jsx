@@ -8,7 +8,6 @@ import Favorites from "../pages/Favorites";
 
 const AppRoutes = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
-
   return (
     <Routes>
       <Route path="/" element={<Home />} />

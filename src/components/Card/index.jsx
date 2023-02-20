@@ -63,7 +63,6 @@ Card.propTypes = {
   quantity: PropTypes.number,
   isAdmin: PropTypes.bool,
   id: PropTypes.number,
-  isFavoriteCard: PropTypes.func,
   handleAddFavorites: PropTypes.func,
   handleRemoveFavorites: PropTypes.func,
 };
