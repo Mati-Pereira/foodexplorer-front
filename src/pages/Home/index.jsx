@@ -22,9 +22,11 @@ const Home = () => {
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   api.get("/favorites").then((response) => {});
-  // }, []);
+  useEffect(() => {
+    api.get("/favorites").then((response) => {
+      console.log("home favorites", response.data);
+    });
+  }, []);
 
   useEffect(() => {
     api.get("/products").then((res) => {
