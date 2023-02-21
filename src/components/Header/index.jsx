@@ -9,7 +9,6 @@ import { signOut } from "../../context/features/auth.thunk";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import { api } from "../../services/api";
 
 const Header = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -17,17 +16,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
-    const favorites = useSelector((state) => state.persisted.auth.favorites);
-    const response = await api.get("/favorites");
-    if (favorites.length) {
-      if (!response.data.favoriteList) {
-        await api.post("/favorites", { favoriteList: favorites });
-      } else {
-        await api.put("/favorites", { favoriteList: favorites });
-      }
-    }
     dispatch(signOut());
-    localStorage.clear();
     toast.success("Você saiu com sucesso!");
     navigate("/login");
   };

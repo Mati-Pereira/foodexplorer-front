@@ -5,7 +5,7 @@ import CardFavorites from "../../components/CardFavorites";
 import { useSelector } from "react-redux";
 
 const Favorites = () => {
-  const favorites = useSelector((state) => state.persisted.auth.favorites);
+  const favorites = useSelector((state) => state.persisted.favorites);
   console.log(favorites, "favorites");
   return (
     <Container>

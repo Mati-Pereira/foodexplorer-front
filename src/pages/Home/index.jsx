@@ -16,28 +16,24 @@ import {
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
-  const [allProducts, setAllProducts] = useState([]);
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
-  const favorites = useSelector((state) => state.persisted.auth.favorites);
-  console.log("favorite", favorites);
+  const favorites = useSelector((state) => state.persisted.favorites);
+  console.log(favorites);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   api.get("/favorites").then((response) => {});
+  // }, []);
+
   useEffect(() => {
     api.get("/products").then((res) => {
-      setAllProducts(res.data);
+      setRefeicoes(res.data.filter((item) => item.category === "refeicao"));
+      setSobremesas(res.data.filter((item) => item.category === "sobremesa"));
+      setBebidas(res.data.filter((item) => item.category === "bebida"));
     });
   }, []);
-  useEffect(() => {
-    const refeicao = allProducts.filter((item) => item.category == "refeicao");
-    setRefeicoes(refeicao);
-    const sobremesa = allProducts.filter(
-      (item) => item.category == "sobremesa"
-    );
-    setSobremesas(sobremesa);
-    const bebida = allProducts.filter((item) => item.category == "bebida");
-    setBebidas(bebida);
-  }, [allProducts]);
 
   return (
     <>
@@ -65,9 +61,9 @@ const Home = () => {
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
                 }
-                isFavorite={favorites.some(
-                  (favorite) => favorite.id === item.id
-                )}
+                // isFavorite={favorites.some(
+                //   (favorite) => favorite.id === item.id
+                // )}
               />
             ))
           ) : (
@@ -89,9 +85,9 @@ const Home = () => {
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
                 }
-                isFavorite={favorites.some(
-                  (favorite) => favorite.id === item.id
-                )}
+                // isFavorite={favorites.some(
+                //   (favorite) => favorite.id === item.id
+                // )}
               />
             ))
           ) : (
@@ -113,9 +109,9 @@ const Home = () => {
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
                 }
-                isFavorite={favorites.some(
-                  (favorite) => favorite.id === item.id
-                )}
+                // isFavorite={favorites.some(
+                //   (favorite) => favorite.id === item.id
+                // )}
               />
             ))
           ) : (

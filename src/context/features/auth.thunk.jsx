@@ -26,7 +26,6 @@ const initialState = {
   isAdmin: false,
   user: null,
   loading: false,
-  favorites: [],
 };
 
 const authSlice = createSlice({
@@ -37,12 +36,6 @@ const authSlice = createSlice({
       state.user = null;
       state.isAdmin = false;
       state.loading = false;
-    },
-    addToFavorites: (state, action) => {
-      state.favorites.push(action.payload);
-    },
-    removeFromFavorites: (state, action) => {
-      state.favorites.splice(state.indexOf(action.payload), 1);
     },
   },
   extraReducers: (builder) => {
