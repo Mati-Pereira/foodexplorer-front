@@ -12,14 +12,14 @@ import ProductNotFound from "../../components/ProductNotFound";
 import {
   addToFavorites,
   removeFromFavorites,
-} from "../../context/features/auth.thunk";
+} from "../../context/features/favorites.slice";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
-  const favorites = useSelector((state) => state.persisted.favorites);
+  const favorites = useSelector((state) => state.persisted.favorite.favorites);
   console.log(favorites);
   const dispatch = useDispatch();
 
@@ -61,9 +61,9 @@ const Home = () => {
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
                 }
-                // isFavorite={favorites.some(
-                //   (favorite) => favorite.id === item.id
-                // )}
+                isFavorite={favorites.some(
+                  (favorite) => favorite.id === item.id
+                )}
               />
             ))
           ) : (
@@ -85,9 +85,9 @@ const Home = () => {
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
                 }
-                // isFavorite={favorites.some(
-                //   (favorite) => favorite.id === item.id
-                // )}
+                isFavorite={favorites.some(
+                  (favorite) => favorite.id === item.id
+                )}
               />
             ))
           ) : (
@@ -109,9 +109,9 @@ const Home = () => {
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
                 }
-                // isFavorite={favorites.some(
-                //   (favorite) => favorite.id === item.id
-                // )}
+                isFavorite={favorites.some(
+                  (favorite) => favorite.id === item.id
+                )}
               />
             ))
           ) : (
