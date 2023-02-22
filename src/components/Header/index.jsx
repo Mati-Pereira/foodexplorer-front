@@ -16,17 +16,16 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
-  console.log("localstorage favorites", favorites);
   const handleSignOut = async () => {
     const res = await api.get("/favorites");
     if (favorites.length > 0) {
       if (!res.data.favoriteList) {
         await api.post("/favorites", {
-          favoriteList: favorites.toString(),
+          favoriteList: favorites,
         });
       } else {
         await api.put("/favorites", {
-          favoriteList: favorites.toString(),
+          favoriteList: favorites,
         });
       }
     }
