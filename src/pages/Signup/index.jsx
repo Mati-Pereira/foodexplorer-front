@@ -16,7 +16,7 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const {
-    colors: { red, white },
+    colors: { red_500, white },
   } = useTheme();
 
   const handleSignup = async (e) => {

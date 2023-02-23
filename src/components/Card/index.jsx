@@ -33,10 +33,17 @@ const Card = ({
         <Price>{price}</Price>
       </Link>
       {!isAdmin && (
-        <AddProduct>
-          <Quantity quantity={quantity} />
-          <Button color={red_500}>Incluir</Button>
-        </AddProduct>
+        <div>
+          <AddProduct>
+            <Quantity quantity={quantity} />
+            <Button color={red_500}>Incluir</Button>
+          </AddProduct>
+          {isFavorite ? (
+            <AiFillHeart onClick={handleRemoveFavorites} />
+          ) : (
+            <AiOutlineHeart onClick={handleAddFavorites} />
+          )}
+        </div>
       )}
       {isAdmin ? (
         <div>
