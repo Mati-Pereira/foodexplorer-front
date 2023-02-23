@@ -12,8 +12,12 @@ export const favoriteSlice = createSlice({
     removeFromFavorites: (state, action) => {
       state.favorites.splice(state.favorites.indexOf(action.payload), 1);
     },
+    cleanFavorites: (state) => {
+      state.favorites = [];
+    },
   },
 });
 
-export const { addToFavorites, removeFromFavorites } = favoriteSlice.actions;
+export const { addToFavorites, removeFromFavorites, cleanFavorites } =
+  favoriteSlice.actions;
 export default favoriteSlice.reducer;
