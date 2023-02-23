@@ -18,8 +18,8 @@ const Login = () => {
   const { loading } = useSelector((state) => state.persisted.auth);
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   console.log("localfavorites", favorites);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
     dispatch(signIn({ email, password }));
     navigate("/");
   };

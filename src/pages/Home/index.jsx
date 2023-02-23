@@ -15,37 +15,45 @@ import {
   removeFromFavorites,
 } from "../../context/features/favorites.slice";
 
-// import { persistor } from "../../context/app/store";
-
 const Home = () => {
-  const { isAdmin } = useSelector((state) => state.persisted.auth);
+  const { isAdmin, token } = useSelector((state) => state.persisted.auth);
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const dispatch = useDispatch();
   console.log("local favorites", favorites);
+
   useEffect(() => {
-    // persistor.pause();
-    // persistor.flush();
-    // persistor.purge();
-    api.get("/favorites").then((response) => {
-      if (!favorites.length) {
-        dispatch(getFromDatabases(JSON.parse(response.data.favoriteList)));
-        console.log(
-          "database favorites",
-          JSON.parse(response.data.favoriteList)
-        );
-      }
-    });
+    api
+      .get("/favorites", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (!favorites.length) {
+          dispatch(getFromDatabases(JSON.parse(response.data.favoriteList)));
+          console.log(
+            "database favorites",
+            JSON.parse(response.data.favoriteList)
+          );
+        }
+      });
   }, [favorites]);
 
   useEffect(() => {
-    api.get("/products").then((res) => {
-      setRefeicoes(res.data.filter((item) => item.category === "refeicao"));
-      setSobremesas(res.data.filter((item) => item.category === "sobremesa"));
-      setBebidas(res.data.filter((item) => item.category === "bebida"));
-    });
+    api
+      .get("/products", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setRefeicoes(res.data.filter((item) => item.category === "refeicao"));
+        setSobremesas(res.data.filter((item) => item.category === "sobremesa"));
+        setBebidas(res.data.filter((item) => item.category === "bebida"));
+      });
   }, []);
 
   return (

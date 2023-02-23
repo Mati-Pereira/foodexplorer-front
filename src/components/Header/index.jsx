@@ -13,21 +13,41 @@ import { api } from "../../services/api";
 import { cleanFavorites } from "../../context/features/favorites.slice";
 
 const Header = () => {
-  const { isAdmin } = useSelector((state) => state.persisted.auth);
+  const { isAdmin, token } = useSelector((state) => state.persisted.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const handleSignOut = async () => {
-    const res = await api.get("/favorites");
+    const res = await api.get("/favorites", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     if (favorites.length > 0) {
       if (!res.data.favoriteList) {
-        await api.post("/favorites", {
-          favoriteList: JSON.stringify(favorites),
-        });
+        await api.post(
+          "/favorites",
+          {
+            favoriteList: JSON.stringify(favorites),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
       } else {
-        await api.put("/favorites", {
-          favoriteList: JSON.stringify(favorites),
-        });
+        await api.put(
+          "/favorites",
+          {
+            favoriteList: JSON.stringify(favorites),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
       }
     }
     dispatch(signOut());

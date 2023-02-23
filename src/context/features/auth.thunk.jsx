@@ -10,7 +10,9 @@ export const signIn = createAsyncThunk(
       toast.success("Login realizado com sucesso!");
       const { access_token } = response.data;
       localStorage.setItem("access_token", access_token);
-      api.defaults.headers.common["Authorization"] = `Bearer ${access_token}`;
+      api.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem("access_token")}`;
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -26,6 +28,7 @@ const initialState = {
   isAdmin: false,
   user: null,
   loading: false,
+  token: null,
 };
 
 const authSlice = createSlice({
@@ -36,6 +39,7 @@ const authSlice = createSlice({
       state.user = null;
       state.isAdmin = false;
       state.loading = false;
+      state.token = null;
     },
   },
   extraReducers: (builder) => {
@@ -46,11 +50,13 @@ const authSlice = createSlice({
       state.loading = false;
       state.user = action.payload.user;
       state.isAdmin = Boolean(action.payload.is_admin);
+      state.token = action.payload.access_token;
     });
     builder.addCase(signIn.rejected, (state) => {
       state.loading = false;
       state.user = null;
       state.isAdmin = false;
+      state.token = null;
     });
   },
 });
