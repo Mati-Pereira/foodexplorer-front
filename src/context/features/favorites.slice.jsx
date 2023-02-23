@@ -16,8 +16,10 @@ export const favoriteSlice = createSlice({
       state.favorites = [];
     },
     getFromDatabases: (state, action) => {
-      state.favorites.splice(0, state.favorites.length);
-      state.favorites.push(...action.payload);
+      if (!state.favorites.length) {
+        state.favorites.splice(0, state.favorites.length);
+        state.favorites.push(...action.payload);
+      }
     },
   },
 });

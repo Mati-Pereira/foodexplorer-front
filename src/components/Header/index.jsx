@@ -1,5 +1,5 @@
 import Anchor from "../Anchor";
-import { Container, Input, Logo, Pedidos } from "./styles";
+import { Container, Input, Logo, LogoContainer, Pedidos } from "./styles";
 import pedidos from "/pedidos.svg";
 import sair from "/sair.svg";
 import logo from "/logo.svg";
@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../context/features/auth.thunk";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import { cleanFavorites } from "../../context/features/favorites.slice";
 
@@ -56,14 +55,29 @@ const Header = () => {
     navigate("/login");
   };
 
+  const handleGoHome = async () => {
+    if (favorites.length === 0) {
+      await api.put(
+        "/favorites",
+        {
+          favoriteList: JSON.stringify(favorites),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    }
+    navigate("/");
+  };
+
   return (
     <Container>
-      <div>
-        <Link to="/">
-          <Logo src={logo} alt="logo" />
-          {isAdmin ? <span>admin</span> : null}
-        </Link>
-      </div>
+      <LogoContainer onClick={handleGoHome}>
+        <Logo src={logo} alt="logo" />
+        {isAdmin ? <span>admin</span> : null}
+      </LogoContainer>
       <Input>
         <BsSearch />
         <input type="text" placeholder="Busque por pratos ou ingredientes" />

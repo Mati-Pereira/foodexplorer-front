@@ -38,6 +38,10 @@ export const Logo = styled.img`
   width: 12rem;
 `;
 
+export const LogoContainer = styled.div`
+  cursor: pointer;
+`;
+
 export const Input = styled.div`
   display: flex;
   justify-content: center;

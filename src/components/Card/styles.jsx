@@ -13,17 +13,17 @@ export const Container = styled.div`
       svg:first-child {
         position: absolute;
         top: 1rem;
-        right: 0.5rem;
+        right: 0;
         color: ${({ theme }) => theme.colors.gray_300};
-        font-size: 1.25rem;
+        font-size: 1.5rem;
       }
     }
-    svg:last-child {
+    svg:nth-child(2) {
       position: absolute;
-      top: 3rem;
-      right: 0.5rem;
+      top: 3.5rem;
+      right: 0;
       color: ${({ theme }) => theme.colors.gray_300};
-      font-size: 1.25rem;
+      font-size: 1.5rem;
     }
   }
 `;
