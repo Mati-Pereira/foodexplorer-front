@@ -11,8 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductNotFound from "../../components/ProductNotFound";
 import {
   addToFavorites,
+  getFromDatabases,
   removeFromFavorites,
 } from "../../context/features/favorites.slice";
+
+// import { persistor } from "../../context/app/store";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -21,12 +24,21 @@ const Home = () => {
   const [bebidas, setBebidas] = useState([]);
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const dispatch = useDispatch();
-
+  console.log("local favorites", favorites);
   useEffect(() => {
+    // persistor.pause();
+    // persistor.flush();
+    // persistor.purge();
     api.get("/favorites").then((response) => {
-      console.log("home favorites", response.data);
+      if (!favorites.length) {
+        dispatch(getFromDatabases(JSON.parse(response.data.favoriteList)));
+        console.log(
+          "database favorites",
+          JSON.parse(response.data.favoriteList)
+        );
+      }
     });
-  }, []);
+  }, [favorites]);
 
   useEffect(() => {
     api.get("/products").then((res) => {

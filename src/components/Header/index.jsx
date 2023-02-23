@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
+import { cleanFavorites } from "../../context/features/favorites.slice";
 
 const Header = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -21,15 +22,16 @@ const Header = () => {
     if (favorites.length > 0) {
       if (!res.data.favoriteList) {
         await api.post("/favorites", {
-          favoriteList: favorites,
+          favoriteList: JSON.stringify(favorites),
         });
       } else {
         await api.put("/favorites", {
-          favoriteList: favorites,
+          favoriteList: JSON.stringify(favorites),
         });
       }
     }
     dispatch(signOut());
+    dispatch(cleanFavorites());
     toast.success("Você saiu com sucesso!");
     navigate("/login");
   };
