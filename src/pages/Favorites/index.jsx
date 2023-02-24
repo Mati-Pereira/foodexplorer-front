@@ -8,7 +8,6 @@ import { removeFromFavorites } from "../../context/features/favorites.slice";
 const Favorites = () => {
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const dispatch = useDispatch();
-  console.log(favorites);
   return (
     <Container>
       <Header />

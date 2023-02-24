@@ -7,15 +7,20 @@ export const ordersSlice = createSlice({
   },
   reducers: {
     addToOrder: (state, action) => {
-      state.orders = action.payload;
+      if (!state.orders.some((order) => order.id === action.payload.id)) {
+        state.orders.push(action.payload);
+      }
     },
     removeOrder: (state, action) => {
       state.orders = state.orders.filter(
         (order) => order.id !== action.payload
       );
     },
+    clearOrders: (state) => {
+      state.orders.splice(0, state.orders.length);
+    },
   },
 });
 
-export const { addToOrder, removeOrders } = ordersSlice.actions;
+export const { addToOrder, removeOrders, clearOrders } = ordersSlice.actions;
 export default ordersSlice.reducer;

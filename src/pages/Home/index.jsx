@@ -15,6 +15,7 @@ import {
   removeFromFavorites,
 } from "../../context/features/favorites.slice";
 import { toast } from "react-toastify";
+import { addToOrder } from "../../context/features/orders.slice";
 
 const Home = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
@@ -140,6 +141,9 @@ const Home = () => {
                         )
                     : null
                 }
+                handleAddOrder={() =>
+                  dispatch(addToOrder({ ...item, quantity: item.quantity }))
+                }
               />
             ))
           ) : (
@@ -186,6 +190,9 @@ const Home = () => {
                         )
                     : null
                 }
+                handleAddOrder={() =>
+                  dispatch(addToOrder({ ...item, quantity: item.quantity }))
+                }
               />
             ))
           ) : (
@@ -231,6 +238,9 @@ const Home = () => {
                           )
                         )
                     : null
+                }
+                handleAddOrder={() =>
+                  dispatch(addToOrder({ ...item, quantity: item.quantity }))
                 }
               />
             ))
