@@ -119,6 +119,27 @@ const Home = () => {
                 isFavorite={favorites.some(
                   (favorite) => favorite.id === item.id
                 )}
+                handleAddQuantity={() =>
+                  setRefeicoes((prevValue) =>
+                    prevValue.map((item) =>
+                      item.id === item.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                    )
+                  )
+                }
+                handleRemoveQuantity={
+                  item.quantity > 1
+                    ? () =>
+                        setRefeicoes((prevValue) =>
+                          prevValue.map((item) =>
+                            item.id === item.id
+                              ? { ...item, quantity: item.quantity - 1 }
+                              : item
+                          )
+                        )
+                    : null
+                }
               />
             ))
           ) : (
@@ -136,6 +157,7 @@ const Home = () => {
                 image={item.image}
                 isAdmin={isAdmin}
                 id={item.id}
+                quantity={item.quantity}
                 handleAddFavorites={() => dispatch(addToFavorites(item))}
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
@@ -143,6 +165,27 @@ const Home = () => {
                 isFavorite={favorites.some(
                   (favorite) => favorite.id === item.id
                 )}
+                handleAddQuantity={() =>
+                  setSobremesas((prevValue) =>
+                    prevValue.map((item) =>
+                      item.id === item.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                    )
+                  )
+                }
+                handleRemoveQuantity={() =>
+                  item.quantity > 1
+                    ? () =>
+                        setSobremesas((prevValue) =>
+                          prevValue.map((item) =>
+                            item.id === item.id
+                              ? { ...item, quantity: item.quantity - 1 }
+                              : item
+                          )
+                        )
+                    : null
+                }
               />
             ))
           ) : (
@@ -160,6 +203,7 @@ const Home = () => {
                 image={item.image}
                 isAdmin={isAdmin}
                 id={item.id}
+                quantity={item.quantity}
                 handleAddFavorites={() => dispatch(addToFavorites(item))}
                 handleRemoveFavorites={() =>
                   dispatch(removeFromFavorites(item))
@@ -167,6 +211,27 @@ const Home = () => {
                 isFavorite={favorites.some(
                   (favorite) => favorite.id === item.id
                 )}
+                handleAddQuantity={() =>
+                  setBebidas((prevValue) =>
+                    prevValue.map((item) =>
+                      item.id === item.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                    )
+                  )
+                }
+                handleRemoveQuantity={() =>
+                  item.quantity > 1
+                    ? () =>
+                        setBebidas((prevValue) =>
+                          prevValue.map((item) =>
+                            item.id === item.id
+                              ? { ...item, quantity: item.quantity - 1 }
+                              : item
+                          )
+                        )
+                    : null
+                }
               />
             ))
           ) : (
