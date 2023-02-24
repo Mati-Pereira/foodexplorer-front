@@ -8,4 +8,14 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+`;
+
+export const Pedidos = styled.div``;
+
+export const Pagamentos = styled.div``;
