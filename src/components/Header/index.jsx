@@ -16,6 +16,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
+  const orders = useSelector((state) => state.persisted.order.orders);
   const handleSignOut = async () => {
     const res = await api.get("/favorites", {
       headers: {
@@ -100,7 +101,7 @@ const Header = () => {
           <Pedidos>
             <Anchor to="/">
               <img src={pedidos} alt="icon pedidos" />
-              Pedidos (0)
+              Pedidos ({orders.length})
             </Anchor>
           </Pedidos>
         </>
