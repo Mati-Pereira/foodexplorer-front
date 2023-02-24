@@ -14,10 +14,11 @@ const Orders = () => {
           <CardOrder />
           <CardOrder />
           <CardOrder />
-          <CardOrder />
-          <CardOrder />
+          <h3>Total R$ 150,00</h3>
         </Pedidos>
-        <Pagamentos></Pagamentos>
+        <Pagamentos>
+          <h2>Pagamento</h2>
+        </Pagamentos>
       </Content>
       <Footer />
     </Container>

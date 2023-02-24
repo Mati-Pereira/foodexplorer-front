@@ -5,12 +5,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const Content = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   flex: 1;
@@ -28,6 +27,12 @@ export const Pedidos = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  > h3 {
+    color: ${({ theme }) => theme.colors.gray_300};
+    font-family: "Poppins";
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
 `;
 
 export const Pagamentos = styled.div`
