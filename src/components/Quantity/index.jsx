@@ -1,29 +1,26 @@
 import { Container, Number } from "./styles";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import PropTypes from "prop-types";
 import { useState } from "react";
 
-const Quantity = ({ quantity = 1 }) => {
-  const [quantityState, setQuantityState] = useState(quantity);
+const Quantity = () => {
+  const [quantity, setQuantity] = useState(0);
+
+  const handleAddQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleRemoveQuantity = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
   return (
     <Container>
-      <AiOutlineMinus
-        onClick={() =>
-          setQuantityState((prevQuantityState) => prevQuantityState - 1)
-        }
-      />
-      <Number>{quantityState}</Number>
-      <AiOutlinePlus
-        onClick={() =>
-          setQuantityState((prevQuantityState) => prevQuantityState + 1)
-        }
-      />
+      <AiOutlineMinus onClick={handleRemoveQuantity} />
+      <Number>{quantity}</Number>
+      <AiOutlinePlus onClick={handleAddQuantity} />
     </Container>
   );
-};
-
-Quantity.propTypes = {
-  quantity: PropTypes.number.isRequired,
 };
 
 export default Quantity;

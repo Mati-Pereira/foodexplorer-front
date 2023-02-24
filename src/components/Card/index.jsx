@@ -15,10 +15,13 @@ const Card = ({
   text,
   price,
   quantity,
+  handleAddQuantity,
+  handleRemoveQuantity,
   isAdmin,
   id,
   handleAddFavorites,
   handleRemoveFavorites,
+  handleAddOrder,
   isFavorite,
 }) => {
   const {
@@ -35,8 +38,14 @@ const Card = ({
       {!isAdmin && (
         <div>
           <AddProduct>
-            <Quantity quantity={quantity} />
-            <Button color={red_500}>Incluir</Button>
+            <Quantity
+              quantity={quantity}
+              handleAddQuantity={handleAddQuantity}
+              handleRemoveQuantity={handleRemoveQuantity}
+            />
+            <Button color={red_500} onClick={handleAddOrder}>
+              Incluir
+            </Button>
           </AddProduct>
           {isFavorite ? (
             <AiFillHeart onClick={handleRemoveFavorites} />
@@ -76,4 +85,7 @@ Card.propTypes = {
   handleAddFavorites: PropTypes.func,
   handleRemoveFavorites: PropTypes.func,
   isFavorite: PropTypes.bool,
+  handleAddOrder: PropTypes.func,
+  handleAddQuantity: PropTypes.func,
+  handleRemoveQuantity: PropTypes.func,
 };

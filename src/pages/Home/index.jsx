@@ -14,6 +14,8 @@ import {
   getFromDatabases,
   removeFromFavorites,
 } from "../../context/features/favorites.slice";
+import { toast } from "react-toastify";
+import { addToOrder } from "../../context/features/orders.slice";
 
 const Home = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
@@ -21,8 +23,9 @@ const Home = () => {
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
+  const order = useSelector((state) => state.persisted.order.orders);
+  console.log("order", order);
   const dispatch = useDispatch();
-  console.log("local favorites", favorites);
 
   useEffect(() => {
     api
@@ -34,10 +37,6 @@ const Home = () => {
       .then((response) => {
         if (!favorites.length) {
           dispatch(getFromDatabases(JSON.parse(response.data.favoriteList)));
-          console.log(
-            "database favorites",
-            JSON.parse(response.data.favoriteList)
-          );
         }
       });
   }, [favorites]);
@@ -53,7 +52,15 @@ const Home = () => {
         setRefeicoes(res.data.filter((item) => item.category === "refeicao"));
         setSobremesas(res.data.filter((item) => item.category === "sobremesa"));
         setBebidas(res.data.filter((item) => item.category === "bebida"));
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
       });
+    return () => {
+      setRefeicoes([]);
+      setSobremesas([]);
+      setBebidas([]);
+    };
   }, []);
 
   return (

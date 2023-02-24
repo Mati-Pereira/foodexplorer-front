@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import thunk from "redux-thunk";
 import authReducer from "../features/auth.thunk";
 import favoriteReducer from "../features/favorites.slice";
+import ordersReducer from "../features/orders.slice";
 
 const persistConfig = {
   key: "root",
@@ -12,6 +13,7 @@ const persistConfig = {
 const persistedReducer = combineReducers({
   auth: authReducer,
   favorite: favoriteReducer,
+  order: ordersReducer,
 });
 
 const persisted = persistReducer(persistConfig, persistedReducer);

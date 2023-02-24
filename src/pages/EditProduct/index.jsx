@@ -42,6 +42,10 @@ const AddProduct = () => {
 
   const navigate = useNavigate();
 
+  const {
+    colors: { red_300, green_700 },
+  } = useTheme();
+
   const handleClickNewIngredient = () => {
     setIngredients([...ingredients, inputIngredient]);
     setInputIngredient("");
@@ -123,9 +127,12 @@ const AddProduct = () => {
       });
   };
 
-  const {
-    colors: { red_300, green_700 },
-  } = useTheme();
+  const handleDeleteProduct = async () => {
+    await api.delete(`products/${id}`).then(() => {
+      toast.success("Produto excluído com sucesso!");
+      navigate("/");
+    });
+  };
 
   useEffect(() => {
     api.get(`products/${id}`).then((response) => {
@@ -204,7 +211,11 @@ const AddProduct = () => {
               />
             </ThirdRow>
             <Buttons>
-              <Button color={green_700} type="submit">
+              <Button
+                color={green_700}
+                type="button"
+                onClick={handleDeleteProduct}
+              >
                 Deletar Prato
               </Button>
               <Button color={red_300} type="button" onClick={handleEditProduct}>
