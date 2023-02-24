@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   gap: 0.8125rem;
+  padding: 1rem 0;
   > img {
     width: 4.5rem;
     height: 4.5rem;
