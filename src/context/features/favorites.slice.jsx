@@ -30,4 +30,5 @@ export const {
   cleanFavorites,
   getFromDatabases,
 } = favoriteSlice.actions;
+
 export default favoriteSlice.reducer;

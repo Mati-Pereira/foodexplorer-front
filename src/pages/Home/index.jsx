@@ -15,7 +15,6 @@ import {
   removeFromFavorites,
 } from "../../context/features/favorites.slice";
 import { toast } from "react-toastify";
-import { addToOrder } from "../../context/features/orders.slice";
 
 const Home = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
@@ -49,9 +48,36 @@ const Home = () => {
         },
       })
       .then((res) => {
-        setRefeicoes(res.data.filter((item) => item.category === "refeicao"));
-        setSobremesas(res.data.filter((item) => item.category === "sobremesa"));
-        setBebidas(res.data.filter((item) => item.category === "bebida"));
+        setRefeicoes(
+          res.data
+            .filter((item) => item.category === "refeicao")
+            .map((item) => {
+              return {
+                ...item,
+                quantity: 1,
+              };
+            })
+        );
+        setSobremesas(
+          res.data
+            .filter((item) => item.category === "sobremesa")
+            .map((item) => {
+              return {
+                ...item,
+                quantity: 1,
+              };
+            })
+        );
+        setBebidas(
+          res.data
+            .filter((item) => item.category === "bebida")
+            .map((item) => {
+              return {
+                ...item,
+                quantity: 1,
+              };
+            })
+        );
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -84,6 +110,7 @@ const Home = () => {
                 text={item.description}
                 image={item.image}
                 isAdmin={isAdmin}
+                quantity={item.quantity}
                 id={item.id}
                 handleAddFavorites={() => dispatch(addToFavorites(item))}
                 handleRemoveFavorites={() =>
