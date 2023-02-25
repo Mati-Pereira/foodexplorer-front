@@ -23,8 +23,6 @@ const Home = () => {
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
-  const order = useSelector((state) => state.persisted.order.orders);
-  console.log("order", order);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -11,8 +11,11 @@ import Footer from "../../components/Footer";
 import CardOrder from "../../components/CardOrder";
 import { useSelector } from "react-redux";
 import Pix from "../../components/Pix";
+import CreditCard from "../../components/CreditCard";
+import { useState } from "react";
 
 const Orders = () => {
+  const [payment, setPayment] = useState(false);
   const orders = useSelector((state) => state.persisted.order.orders);
   const totalPrice = orders.reduce(
     (acc, order) => acc + order.price * order.quantity,
@@ -38,16 +41,16 @@ const Orders = () => {
         <Pagamentos>
           <h2>Pagamento</h2>
           <PagamentoHeader>
-            <Button>
+            <Button onClick={() => setPayment(true)}>
               <img src="/pix.svg" alt="pix-image" />
               PIX
             </Button>
-            <Button>
+            <Button onClick={() => setPayment(false)}>
               <img src="/creditcard.svg" alt="creditcard-image" />
               Crédito
             </Button>
           </PagamentoHeader>
-          <Pix />
+          {payment ? <Pix /> : <CreditCard />}
         </Pagamentos>
       </Content>
       <Footer />

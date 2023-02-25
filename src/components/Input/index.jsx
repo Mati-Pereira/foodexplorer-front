@@ -1,4 +1,4 @@
-import { Container, Label } from "./style";
+import { Container, Label } from "./styles";
 import PropTypes from "prop-types";
 
 const Input = ({ type, id, label, placeholder, ...rest }) => {
