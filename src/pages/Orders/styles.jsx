@@ -10,8 +10,10 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  justify-content: flex-start;
+  text-align: center;
   align-items: center;
+  min-width: 70rem;
+  margin: auto;
   flex: 1;
   > div {
     h2 {
@@ -39,4 +41,32 @@ export const Pagamentos = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+`;
+
+export const PagamentoHeader = styled.div`
+  display: flex;
+  width: 34rem;
+  > button:first-child {
+    border-radius: 0.5rem 0 0 0;
+  }
+  > button:last-child {
+    border-radius: 0 0.5rem 0 0;
+  }
+`;
+
+export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  background-color: ${({ theme }) => theme.colors.green_800};
+  border: 1px solid ${({ theme }) => theme.colors.gray_500};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 2rem 0;
+  cursor: pointer;
+  &:focus {
+    outline: transparent;
+    background-color: ${({ theme }) => theme.colors.green_500};
+  }
 `;

@@ -20,7 +20,7 @@ CardOrder.propTypes = {
   image: PropTypes.string,
   quantity: PropTypes.number,
   name: PropTypes.string,
-  price: PropTypes.number,
+  price: PropTypes.string,
 };
 
 export default CardOrder;
