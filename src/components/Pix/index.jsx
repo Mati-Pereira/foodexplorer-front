@@ -1,7 +1,19 @@
 import { Container } from "./styles";
+import QRCode from "qrcode.react";
+
+function MyFunction() {
+  console.log("Function called!");
+}
 
 const Pix = () => {
-  return <Container></Container>;
+  function handleScan() {
+    MyFunction();
+  }
+  return (
+    <Container>
+      <QRCode value={MyFunction} size={256} onClick={handleScan} />
+    </Container>
+  );
 };
 
 export default Pix;
