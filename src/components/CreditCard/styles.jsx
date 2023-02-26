@@ -20,3 +20,8 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const SecondRow = styled.div`
+  display: flex;
+  width: 100%;
+`;
