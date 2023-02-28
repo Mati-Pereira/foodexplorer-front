@@ -40,11 +40,14 @@ export const Pedidos = styled.div`
 export const Pagamentos = styled.div`
   display: flex;
   flex-direction: column;
+  margin: auto;
+  width: 34rem;
 `;
 
 export const PagamentoHeader = styled.div`
   display: flex;
-  width: 34rem;
+  margin: auto;
+  width: 100%;
   > button:first-child {
     border-radius: 0.5rem 0 0 0;
   }

@@ -16,7 +16,7 @@ export const Container = styled.div`
     background-color: transparent;
     border: 1px solid ${({ theme }) => theme.colors.white};
     height: 3rem;
-    padding: 0.24rem;
+    /* padding: 0.24rem; */
     svg {
       color: ${({ theme }) => theme.colors.gray_400};
       padding: 0.75rem 0 0.75rem 0.875rem;
