@@ -40,7 +40,6 @@ export const Pedidos = styled.div`
 export const Pagamentos = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
 `;
 
 export const PagamentoHeader = styled.div`
