@@ -4,4 +4,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 34rem;
+  height: 28rem;
+  border: 1px solid ${({ theme }) => theme.colors.gray_500};
+  border-radius: 0 0 0.5rem 0.5rem;
 `;

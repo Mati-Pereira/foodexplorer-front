@@ -10,6 +10,7 @@ export const Container = styled.div`
   gap: 2rem;
   padding: 4rem 0;
   border: 1px solid ${({ theme }) => theme.colors.gray_500};
+  border-radius: 0 0 0.5rem 0.5rem;
   > div {
     text-align: left;
   }
