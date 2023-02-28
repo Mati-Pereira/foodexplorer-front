@@ -2,7 +2,7 @@ import { api } from "../../services/api";
 import { Container, Name, Text } from "./styles";
 import PropTypes from "prop-types";
 
-const CardOrder = ({ image, quantity, name, price }) => {
+const CardOrder = ({ image, quantity, name, price, onClick }) => {
   return (
     <Container>
       <img src={`${api.defaults.baseURL}/${image}`} alt="food-image" />
@@ -10,7 +10,7 @@ const CardOrder = ({ image, quantity, name, price }) => {
         <Name>
           {quantity} x {name} <span>{price}</span>
         </Name>
-        <button>Excluir</button>
+        <button onClick={onClick}>Excluir</button>
       </Text>
     </Container>
   );
@@ -21,6 +21,7 @@ CardOrder.propTypes = {
   quantity: PropTypes.number,
   name: PropTypes.string,
   price: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default CardOrder;

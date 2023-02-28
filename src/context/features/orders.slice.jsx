@@ -12,9 +12,7 @@ export const ordersSlice = createSlice({
       }
     },
     removeOrder: (state, action) => {
-      state.orders = state.orders.filter(
-        (order) => order.id !== action.payload
-      );
+      state.orders.splice(state.orders.indexOf(action.payload), 1);
     },
     clearOrders: (state) => {
       state.orders.splice(0, state.orders.length);
@@ -22,5 +20,5 @@ export const ordersSlice = createSlice({
   },
 });
 
-export const { addToOrder, removeOrders, clearOrders } = ordersSlice.actions;
+export const { addToOrder, removeOrder, clearOrders } = ordersSlice.actions;
 export default ordersSlice.reducer;
