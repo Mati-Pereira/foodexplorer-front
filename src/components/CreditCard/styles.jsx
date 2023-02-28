@@ -6,22 +6,24 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin: auto;
+  gap: 2rem;
+  padding: 4rem 0;
+  border: 1px solid ${({ theme }) => theme.colors.gray_500};
   > div {
     text-align: left;
-    label {
-      width: 80%;
-      margin: auto;
-    }
-    div {
-      margin: auto;
-      width: 80%;
-      background-color: transparent;
-      border: 1px solid ${({ theme }) => theme.colors.white};
-    }
+  }
+  > button {
+    display: flex;
+    gap: 0.5rem;
+    width: 80%;
+    padding: 2rem 0;
+    margin-top: 1rem;
   }
 `;
 
 export const SecondRow = styled.div`
   display: flex;
-  width: 100%;
+  gap: 2rem;
+  width: 80%;
 `;

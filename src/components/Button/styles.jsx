@@ -12,7 +12,7 @@ export const Container = styled.button`
   border-radius: 0.5rem;
   font-weight: 500;
   flex-grow: 1;
-  font-size: 0.875rem;
+  font-size: 1rem;
   height: 3rem;
   cursor: pointer;
   border: none;
