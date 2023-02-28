@@ -105,7 +105,10 @@ const Home = () => {
               <Card
                 key={item.id}
                 name={item.name}
-                price={item.price}
+                price={Number(item.price).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
                 text={item.description}
                 image={item.image}
                 isAdmin={isAdmin}
@@ -153,7 +156,10 @@ const Home = () => {
             sobremesas.map((item) => (
               <Card
                 key={item.id}
-                price={item.price}
+                price={Number(item.price).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
                 name={item.name}
                 text={item.description}
                 image={item.image}
@@ -202,7 +208,10 @@ const Home = () => {
             bebidas.map((item) => (
               <Card
                 key={item.id}
-                price={item.price}
+                price={Number(item.price).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
                 name={item.name}
                 text={item.description}
                 image={item.image}
