@@ -15,6 +15,7 @@ import CreditCard from "../../components/CreditCard";
 import { useEffect, useState } from "react";
 import { removeOrder } from "../../context/features/orders.slice";
 import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 const Orders = () => {
   const [payment, setPayment] = useState(false);
@@ -27,12 +28,18 @@ const Orders = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const description = orders.map((order) => {
-      return `${order.quantity} x ${order.name}, `;
-    });
-    await api.post("/orders", {
-      description: description.join("").slice(0, -2),
-    });
+    try {
+      const description = orders.map((order) => {
+        return `${order.quantity} x ${order.name}, `;
+      });
+      await api.post("/orders", {
+        description: description.join("").slice(0, -2),
+      });
+      toast.success("Pedido realizado com sucesso!");
+      dispatch(removeOrder());
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   useEffect(() => {
@@ -53,19 +60,32 @@ const Orders = () => {
       <Content>
         <Pedidos>
           <h2>Meu pedido</h2>
-          {orders.map((order) => (
-            <CardOrder
-              key={order.id}
-              image={order.image}
-              quantity={order.quantity}
-              name={order.name}
-              price={Number(order.price).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
-              onClick={() => dispatch(removeOrder(order))}
-            />
-          ))}
+          {orders.lenght ? (
+            orders.map((order) => (
+              <CardOrder
+                key={order.id}
+                image={order.image}
+                quantity={order.quantity}
+                name={order.name}
+                price={Number(order.price).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+                onClick={() => dispatch(removeOrder(order))}
+              />
+            ))
+          ) : (
+            <h2
+              style={{
+                height: "300px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              Nenhum pedido encontrado
+            </h2>
+          )}
           <h3>
             Total:{" "}
             {Number(totalPrice).toLocaleString("pt-BR", {
