@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Pix from "../../components/Pix";
 import CreditCard from "../../components/CreditCard";
 import { useEffect, useState } from "react";
-import { clearOrders, removeOrder } from "../../context/features/orders.slice";
+import { clearOrders } from "../../context/features/orders.slice";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
@@ -36,23 +36,11 @@ const Orders = () => {
         description: description.join("").slice(0, -2),
       });
       toast.success("Pedido realizado com sucesso!");
-      dispatch(removeOrder());
+      dispatch(clearOrders());
     } catch (error) {
       toast.error(error.message);
     }
   };
-
-  useEffect(() => {
-    api
-      .get("/orders", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
-  }, []);
 
   return (
     <Container>
