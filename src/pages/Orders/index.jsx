@@ -12,18 +12,41 @@ import CardOrder from "../../components/CardOrder";
 import { useDispatch, useSelector } from "react-redux";
 import Pix from "../../components/Pix";
 import CreditCard from "../../components/CreditCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { removeOrder } from "../../context/features/orders.slice";
+import { api } from "../../services/api";
 
 const Orders = () => {
   const [payment, setPayment] = useState(false);
   const orders = useSelector((state) => state.persisted.order.orders);
-  console.log("orders", orders);
   const totalPrice = orders.reduce(
     (acc, order) => acc + order.price * order.quantity,
     0
   );
   const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const description = orders.map((order) => {
+      return `${order.quantity} x ${order.name}, `;
+    });
+    await api.post("/orders", {
+      description: description.join("").slice(0, -2),
+    });
+  };
+
+  useEffect(() => {
+    api
+      .get("/orders", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  }, []);
+
   return (
     <Container>
       <Header />
@@ -63,7 +86,7 @@ const Orders = () => {
               Crédito
             </Button>
           </PagamentoHeader>
-          {payment ? <Pix /> : <CreditCard />}
+          {payment ? <Pix /> : <CreditCard onSubmit={handleSubmit} />}
         </Pagamentos>
       </Content>
       <Footer />
