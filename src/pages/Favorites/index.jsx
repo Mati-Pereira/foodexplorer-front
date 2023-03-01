@@ -13,7 +13,7 @@ const Favorites = () => {
       <Header />
       <Content>
         <h1>Meus favoritos</h1>
-        {favorites.lenght ? (
+        {favorites.length ? (
           favorites.map((favorite) => (
             <Grid key={favorite.id}>
               <CardFavorites
