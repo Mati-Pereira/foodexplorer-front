@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Pix from "../../components/Pix";
 import CreditCard from "../../components/CreditCard";
 import { useEffect, useState } from "react";
-import { removeOrder } from "../../context/features/orders.slice";
+import { clearOrders, removeOrder } from "../../context/features/orders.slice";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
 
@@ -60,7 +60,7 @@ const Orders = () => {
       <Content>
         <Pedidos>
           <h2>Meu pedido</h2>
-          {orders.lenght ? (
+          {orders.length ? (
             orders.map((order) => (
               <CardOrder
                 key={order.id}
@@ -71,7 +71,7 @@ const Orders = () => {
                   style: "currency",
                   currency: "BRL",
                 })}
-                onClick={() => dispatch(removeOrder(order))}
+                onClick={() => dispatch(clearOrders())}
               />
             ))
           ) : (

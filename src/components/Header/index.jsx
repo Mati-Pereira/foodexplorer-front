@@ -15,7 +15,6 @@ import { setSearch } from "../../context/features/search.slice";
 
 const Header = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
@@ -97,7 +96,7 @@ const Header = () => {
           <Pedidos>
             <Anchor to="/orderadminhistory">
               <img src={pedidos} alt="icon pedidos" />
-              Pedidos (0)
+              Todos os Pedidos
             </Anchor>
           </Pedidos>
         </>
