@@ -13,16 +13,32 @@ const Favorites = () => {
       <Header />
       <Content>
         <h1>Meus favoritos</h1>
-        <Grid>
-          {favorites.map((favorite) => (
-            <CardFavorites
-              key={favorite.id}
-              image={favorite.image}
-              name={favorite.name}
-              onClick={() => dispatch(removeFromFavorites(favorite))}
-            />
-          ))}
-        </Grid>
+        {favorites.lenght ? (
+          favorites.map((favorite) => (
+            <Grid key={favorite.id}>
+              <CardFavorites
+                image={favorite.image}
+                name={favorite.name}
+                onClick={() => dispatch(removeFromFavorites(favorite))}
+              />
+            </Grid>
+          ))
+        ) : (
+          <h5
+            style={{
+              color: "#cccccc",
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontFamily: "Poppins",
+              fontSize: "2rem",
+              height: "300px",
+            }}
+          >
+            Nenhum favorito encontrado
+          </h5>
+        )}
       </Content>
       <Footer />
     </Container>
