@@ -12,7 +12,7 @@ import CardOrder from "../../components/CardOrder";
 import { useDispatch, useSelector } from "react-redux";
 import Pix from "../../components/Pix";
 import CreditCard from "../../components/CreditCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { clearOrders } from "../../context/features/orders.slice";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
@@ -28,18 +28,17 @@ const Orders = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const description = orders.map((order) => {
-        return `${order.quantity} x ${order.name}, `;
-      });
-      await api.post("/orders", {
+    const description = orders.map((order) => {
+      return `${order.quantity} x ${order.name}, `;
+    });
+    await api
+      .post("/orders", {
         description: description.join("").slice(0, -2),
+      })
+      .then(() => {
+        toast.success("Pedido realizado com sucesso!");
+        dispatch(clearOrders());
       });
-      toast.success("Pedido realizado com sucesso!");
-      dispatch(clearOrders());
-    } catch (error) {
-      toast.error(error.message);
-    }
   };
 
   return (

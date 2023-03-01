@@ -15,7 +15,7 @@ export const ordersSlice = createSlice({
       state.orders.splice(state.orders.indexOf(action.payload), 1);
     },
     clearOrders: (state) => {
-      state.orders.splice(0, state.orders.length);
+      state.orders = [];
     },
   },
 });
