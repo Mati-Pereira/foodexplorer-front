@@ -19,10 +19,13 @@ import { addToOrder } from "../../context/features/orders.slice";
 
 const Home = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
+
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
+
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
+  const searchValue = useSelector((state) => state.search.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +44,7 @@ const Home = () => {
 
   useEffect(() => {
     api
-      .get("/products", {
+      .get(`/products?name=${searchValue}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -86,7 +89,7 @@ const Home = () => {
       setSobremesas([]);
       setBebidas([]);
     };
-  }, []);
+  }, [searchValue]);
 
   return (
     <>

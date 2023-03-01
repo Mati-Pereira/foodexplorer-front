@@ -10,9 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api } from "../../services/api";
 import { cleanFavorites } from "../../context/features/favorites.slice";
+import PropTypes from "prop-types";
+import { setSearch } from "../../context/features/search.slice";
 
 const Header = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
@@ -81,7 +84,11 @@ const Header = () => {
       </LogoContainer>
       <Input>
         <BsSearch />
-        <input type="text" placeholder="Busque por pratos ou ingredientes" />
+        <input
+          type="text"
+          placeholder="Busque por pratos ou ingredientes"
+          onChange={(e) => dispatch(setSearch(e.target.value))}
+        />
       </Input>
       {isAdmin ? (
         <>
@@ -109,6 +116,10 @@ const Header = () => {
       <img src={sair} alt="sair icon" onClick={handleSignOut} />
     </Container>
   );
+};
+
+Header.propTypes = {
+  setProducts: PropTypes.func,
 };
 
 export default Header;

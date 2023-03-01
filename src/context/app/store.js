@@ -5,6 +5,7 @@ import thunk from "redux-thunk";
 import authReducer from "../features/auth.thunk";
 import favoriteReducer from "../features/favorites.slice";
 import ordersReducer from "../features/orders.slice";
+import searchReducer from "../features/search.slice";
 
 const persistConfig = {
   key: "root",
@@ -21,6 +22,7 @@ const persisted = persistReducer(persistConfig, persistedReducer);
 export const store = configureStore({
   reducer: {
     persisted,
+    search: searchReducer,
   },
   // eslint-disable-next-line no-undef
   devTools: process.env.NODE_ENV !== "production",
