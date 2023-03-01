@@ -32,9 +32,17 @@ const Orders = () => {
       return `${order.quantity} x ${order.name}, `;
     });
     await api
-      .post("/orders", {
-        description: description.join("").slice(0, -2),
-      })
+      .post(
+        "/orders",
+        {
+          description: description.join("").slice(0, -2),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      )
       .then(() => {
         toast.success("Pedido realizado com sucesso!");
         dispatch(clearOrders());
