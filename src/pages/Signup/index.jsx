@@ -8,12 +8,14 @@ import { api } from "../../services/api";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     colors: { red_500, white },
@@ -25,14 +27,15 @@ const Signup = () => {
     await api
       .post("/users", { username, email, password })
       .then(() => toast.success("Cadastro realizado com sucesso!"))
+      .then(() => navigate("/login"))
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message);
         } else {
           toast.error("Não foi possivel realizar o cadastro");
         }
-      });
-    setIsLoading(false);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
