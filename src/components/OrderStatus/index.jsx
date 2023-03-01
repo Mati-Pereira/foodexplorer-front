@@ -7,7 +7,7 @@ const OrderStatus = ({ status }) => {
     switch (status) {
       case "pending":
         return "red";
-      case "readying":
+      case "preparing":
         return "yellow";
       case "delivered":
         return "green";
@@ -18,7 +18,7 @@ const OrderStatus = ({ status }) => {
     switch (status) {
       case "pending":
         return "Pendente";
-      case "readying":
+      case "preparing":
         return "Preparando";
       case "delivered":
         return "Entregue";

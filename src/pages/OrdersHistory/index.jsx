@@ -11,7 +11,11 @@ const OrdersHistory = () => {
 
   useEffect(() => {
     const fetchOrder = async () => {
-      const response = await api.get("/orders");
+      const response = await api.get("/orders", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
       const data = response.data;
       const newData = data.map((data) => {
         const time = data.updated_at.split(" ");
