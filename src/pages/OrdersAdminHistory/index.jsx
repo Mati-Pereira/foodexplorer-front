@@ -57,41 +57,52 @@ const OrdersAdminHistory = () => {
       <Header />
       <Content>
         <h1>Histórico de pedidos</h1>
-        <table>
-          <thead>
-            <tr>
-              <td>Status</td>
-              <td>Código</td>
-              <td>Detalhamento</td>
-              <td>Data e Hora</td>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order, index) => (
-              <tr key={index}>
-                <td>
-                  <select
-                    name="status"
-                    id="status"
-                    value={order.status}
-                    onChange={(e) => handleStatus(e.target.value, order.id)}
-                  >
-                    <option value="pending" defaultChecked>
-                      Pendente
-                    </option>
-                    <option value="preparing">Preparando</option>
-                    <option value="delivered">Entregue</option>
-                  </select>
-                </td>
-                <td>{String(order.id).padStart(5, "0")}</td>
-                <td>{order.description}</td>
-                <td>
-                  {order.date} às {order.hour}
-                </td>
+        {orders.length ? (
+          <table>
+            <thead>
+              <tr>
+                <td>Status</td>
+                <td>Código</td>
+                <td>Detalhamento</td>
+                <td>Data e Hora</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((order, index) => (
+                <tr key={index}>
+                  <td>
+                    <select
+                      name="status"
+                      id="status"
+                      value={order.status}
+                      onChange={(e) => handleStatus(e.target.value, order.id)}
+                    >
+                      <option value="pending" defaultChecked>
+                        Pendente
+                      </option>
+                      <option value="preparing">Preparando</option>
+                      <option value="delivered">Entregue</option>
+                    </select>
+                  </td>
+                  <td>{String(order.id).padStart(5, "0")}</td>
+                  <td>{order.description}</td>
+                  <td>
+                    {order.date} às {order.hour}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h1
+            style={{
+              textAlign: "center",
+              color: "#ccc",
+            }}
+          >
+            Nenhum pedido encontrado
+          </h1>
+        )}
       </Content>
       <Footer />
     </Container>
