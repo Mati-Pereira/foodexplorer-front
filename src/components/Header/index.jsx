@@ -97,7 +97,7 @@ const Header = () => {
       ) : (
         <>
           <Anchor to="/favorites">Meus favoritos</Anchor>
-          <Anchor to="#">Histórico de favoritos</Anchor>
+          <Anchor to="/ordershistory">Histórico de pedidos</Anchor>
           <Pedidos>
             <Anchor to="/orders">
               <img src={pedidos} alt="icon pedidos" />

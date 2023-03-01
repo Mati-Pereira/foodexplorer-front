@@ -4,12 +4,13 @@ import InputOrder from "../InputOrder";
 import Button from "../Button";
 import pedidos from "/pedidos.svg";
 import { useTheme } from "styled-components";
+import PropTypes from "prop-types";
 
-const CreditCard = () => {
+const CreditCard = ({ onSubmit }) => {
   const {
     colors: { red_500 },
   } = useTheme();
-  const [value, setValue] = useState("");
+  const [expire, setExpire] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [cvc, setCvc] = useState("");
 
@@ -22,7 +23,7 @@ const CreditCard = () => {
         2
       )}`;
     }
-    setValue(formattedInput);
+    setExpire(formattedInput);
   };
 
   const handleCardNumberChange = (event) => {
@@ -49,41 +50,50 @@ const CreditCard = () => {
 
   return (
     <Container>
-      <InputOrder
-        id="card-number"
-        label="Número do Cartão"
-        placeholder="0000 0000 0000 0000"
-        type="text"
-        value={cardNumber}
-        onChange={handleCardNumberChange}
-      />
-      <SecondRow>
+      <form onSubmit={onSubmit}>
         <InputOrder
-          id="card-holder"
-          label="Validade"
+          id="card-number"
+          label="Número do Cartão"
+          placeholder="0000 0000 0000 0000"
           type="text"
-          maxLength={5}
-          placeholder="MM/YY"
-          onChange={handleExpireChange}
-          value={value}
+          value={cardNumber}
+          onChange={handleCardNumberChange}
+          required
         />
-        <InputOrder
-          id="card-cvc"
-          label="CVC"
-          type="text"
-          maxLength={3}
-          placeholder="000"
-          onChange={handleCvcChange}
-          value={cvc}
-        />
-      </SecondRow>
+        <SecondRow>
+          <InputOrder
+            id="card-holder"
+            label="Validade"
+            type="text"
+            maxLength={5}
+            placeholder="MM/YY"
+            onChange={handleExpireChange}
+            value={expire}
+            required
+          />
+          <InputOrder
+            id="card-cvc"
+            label="CVC"
+            type="text"
+            maxLength={3}
+            placeholder="000"
+            onChange={handleCvcChange}
+            value={cvc}
+            required
+          />
+        </SecondRow>
 
-      <Button color={red_500}>
-        <img src={pedidos} alt="icon pedidos" />
-        Pedidos
-      </Button>
+        <Button color={red_500} type="submit">
+          <img src={pedidos} alt="icon pedidos" />
+          Pedido
+        </Button>
+      </form>
     </Container>
   );
+};
+
+CreditCard.propTypes = {
+  onSubmit: PropTypes.func,
 };
 
 export default CreditCard;
