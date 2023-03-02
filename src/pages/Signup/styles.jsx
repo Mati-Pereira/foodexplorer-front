@@ -6,6 +6,14 @@ export const Container = styled.div`
   align-items: center;
   gap: 10rem;
   min-height: 100vh;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+    padding: 2rem 0;
+    img {
+      width: 70%;
+    }
+  }
 `;
 
 export const Content = styled.div`
@@ -22,6 +30,11 @@ export const Content = styled.div`
   }
   > a {
     text-align: center;
+  }
+  @media screen and (max-width: 768px) {
+    width: 17rem;
+    padding: 1rem;
+    background-color: transparent;
   }
 `;
 

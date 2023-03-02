@@ -16,7 +16,7 @@ export const Container = styled.div`
     background-color: ${({ theme, form }) =>
       form ? theme.colors.green_300 : theme.colors.green_500};
     height: 3rem;
-    padding: 0.24rem;
+    padding: 0.24rem 0;
     svg {
       color: ${({ theme }) => theme.colors.gray_400};
       padding: 0.75rem 0 0.75rem 0.875rem;
