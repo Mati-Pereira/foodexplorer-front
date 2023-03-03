@@ -15,10 +15,12 @@ import { setSearch } from "../../context/features/search.slice";
 
 const Header = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const orders = useSelector((state) => state.persisted.order.orders);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSignOut = async () => {
     const res = await api.get("/favorites", {
       headers: {
@@ -89,6 +91,7 @@ const Header = () => {
           onChange={(e) => dispatch(setSearch(e.target.value))}
         />
       </Input>
+
       {isAdmin ? (
         <>
           <Anchor to="/favorites">Meus favoritos</Anchor>
