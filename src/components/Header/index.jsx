@@ -151,6 +151,7 @@ const Header = () => {
                 <Anchor to="/favorites">Meus favoritos</Anchor>
                 <Anchor to="/add">Novo Prato</Anchor>
                 <Anchor to="/orderadminhistory">Todos os Pedidos</Anchor>
+                <Anchor onClick={handleSignOut}>Sair</Anchor>
               </>
             ) : (
               <>
@@ -165,10 +166,8 @@ const Header = () => {
                 </Input>
                 <Anchor to="/favorites">Meus favoritos</Anchor>
                 <Anchor to="/ordershistory">Histórico de pedidos</Anchor>
-                <Anchor to="/orders">
-                  <img src={pedidos} alt="icon pedidos" />
-                  Pedidos ({orders.length})
-                </Anchor>
+                <Anchor to="/orders">Pedidos</Anchor>
+                <Anchor onClick={handleSignOut}>Sair</Anchor>
               </>
             )}
           </MenuDropdown>

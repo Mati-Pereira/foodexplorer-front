@@ -96,6 +96,18 @@ export const MenuMobile = styled.section`
     font-size: 3rem;
     cursor: pointer;
   }
+  > a {
+    position: relative;
+    > span {
+      display: inline-block;
+      position: absolute;
+      top: 0.1rem;
+      right: 1.5rem;
+      background-color: ${({ theme }) => theme.colors.red_500};
+      padding: 0 0.3rem;
+      border-radius: 999px;
+    }
+  }
 `;
 
 export const MenuDropdown = styled.div`
@@ -116,6 +128,7 @@ export const MenuDropdown = styled.div`
   gap: 2rem;
 
   > a {
+    position: relative;
     padding: 1rem 0;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray_600};
   }
