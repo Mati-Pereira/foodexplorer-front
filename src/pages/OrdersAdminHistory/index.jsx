@@ -98,6 +98,10 @@ const OrdersAdminHistory = () => {
             style={{
               textAlign: "center",
               color: "#ccc",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "50vh",
             }}
           >
             Nenhum pedido encontrado
