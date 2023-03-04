@@ -29,18 +29,13 @@ export const Content = styled.div`
   }
 `;
 
-export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+export const CardGroup = styled.div`
+  display: flex;
   gap: 3rem;
-  border: 3px solid red;
-  > div {
-    width: fit-content;
-  }
-  @media screen and (min-width: 768px) {
-    grid-template-columns: 1fr;
-    align-self: flex-start;
-    padding: 1rem 3rem;
-    column-gap: 2rem;
+  flex-flow: row wrap;
+  @media screen and (max-width: 768px) {
+    width: 80%;
+    margin: auto;
+    padding: 2rem 0;
   }
 `;
