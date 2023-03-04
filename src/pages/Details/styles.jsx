@@ -25,6 +25,14 @@ export const Content = styled.div`
     height: 25rem;
     object-fit: contain;
   }
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    width: 80%;
+    > img {
+      width: 80%;
+      height: 80%;
+    }
+  }
 `;
 
 export const Text = styled.div`
