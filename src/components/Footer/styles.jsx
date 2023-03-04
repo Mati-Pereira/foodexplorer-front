@@ -14,4 +14,14 @@ export const Container = styled.footer`
     font-family: "Roboto", sans-serif;
     font-weight: 400;
   }
+  @media screen and (max-width: 768px) {
+    height: 2.5rem;
+    gap: 2rem;
+    > img {
+      width: 20%;
+    }
+    > span {
+      font-size: 0.75rem;
+    }
+  }
 `;

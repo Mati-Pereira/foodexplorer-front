@@ -1,5 +1,13 @@
 import Anchor from "../Anchor";
-import { Container, Input, Logo, LogoContainer, Pedidos } from "./styles";
+import {
+  Container,
+  Input,
+  Logo,
+  LogoContainer,
+  MenuMobile,
+  Pedidos,
+  MenuDropdown,
+} from "./styles";
 import pedidos from "/pedidos.svg";
 import sair from "/sair.svg";
 import logo from "/logo.svg";
@@ -12,6 +20,9 @@ import { api } from "../../services/api";
 import { cleanFavorites } from "../../context/features/favorites.slice";
 import PropTypes from "prop-types";
 import { setSearch } from "../../context/features/search.slice";
+import { useState } from "react";
+import { IoReorderThreeOutline } from "react-icons/io5";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
   const { isAdmin, token } = useSelector((state) => state.persisted.auth);
@@ -77,46 +88,101 @@ const Header = () => {
     navigate("/");
   };
 
+  const [menuMobileIsOpen, setMenuMobileIsOpen] = useState(false);
   return (
-    <Container>
-      <LogoContainer onClick={handleGoHome}>
-        <Logo src={logo} alt="logo" />
-        {isAdmin ? <span>admin</span> : null}
-      </LogoContainer>
-      <Input>
-        <BsSearch />
-        <input
-          type="text"
-          placeholder="Busque por pratos ou ingredientes"
-          onChange={(e) => dispatch(setSearch(e.target.value))}
-        />
-      </Input>
+    <>
+      <Container>
+        <LogoContainer onClick={handleGoHome}>
+          <Logo src={logo} alt="logo" />
+          {isAdmin ? <span>admin</span> : null}
+        </LogoContainer>
+        <Input>
+          <BsSearch />
+          <input
+            type="text"
+            placeholder="Busque por pratos ou ingredientes"
+            onChange={(e) => dispatch(setSearch(e.target.value))}
+          />
+        </Input>
 
-      {isAdmin ? (
-        <>
-          <Anchor to="/favorites">Meus favoritos</Anchor>
-          <Anchor to="/add">Novo Prato</Anchor>
-          <Pedidos>
-            <Anchor to="/orderadminhistory">
-              <img src={pedidos} alt="icon pedidos" />
-              Todos os Pedidos
-            </Anchor>
-          </Pedidos>
-        </>
-      ) : (
-        <>
-          <Anchor to="/favorites">Meus favoritos</Anchor>
-          <Anchor to="/ordershistory">Histórico de pedidos</Anchor>
-          <Pedidos>
-            <Anchor to="/orders">
-              <img src={pedidos} alt="icon pedidos" />
-              Pedidos ({orders.length})
-            </Anchor>
-          </Pedidos>
-        </>
-      )}
-      <img src={sair} alt="sair icon" onClick={handleSignOut} />
-    </Container>
+        {isAdmin ? (
+          <>
+            <Anchor to="/favorites">Meus favoritos</Anchor>
+            <Anchor to="/add">Novo Prato</Anchor>
+            <Pedidos>
+              <Anchor to="/orderadminhistory">
+                <img src={pedidos} alt="icon pedidos" />
+                Todos os Pedidos
+              </Anchor>
+            </Pedidos>
+          </>
+        ) : (
+          <>
+            <Anchor to="/favorites">Meus favoritos</Anchor>
+            <Anchor to="/ordershistory">Histórico de pedidos</Anchor>
+            <Pedidos>
+              <Anchor to="/orders">
+                <img src={pedidos} alt="icon pedidos" />
+                Pedidos ({orders.length})
+              </Anchor>
+            </Pedidos>
+          </>
+        )}
+        <img src={sair} alt="sair icon" onClick={handleSignOut} />
+      </Container>
+      <MenuMobile>
+        <IoReorderThreeOutline onClick={() => setMenuMobileIsOpen(true)} />
+        {menuMobileIsOpen ? (
+          <MenuDropdown>
+            {isAdmin ? (
+              <>
+                <span>
+                  <AiOutlineClose onClick={() => setMenuMobileIsOpen(false)} />
+                  Menu
+                </span>
+                <Input>
+                  <BsSearch />
+                  <input
+                    type="text"
+                    placeholder="Busque por pratos ou ingredientes"
+                    onChange={(e) => dispatch(setSearch(e.target.value))}
+                  />
+                </Input>
+                <Anchor to="/favorites">Meus favoritos</Anchor>
+                <Anchor to="/add">Novo Prato</Anchor>
+                <Anchor to="/orderadminhistory">Todos os Pedidos</Anchor>
+              </>
+            ) : (
+              <>
+                <AiOutlineClose />
+                <Input>
+                  <BsSearch />
+                  <input
+                    type="text"
+                    placeholder="Busque por pratos ou ingredientes"
+                    onChange={(e) => dispatch(setSearch(e.target.value))}
+                  />
+                </Input>
+                <Anchor to="/favorites">Meus favoritos</Anchor>
+                <Anchor to="/ordershistory">Histórico de pedidos</Anchor>
+                <Anchor to="/orders">
+                  <img src={pedidos} alt="icon pedidos" />
+                  Pedidos ({orders.length})
+                </Anchor>
+              </>
+            )}
+          </MenuDropdown>
+        ) : null}
+        <LogoContainer onClick={handleGoHome}>
+          <Logo src={logo} alt="logo" />
+          {isAdmin ? <span>admin</span> : null}
+        </LogoContainer>
+        <Anchor to="/orders">
+          <img src={pedidos} alt="icon pedidos" />
+          <span>{orders.length}</span>
+        </Anchor>
+      </MenuMobile>
+    </>
   );
 };
 

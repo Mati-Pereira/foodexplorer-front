@@ -26,6 +26,10 @@ export const Container = styled.div`
       font-size: 1.5rem;
     }
   }
+  @media screen and (max-width: 768px) {
+    max-width: 10rem;
+    margin: auto;
+  }
 `;
 
 export const Image = styled.img`

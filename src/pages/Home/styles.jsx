@@ -3,6 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.green_900};
   padding: 10rem 0 3rem 0;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+    width: 100%;
+  }
 `;
 
 export const Background = styled.div`
@@ -14,9 +18,18 @@ export const Background = styled.div`
   display: flex;
   > img {
     display: flex;
-    height: 150%;
-    width: 50%;
+    object-fit: contain;
     margin-top: -6.25rem;
+  }
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    > img {
+      display: none;
+      width: 10rem;
+      width: 80%;
+    }
   }
 `;
 
@@ -38,5 +51,13 @@ export const Text = styled.div`
     font-weight: 400;
     height: 1;
     letter-spacing: -1px;
+  }
+  @media screen and (max-width: 768px) {
+    > h1 {
+      font-size: 1rem;
+    }
+    > h5 {
+      font-size: 0.75rem;
+    }
   }
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-  display: flex;
+  display: none;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.green_700};
   justify-content: center;
@@ -22,6 +22,10 @@ export const Container = styled.header`
       margin-top: -5px;
     }
   }
+
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 export const Pedidos = styled.div`
@@ -36,6 +40,9 @@ export const Pedidos = styled.div`
 
 export const Logo = styled.img`
   width: 12rem;
+  @media (max-width: 768px) {
+    width: 10rem;
+  }
 `;
 
 export const LogoContainer = styled.div`
@@ -65,6 +72,59 @@ export const Input = styled.div`
     width: 100%;
     &::placeholder {
       color: ${({ theme }) => theme.colors.gray_600};
+    }
+  }
+`;
+
+export const MenuMobile = styled.section`
+  display: none;
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.green_700};
+  height: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  @media (max-width: 768px) {
+    display: flex;
+  }
+  > svg {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 3rem;
+    cursor: pointer;
+  }
+`;
+
+export const MenuDropdown = styled.div`
+  position: absolute;
+  background-color: ${({ theme }) => theme.colors.green_700};
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 4rem;
+  justify-content: center;
+  z-index: 5;
+  gap: 2rem;
+  > a {
+    padding: 1rem 0;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.gray_600};
+  }
+  > div {
+    width: 60%;
+  }
+  > span {
+    display: flex;
+    font-family: "Poppins";
+    align-items: center;
+    gap: 1rem;
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 2rem;
+    svg {
+      cursor: pointer;
     }
   }
 `;
