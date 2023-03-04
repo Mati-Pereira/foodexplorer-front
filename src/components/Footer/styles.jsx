@@ -15,12 +15,13 @@ export const Container = styled.footer`
     font-weight: 400;
   }
   @media screen and (max-width: 768px) {
-    height: 2.5rem;
-    gap: 2rem;
+    height: 4rem;
+    gap: 1rem;
     > img {
-      width: 20%;
+      width: 40%;
     }
     > span {
+      width: 40%;
       font-size: 0.75rem;
     }
   }

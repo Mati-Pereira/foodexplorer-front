@@ -82,8 +82,9 @@ export const MenuMobile = styled.section`
   display: none;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.green_700};
-  height: 3rem;
-  justify-content: space-between;
+  height: 5rem;
+  justify-content: center;
+  gap: 0.5rem;
   align-items: center;
   @media (max-width: 768px) {
     display: flex;
