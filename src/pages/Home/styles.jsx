@@ -23,12 +23,13 @@ export const Background = styled.div`
   }
   @media screen and (max-width: 768px) {
     width: 90%;
-    height: auto;
-    margin: auto;
+    height: 10rem;
+    margin: 3rem auto;
     > img {
-      display: none;
-      width: 10rem;
-      width: 80%;
+      width: 50%;
+      display: flex;
+      object-fit: contain;
+      margin-top: 0;
     }
   }
 `;
@@ -53,6 +54,8 @@ export const Text = styled.div`
     letter-spacing: -1px;
   }
   @media screen and (max-width: 768px) {
+    gap: 2rem;
+    padding: 0 0.5rem;
     > h1 {
       font-size: 1rem;
     }
