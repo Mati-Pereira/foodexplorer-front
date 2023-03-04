@@ -94,7 +94,7 @@ const Header = () => {
       <Container>
         <LogoContainer onClick={handleGoHome}>
           <Logo src={logo} alt="logo" />
-          {isAdmin ? <span>admin</span> : null}
+          {isAdmin ? <span className="admin-span">admin</span> : null}
         </LogoContainer>
         <Input>
           <BsSearch />

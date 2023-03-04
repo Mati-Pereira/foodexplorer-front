@@ -40,13 +40,18 @@ export const Pedidos = styled.div`
 
 export const Logo = styled.img`
   width: 12rem;
-  @media (max-width: 768px) {
-    width: 10rem;
+  @media screen and (min-width: 768px) {
+    width: 50%;
   }
 `;
 
 export const LogoContainer = styled.div`
   cursor: pointer;
+  @media (max-width: 768px) {
+    > span {
+      display: none;
+    }
+  }
 `;
 
 export const Input = styled.div`
@@ -109,6 +114,7 @@ export const MenuDropdown = styled.div`
   justify-content: center;
   z-index: 5;
   gap: 2rem;
+
   > a {
     padding: 1rem 0;
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray_600};
