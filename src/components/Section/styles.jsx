@@ -9,4 +9,9 @@ export const Container = styled.div`
     font-size: 2rem;
     color: ${({ theme }) => theme.colors.gray_300};
   }
+  @media screen and (max-width: 768px) {
+    > h2 {
+      padding: 0 2rem;
+    }
+  }
 `;
