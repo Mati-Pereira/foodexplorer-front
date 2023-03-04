@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: stretch;
   align-items: start;
   gap: 1rem;
-  width: 80%;
+  width: 100%;
 `;
 
 export const Label = styled.label`

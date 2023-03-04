@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   > a {
     max-width: 62.5rem;
@@ -28,6 +28,10 @@ export const Content = styled.div`
     font-size: 2rem;
     font-family: "Poppins", sans-serif;
     margin: 1rem 0;
+  }
+  @media screen and (max-width: 768px) {
+    width: 80%;
+    padding: 1rem 0;
   }
 `;
 
@@ -54,6 +58,9 @@ export const Tags = styled.div`
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 0;
+  }
 `;
 
 export const FirstRow = styled.div`
@@ -61,6 +68,10 @@ export const FirstRow = styled.div`
   justify-content: center;
   width: 100%;
   gap: 2rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 export const SecondRow = styled.div`
@@ -68,6 +79,9 @@ export const SecondRow = styled.div`
   justify-content: center;
   width: 100%;
   gap: 4rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const ThirdRow = styled.div`

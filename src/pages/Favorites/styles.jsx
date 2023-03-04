@@ -22,6 +22,11 @@ export const Content = styled.div`
     font-weight: 500;
     padding: 1rem 0;
   }
+  @media (max-width: 768px) {
+    > h1 {
+      text-align: center;
+    }
+  }
 `;
 
 export const Grid = styled.div`

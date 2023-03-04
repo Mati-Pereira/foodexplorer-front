@@ -23,6 +23,7 @@ export const Content = styled.div`
   background-color: ${({ theme }) => theme.colors.green_500};
   font-family: "Poppins", sans-serif;
   border-radius: 0.5rem;
+  width: 100%;
   > label {
     display: flex;
     gap: 0.5rem;

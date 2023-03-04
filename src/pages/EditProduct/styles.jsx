@@ -29,6 +29,10 @@ export const Content = styled.div`
     font-family: "Poppins", sans-serif;
     margin: 1rem 0;
   }
+  @media screen and (max-width: 768px) {
+    width: 80%;
+    padding: 2rem 0;
+  }
 `;
 
 export const TagsContainer = styled.div`
@@ -54,6 +58,10 @@ export const Tags = styled.div`
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
+  flex-flow: row wrap;
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 0;
+  }
 `;
 
 export const FirstRow = styled.div`
@@ -61,6 +69,9 @@ export const FirstRow = styled.div`
   justify-content: center;
   width: 100%;
   gap: 2rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const SecondRow = styled.div`
@@ -68,6 +79,9 @@ export const SecondRow = styled.div`
   justify-content: center;
   width: 100%;
   gap: 4rem;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const ThirdRow = styled.div`
@@ -99,4 +113,8 @@ export const Form = styled.form`
 export const Buttons = styled.div`
   display: flex;
   gap: 1rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
