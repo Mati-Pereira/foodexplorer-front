@@ -25,7 +25,7 @@ import { IoReorderThreeOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
-  const { isAdmin, token } = useSelector((state) => state.persisted.auth);
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const orders = useSelector((state) => state.persisted.order.orders);
 
@@ -35,7 +35,7 @@ const Header = () => {
   const handleSignOut = async () => {
     const res = await api.get("/favorites", {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     });
     if (favorites.length > 0) {
@@ -47,7 +47,7 @@ const Header = () => {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
           }
         );
@@ -59,7 +59,7 @@ const Header = () => {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
           }
         );
@@ -80,7 +80,7 @@ const Header = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         }
       );

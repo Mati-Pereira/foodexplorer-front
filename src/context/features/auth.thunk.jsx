@@ -28,7 +28,6 @@ const initialState = {
   isAdmin: false,
   user: null,
   loading: false,
-  token: null,
 };
 
 const authSlice = createSlice({

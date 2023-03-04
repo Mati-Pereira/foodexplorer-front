@@ -18,7 +18,7 @@ import { toast } from "react-toastify";
 import { addToOrder } from "../../context/features/orders.slice";
 
 const Home = () => {
-  const { isAdmin, token } = useSelector((state) => state.persisted.auth);
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
 
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
@@ -32,7 +32,7 @@ const Home = () => {
     api
       .get("/favorites", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
       .then((response) => {
@@ -46,7 +46,7 @@ const Home = () => {
     api
       .get(`/products?name=${searchValue}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
       .then((res) => {

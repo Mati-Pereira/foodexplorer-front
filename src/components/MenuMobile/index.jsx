@@ -10,7 +10,7 @@ const MenuMobile = ({ menuIsVisible, setMenuIsVisible }) => {
   const handleSignOut = async () => {
     const res = await api.get("/favorites", {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     });
     if (favorites.length > 0) {
@@ -22,7 +22,7 @@ const MenuMobile = ({ menuIsVisible, setMenuIsVisible }) => {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
           }
         );
@@ -34,7 +34,7 @@ const MenuMobile = ({ menuIsVisible, setMenuIsVisible }) => {
           },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
             },
           }
         );
@@ -55,7 +55,7 @@ const MenuMobile = ({ menuIsVisible, setMenuIsVisible }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
           },
         }
       );
