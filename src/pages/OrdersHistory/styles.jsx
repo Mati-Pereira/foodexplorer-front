@@ -63,3 +63,9 @@ export const MobileContent = styled.div`
     color: ${({ theme }) => theme.colors.gray_300};
   }
 `;
+
+export const Orders = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
