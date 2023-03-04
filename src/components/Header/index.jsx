@@ -155,7 +155,10 @@ const Header = () => {
               </>
             ) : (
               <>
-                <AiOutlineClose />
+                <span>
+                  <AiOutlineClose onClick={() => setMenuMobileIsOpen(false)} />
+                  Menu
+                </span>
                 <Input>
                   <BsSearch />
                   <input
