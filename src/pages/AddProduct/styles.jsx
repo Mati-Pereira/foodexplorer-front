@@ -58,6 +58,7 @@ export const Tags = styled.div`
   background-color: ${({ theme }) => theme.colors.green_500};
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
+  flex-flow: row wrap;
   @media screen and (max-width: 768px) {
     padding: 0.5rem 0;
   }
