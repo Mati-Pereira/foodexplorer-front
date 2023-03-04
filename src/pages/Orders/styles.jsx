@@ -23,6 +23,10 @@ export const Content = styled.div`
       font-size: 2rem;
     }
   }
+  @media screen and (max-width: 768px) {
+    min-width: 80%;
+    flex-direction: column;
+  }
 `;
 
 export const Pedidos = styled.div`
@@ -42,6 +46,9 @@ export const Pagamentos = styled.div`
   flex-direction: column;
   margin: auto;
   width: 34rem;
+  @media screen and (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const PagamentoHeader = styled.div`

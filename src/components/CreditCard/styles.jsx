@@ -22,6 +22,9 @@ export const Container = styled.div`
       padding: 2rem 0;
       margin-top: 1rem;
     }
+    @media screen and (max-width: 768px) {
+      width: 99.5%;
+    }
   }
 `;
 
