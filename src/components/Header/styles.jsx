@@ -40,9 +40,6 @@ export const Pedidos = styled.div`
 
 export const Logo = styled.img`
   width: 12rem;
-  @media screen and (min-width: 768px) {
-    width: 50%;
-  }
 `;
 
 export const LogoContainer = styled.div`
