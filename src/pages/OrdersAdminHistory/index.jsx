@@ -1,8 +1,9 @@
-import { Container, Content } from "./styles";
+import { Container, Content, MobileContent, Orders } from "./styles";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import MobileProductAdminOrder from "../../components/MobileProductAdminOrder";
 
 const OrdersAdminHistory = () => {
   const [orders, setOrders] = useState([]);
@@ -108,6 +109,21 @@ const OrdersAdminHistory = () => {
           </h1>
         )}
       </Content>
+      <MobileContent>
+        <h1>Histórico de pedidos</h1>
+        <Orders>
+          {orders.map((order, index) => (
+            <MobileProductAdminOrder
+              key={index}
+              status={order.status}
+              id={String(order.id).padStart(5, "0")}
+              description={order.description}
+              date={`${order.date} às ${order.hour}`}
+              handleStatus={handleStatus}
+            />
+          ))}
+        </Orders>
+      </MobileContent>
       <Footer />
     </Container>
   );

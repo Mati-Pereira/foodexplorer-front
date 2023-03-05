@@ -9,10 +9,13 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   flex: 1;
   width: 1000px;
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
   > h1 {
     font-family: "Poppins";
     font-weight: 500;
@@ -64,4 +67,27 @@ export const Content = styled.div`
       text-align: center;
     }
   }
+`;
+
+export const MobileContent = styled.div`
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    width: 80%;
+    margin: auto;
+    flex: 1;
+  }
+  > h1 {
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 2rem;
+    color: ${({ theme }) => theme.colors.gray_300};
+  }
+`;
+
+export const Orders = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
