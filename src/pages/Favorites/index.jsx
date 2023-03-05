@@ -28,8 +28,11 @@ const Favorites = () => {
               justifyContent: "center",
               alignItems: "center",
               fontFamily: "Poppins",
+              fontWeight: "400",
               fontSize: "2rem",
               height: "300px",
+              width: "80%",
+              margin: "0 auto",
             }}
           >
             Nenhum favorito encontrado

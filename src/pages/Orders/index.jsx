@@ -71,6 +71,8 @@ const Orders = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
+              width: "80%",
+              margin: "0 auto",
             }}
           >
             Nenhum pedido encontrado

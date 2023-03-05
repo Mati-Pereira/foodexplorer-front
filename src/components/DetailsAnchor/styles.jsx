@@ -7,7 +7,7 @@ export const Container = styled(Link)`
   align-items: center;
   text-align: left;
   flex-grow: 1;
-  width: 100%;
+  width: 80%;
   text-decoration: none;
   margin-top: 2rem;
   > svg {

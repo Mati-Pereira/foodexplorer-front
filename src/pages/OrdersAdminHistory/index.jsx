@@ -5,7 +5,6 @@ import MobileProductAdminOrder from "../../components/MobileProductAdminOrder";
 
 const OrdersAdminHistory = () => {
   const [orders, setOrders] = useState([]);
-  console.log("orders", orders);
 
   const fetchOrder = async () => {
     const response = await api.get("/adminOrders", {

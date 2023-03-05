@@ -6,7 +6,6 @@ import MobileProductOrder from "../../components/MobileProductOrder";
 
 const OrdersHistory = () => {
   const [orders, setOrders] = useState([]);
-  console.log("orders", orders);
 
   useEffect(() => {
     const fetchOrder = async () => {

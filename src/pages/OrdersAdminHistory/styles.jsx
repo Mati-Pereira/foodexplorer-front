@@ -70,6 +70,7 @@ export const Content = styled.div`
 `;
 
 export const MobileContent = styled.div`
+  display: none;
   @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: column;
