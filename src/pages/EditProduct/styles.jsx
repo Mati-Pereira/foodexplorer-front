@@ -1,18 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  height: 100vh;
-  width: 100%;
-  > a {
-    max-width: 62.5rem;
-    margin: auto;
-  }
-`;
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,7 +18,6 @@ export const Content = styled.div`
   }
   @media screen and (max-width: 768px) {
     width: 80%;
-    padding: 2rem 0;
   }
 `;
 

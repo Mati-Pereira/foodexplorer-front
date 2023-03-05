@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 100vh;
-  > a {
-    max-width: 62.5rem;
-  }
-`;
-
 export const Content = styled.div`
   display: flex;
   justify-content: center;
@@ -20,6 +9,7 @@ export const Content = styled.div`
   max-width: 62.5rem;
   font-family: "Poppins", sans-serif;
   gap: 3rem;
+  margin-bottom: 2rem;
   > img {
     width: 25rem;
     height: 25rem;

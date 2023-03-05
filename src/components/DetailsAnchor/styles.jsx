@@ -9,6 +9,7 @@ export const Container = styled(Link)`
   flex-grow: 1;
   width: 100%;
   text-decoration: none;
+  margin-top: 2rem;
   > svg {
     color: ${({ theme }) => theme.colors.white};
     font-size: 1.5rem;
