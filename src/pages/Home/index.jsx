@@ -2,7 +2,6 @@ import { Background, Container, Text } from "./styles";
 import cookiesimg from "/cookies.svg";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
-import Loading from "../../components/Loading";
 import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
