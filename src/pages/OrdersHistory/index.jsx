@@ -38,44 +38,72 @@ const OrdersHistory = () => {
     <>
       <Content>
         <h1>Histórico de pedidos</h1>
-        <table>
-          <thead>
-            <tr>
-              <td>Status</td>
-              <td>Código</td>
-              <td>Detalhamento</td>
-              <td>Data e Hora</td>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order, index) => (
-              <tr key={index}>
-                <td>
-                  <OrderStatus status={order.status} />
-                </td>
-                <td>{String(order.id).padStart(5, "0")}</td>
-                <td>{order.description}</td>
-                <td>
-                  {order.date} às {order.hour}
-                </td>
+        {orders.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <td>Status</td>
+                <td>Código</td>
+                <td>Detalhamento</td>
+                <td>Data e Hora</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {orders.map((order, index) => (
+                <tr key={index}>
+                  <td>
+                    <OrderStatus status={order.status} />
+                  </td>
+                  <td>{String(order.id).padStart(5, "0")}</td>
+                  <td>{order.description}</td>
+                  <td>
+                    {order.date} às {order.hour}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h2
+            style={{
+              textAlign: "center",
+              marginTop: "5rem",
+              color: "#ccc",
+              fontWeight: "400",
+              fontFamily: "Poppins",
+            }}
+          >
+            Nenhum pedido foi encontrado
+          </h2>
+        )}
       </Content>
       <MobileContent>
         <h1>Histórico de pedidos</h1>
-        <Orders>
-          {orders.map((order, index) => (
-            <MobileProductOrder
-              key={index}
-              status={order.status}
-              id={String(order.id).padStart(5, "0")}
-              description={order.description}
-              date={`${order.date} às ${order.hour}`}
-            />
-          ))}
-        </Orders>
+        {orders.length ? (
+          <Orders>
+            {orders.map((order, index) => (
+              <MobileProductOrder
+                key={index}
+                status={order.status}
+                id={String(order.id).padStart(5, "0")}
+                description={order.description}
+                date={`${order.date} às ${order.hour}`}
+              />
+            ))}
+          </Orders>
+        ) : (
+          <h2
+            style={{
+              textAlign: "center",
+              marginTop: "5rem",
+              color: "#ccc",
+              fontWeight: "400",
+              fontFamily: "Poppins",
+            }}
+          >
+            Nenhum pedido foi encontrado
+          </h2>
+        )}
       </MobileContent>
     </>
   );
