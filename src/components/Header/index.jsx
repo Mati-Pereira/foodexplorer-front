@@ -149,9 +149,21 @@ const Header = () => {
                     onChange={(e) => dispatch(setSearch(e.target.value))}
                   />
                 </Input>
-                <Anchor to="/favorites">Meus favoritos</Anchor>
-                <Anchor to="/add">Novo Prato</Anchor>
-                <Anchor to="/orderadminhistory">Todos os Pedidos</Anchor>
+                <Anchor
+                  to="/favorites"
+                  onClick={() => setMenuMobileIsOpen(false)}
+                >
+                  Meus favoritos
+                </Anchor>
+                <Anchor to="/add" onClick={() => setMenuMobileIsOpen(false)}>
+                  Novo Prato
+                </Anchor>
+                <Anchor
+                  to="/orderadminhistory"
+                  onClick={() => setMenuMobileIsOpen(false)}
+                >
+                  Todos os Pedidos
+                </Anchor>
                 <Anchor onClick={handleSignOut}>Sair</Anchor>
               </>
             ) : (
@@ -168,9 +180,21 @@ const Header = () => {
                     onChange={(e) => dispatch(setSearch(e.target.value))}
                   />
                 </Input>
-                <Anchor to="/favorites">Meus favoritos</Anchor>
-                <Anchor to="/ordershistory">Histórico de pedidos</Anchor>
-                <Anchor to="/orders">Pedidos</Anchor>
+                <Anchor
+                  to="/favorites"
+                  onClick={() => setMenuMobileIsOpen(false)}
+                >
+                  Meus favoritos
+                </Anchor>
+                <Anchor
+                  to="/ordershistory"
+                  onClick={() => setMenuMobileIsOpen(false)}
+                >
+                  Histórico de pedidos
+                </Anchor>
+                <Anchor to="/orders" onClick={() => setMenuMobileIsOpen(false)}>
+                  Pedidos
+                </Anchor>
                 <Anchor onClick={handleSignOut}>Sair</Anchor>
               </>
             )}
