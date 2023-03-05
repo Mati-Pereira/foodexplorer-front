@@ -1,6 +1,5 @@
 import {
   Buttons,
-  Container,
   Content,
   FirstRow,
   Form,
@@ -10,8 +9,6 @@ import {
   TagsContainer,
   ThirdRow,
 } from "./styles";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import Input from "../../components/Input";
 import DetailsAnchor from "../../components/DetailsAnchor";
 import FileInput from "../../components/FileInput";
@@ -154,8 +151,7 @@ const AddProduct = () => {
   }, [typeof image === "object"]);
 
   return (
-    <Container>
-      <Header />
+    <>
       <DetailsAnchor to="/" />
       <Content>
         <h1>Editar Prato</h1>
@@ -225,8 +221,7 @@ const AddProduct = () => {
           </Rows>
         </Form>
       </Content>
-      <Footer />
-    </Container>
+    </>
   );
 };
 

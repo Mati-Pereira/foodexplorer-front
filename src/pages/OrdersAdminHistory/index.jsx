@@ -1,6 +1,4 @@
-import { Container, Content, MobileContent, Orders } from "./styles";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { Content, MobileContent, Orders } from "./styles";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import MobileProductAdminOrder from "../../components/MobileProductAdminOrder";
@@ -54,8 +52,7 @@ const OrdersAdminHistory = () => {
     fetchOrder();
   }, []);
   return (
-    <Container>
-      <Header />
+    <>
       <Content>
         <h1>Histórico de pedidos</h1>
         {orders.length ? (
@@ -124,8 +121,7 @@ const OrdersAdminHistory = () => {
           ))}
         </Orders>
       </MobileContent>
-      <Footer />
-    </Container>
+    </>
   );
 };
 

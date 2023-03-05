@@ -1,6 +1,4 @@
-import { Container, Content, MobileContent, Orders } from "./styles";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { Content, MobileContent, Orders } from "./styles";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import OrderStatus from "../../components/OrderStatus";
@@ -38,8 +36,7 @@ const OrdersHistory = () => {
     fetchOrder();
   }, []);
   return (
-    <Container>
-      <Header />
+    <>
       <Content>
         <h1>Histórico de pedidos</h1>
         <table>
@@ -81,8 +78,7 @@ const OrdersHistory = () => {
           ))}
         </Orders>
       </MobileContent>
-      <Footer />
-    </Container>
+    </>
   );
 };
 

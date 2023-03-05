@@ -1,6 +1,4 @@
-import { AddProduct, Container, Content, Tags, Text } from "./styles";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import { AddProduct, Content, Tags, Text } from "./styles";
 import DetailsAnchor from "../../components/DetailsAnchor";
 import Tag from "../../components/Tag";
 import Quantity from "../../components/Quantity";
@@ -36,8 +34,7 @@ const Details = () => {
       });
   }, [id]);
   return (
-    <Container>
-      <Header />
+    <>
       <DetailsAnchor to="/" />
       <Content>
         {data && (
@@ -67,8 +64,7 @@ const Details = () => {
           </>
         )}
       </Content>
-      <Footer />
-    </Container>
+    </>
   );
 };
 
