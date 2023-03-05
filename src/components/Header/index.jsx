@@ -147,6 +147,11 @@ const Header = () => {
                     type="text"
                     placeholder="Busque por pratos ou ingredientes"
                     onChange={(e) => dispatch(setSearch(e.target.value))}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        setMenuMobileIsOpen(false);
+                      }
+                    }}
                   />
                 </Input>
                 <Anchor
