@@ -100,7 +100,6 @@ const AddProduct = () => {
       .post("/products", fileUpload, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
       .then(() => {
