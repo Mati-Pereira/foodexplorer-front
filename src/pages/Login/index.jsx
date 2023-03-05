@@ -16,6 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.persisted.auth);
+
   const handleSubmit = async () => {
     dispatch(signIn({ email, password }));
     navigate("/");

@@ -10,9 +10,13 @@ export const Container = styled.div`
   border-radius: 0.5rem;
   width: 200px;
   height: 300px;
+  margin: auto;
   > h3 {
     font-size: 1.75rem;
     color: ${({ theme }) => theme.colors.gray_500};
     font-family: "Poppins", sans-serif;
+  }
+  &:last-child {
+    margin-bottom: 2rem;
   }
 `;
