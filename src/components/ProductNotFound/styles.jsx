@@ -8,8 +8,8 @@ export const Container = styled.div`
   border: 1px dashed ${({ theme }) => theme.colors.gray_500};
   background-color: trasparent;
   border-radius: 0.5rem;
-  width: 200px;
-  height: 300px;
+  width: 12.5rem;
+  height: 18.75rem;
   margin: auto;
   > h3 {
     font-size: 1.75rem;

@@ -14,9 +14,11 @@ import {
 } from "../../context/features/favorites.slice";
 import { toast } from "react-toastify";
 import { addToOrder } from "../../context/features/orders.slice";
+import CardSkeleton from "../../components/CardSkeleton";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
@@ -51,7 +53,6 @@ const Home = () => {
         },
       })
       .then((res) => {
-        setIsLoading(true);
         setRefeicoes(
           res.data
             .filter((item) => item.category === "refeicao")
@@ -106,7 +107,9 @@ const Home = () => {
         </Text>
       </Background>
       <Section title="Refeições">
-        {refeicoes.length ? (
+        {isLoading ? (
+          <CardSkeleton />
+        ) : refeicoes.length ? (
           refeicoes.map((item) => (
             <Card
               key={item.id}
@@ -154,7 +157,9 @@ const Home = () => {
         )}
       </Section>
       <Section title="Sobremesas">
-        {sobremesas.length ? (
+        {isLoading ? (
+          <CardSkeleton />
+        ) : sobremesas.length ? (
           sobremesas.map((item) => (
             <Card
               key={item.id}
@@ -202,7 +207,9 @@ const Home = () => {
         )}
       </Section>
       <Section title="Bebidas">
-        {bebidas.length ? (
+        {isLoading ? (
+          <CardSkeleton />
+        ) : bebidas.length ? (
           bebidas.map((item) => (
             <Card
               key={item.id}
