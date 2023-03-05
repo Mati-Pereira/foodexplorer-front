@@ -100,11 +100,11 @@ const AddProduct = () => {
       .post("/products", fileUpload, {
         headers: {
           "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
         },
       })
       .then(() => {
         toast.success("Produto criado com sucesso!");
-        setIsLoading(false);
         navigate(-1);
       })
       .catch((error) => {
@@ -112,6 +112,8 @@ const AddProduct = () => {
           toast.error(error.response.data.message);
         }
         toast.error(error.message);
+      })
+      .finally(() => {
         setIsLoading(false);
       });
   };
