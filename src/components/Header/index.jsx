@@ -23,6 +23,7 @@ import { setSearch } from "../../context/features/search.slice";
 import { useState } from "react";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+import { useEffect } from "react";
 
 const Header = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -89,6 +90,11 @@ const Header = () => {
   };
 
   const [menuMobileIsOpen, setMenuMobileIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflowY = menuMobileIsOpen ? "hidden" : "auto";
+  }, [menuMobileIsOpen]);
+
   return (
     <>
       <Container>
