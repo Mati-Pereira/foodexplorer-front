@@ -34,8 +34,11 @@ const Home = () => {
         },
       })
       .then((response) => {
-        if (!favorites.length) {
-          dispatch(getFromDatabases(JSON.parse(response.data.favoriteList)));
+        if (response.data.favoriteList) {
+          const favoritesList = JSON.parse(response.data.favoriteList);
+          if (!favorites.length) {
+            dispatch(getFromDatabases(favoritesList));
+          }
         }
       });
   }, [favorites]);
