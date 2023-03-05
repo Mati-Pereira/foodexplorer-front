@@ -2,6 +2,7 @@ import { Background, Container, Text } from "./styles";
 import cookiesimg from "/cookies.svg";
 import Card from "../../components/Card";
 import Section from "../../components/Section";
+import Loading from "../../components/Loading";
 import { useEffect } from "react";
 import { api } from "../../services/api";
 import { useState } from "react";
@@ -51,6 +52,7 @@ const Home = () => {
         },
       })
       .then((res) => {
+        setIsLoading(true);
         setRefeicoes(
           res.data
             .filter((item) => item.category === "refeicao")
@@ -84,6 +86,9 @@ const Home = () => {
       })
       .catch((err) => {
         toast.error(err.response.data.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
     return () => {
       setRefeicoes([]);
