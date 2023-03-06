@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import OrderStatus from "../../components/OrderStatus";
 import MobileProductOrder from "../../components/MobileProductOrder";
+import TableSkeleton from "../../components/TableSkeleton";
+import MobileSkeleton from "../../components/MobileSkeleton";
 
 const OrdersHistory = () => {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchOrder = async () => {
+      setIsLoading(true);
       const response = await api.get("/orders", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -31,6 +35,7 @@ const OrdersHistory = () => {
         };
       });
       setOrders(newData);
+      setIsLoading(false);
     };
     fetchOrder();
   }, []);
@@ -38,7 +43,9 @@ const OrdersHistory = () => {
     <>
       <Content>
         <h1>Histórico de pedidos</h1>
-        {orders.length > 0 ? (
+        {isLoading ? (
+          <TableSkeleton />
+        ) : orders.length > 0 ? (
           <table>
             <thead>
               <tr>
@@ -79,7 +86,9 @@ const OrdersHistory = () => {
       </Content>
       <MobileContent>
         <h1>Histórico de pedidos</h1>
-        {orders.length ? (
+        {isLoading ? (
+          <MobileSkeleton />
+        ) : orders.length ? (
           <Orders>
             {orders.map((order, index) => (
               <MobileProductOrder

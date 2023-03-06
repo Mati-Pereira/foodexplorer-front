@@ -2,11 +2,15 @@ import { Content, MobileContent, Orders } from "./styles";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import MobileProductAdminOrder from "../../components/MobileProductAdminOrder";
+import TableSkeleton from "../../components/TableSkeleton";
+import MobileSkeleton from "../../components/MobileSkeleton";
 
 const OrdersAdminHistory = () => {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchOrder = async () => {
+    setIsLoading(true);
     const response = await api.get("/adminOrders", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
@@ -28,8 +32,8 @@ const OrdersAdminHistory = () => {
         hour: time[1].slice(0, 5),
       };
     });
-
     setOrders(newData);
+    setIsLoading(false);
   };
 
   const handleStatus = async (value, id) => {
@@ -54,7 +58,9 @@ const OrdersAdminHistory = () => {
     <>
       <Content>
         <h1>Histórico de pedidos</h1>
-        {orders.length ? (
+        {isLoading ? (
+          <TableSkeleton />
+        ) : orders.length ? (
           <table>
             <thead>
               <tr>
@@ -107,18 +113,22 @@ const OrdersAdminHistory = () => {
       </Content>
       <MobileContent>
         <h1>Histórico de pedidos</h1>
-        <Orders>
-          {orders.map((order, index) => (
-            <MobileProductAdminOrder
-              key={index}
-              status={order.status}
-              id={String(order.id).padStart(5, "0")}
-              description={order.description}
-              date={`${order.date} às ${order.hour}`}
-              handleStatus={handleStatus}
-            />
-          ))}
-        </Orders>
+        {isLoading ? (
+          <MobileSkeleton />
+        ) : (
+          <Orders>
+            {orders.map((order, index) => (
+              <MobileProductAdminOrder
+                key={index}
+                status={order.status}
+                id={String(order.id).padStart(5, "0")}
+                description={order.description}
+                date={`${order.date} às ${order.hour}`}
+                handleStatus={handleStatus}
+              />
+            ))}
+          </Orders>
+        )}
       </MobileContent>
     </>
   );
