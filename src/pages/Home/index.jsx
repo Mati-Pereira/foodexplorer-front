@@ -85,19 +85,14 @@ const Home = () => {
               };
             })
         );
+        setIsDataLoaded(true);
       })
       .catch((err) => {
         toast.error(err.response.data.message);
       })
       .finally(() => {
         setIsLoading(false);
-        setIsDataLoaded(true);
       });
-    return () => {
-      setRefeicoes([]);
-      setSobremesas([]);
-      setBebidas([]);
-    };
   }, [searchValue]);
 
   // useEffect(() => {
