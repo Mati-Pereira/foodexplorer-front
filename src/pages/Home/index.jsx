@@ -49,11 +49,7 @@ const Home = () => {
 
   useEffect(() => {
     api
-      .get(`/products?name=${searchValue}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      })
+      .get(`/products?name=${searchValue}`)
       .then((res) => {
         setRefeicoes(
           res.data
