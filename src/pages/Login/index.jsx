@@ -15,7 +15,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { loading } = useSelector((state) => state.persisted.auth);
+
+  const {
+    colors: { red_500 },
+  } = useTheme();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,9 +28,6 @@ const Login = () => {
     navigate("/");
   };
 
-  const {
-    colors: { red_500 },
-  } = useTheme();
   return (
     <Container>
       <img src={logo} alt="logo" />
@@ -49,7 +51,9 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button color={red_500}>{loading ? <Loading /> : "Login"}</Button>
+          <Button type="submit" color={red_500}>
+            {loading ? <Loading /> : "Login"}
+          </Button>
         </Form>
         <Anchor to="/register">Crie uma Conta</Anchor>
       </Content>
