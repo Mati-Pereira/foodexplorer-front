@@ -4,9 +4,9 @@ import ContentLoader from "react-content-loader";
 const MobileSkeleton = (props) => (
   <ContentLoader
     speed={2}
-    width={200}
+    width={400}
     height={130}
-    viewBox="0 0 200 130"
+    viewBox="0 0 400 130"
     backgroundColor="rgba(36, 59, 38, 0.151)"
     foregroundColor="rgba(19, 26, 16, 0.13)"
     {...props}
