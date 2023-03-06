@@ -12,7 +12,9 @@ export const ordersSlice = createSlice({
       }
     },
     removeOrder: (state, action) => {
-      state.orders.splice(state.orders.indexOf(action.payload), 1);
+      state.orders = state.orders.filter(
+        (order) => order.id !== action.payload.id
+      );
     },
     clearOrders: (state) => {
       state.orders = [];
