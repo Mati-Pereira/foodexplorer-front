@@ -60,6 +60,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { signOut, addToFavorites, removeFromFavorites } =
-  authSlice.actions;
+export const { signOut } = authSlice.actions;
 export default authSlice.reducer;
