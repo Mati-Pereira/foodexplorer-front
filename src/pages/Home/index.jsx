@@ -15,6 +15,7 @@ import {
 import { toast } from "react-toastify";
 import { addToOrder } from "../../context/features/orders.slice";
 import CardSkeleton from "../../components/CardSkeleton";
+// import { persistor } from "../../context/app/store";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -96,6 +97,11 @@ const Home = () => {
       setBebidas([]);
     };
   }, [searchValue]);
+
+  // useEffect(() => {
+  //   persistor.purge();
+  //   persistor.flush();
+  // }, []);
 
   return (
     <Container>
