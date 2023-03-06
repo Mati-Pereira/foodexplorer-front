@@ -20,6 +20,7 @@ import CardSkeleton from "../../components/CardSkeleton";
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
   const [isLoading, setIsLoading] = useState(true);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   const [refeicoes, setRefeicoes] = useState([]);
   const [sobremesas, setSobremesas] = useState([]);
@@ -90,6 +91,7 @@ const Home = () => {
       })
       .finally(() => {
         setIsLoading(false);
+        setIsDataLoaded(true);
       });
     return () => {
       setRefeicoes([]);
@@ -112,156 +114,172 @@ const Home = () => {
           <h5>Sinta o cuidado do preparo com ingredientes selecionados</h5>
         </Text>
       </Background>
-      <Section title="Refeições">
-        {isLoading ? (
-          <CardSkeleton />
-        ) : refeicoes.length ? (
-          refeicoes.map((item) => (
-            <Card
-              key={item.id}
-              name={item.name}
-              price={Number(item.price).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
-              text={item.description}
-              image={item.image}
-              isAdmin={isAdmin}
-              quantity={item.quantity}
-              id={item.id}
-              handleAddFavorites={() => dispatch(addToFavorites(item))}
-              handleRemoveFavorites={() => dispatch(removeFromFavorites(item))}
-              isFavorite={favorites.some((favorite) => favorite.id === item.id)}
-              handleAddQuantity={() =>
-                setRefeicoes((prevValue) =>
-                  prevValue.map((item) =>
-                    item.id === item.id
-                      ? { ...item, quantity: item.quantity + 1 }
-                      : item
-                  )
-                )
-              }
-              handleRemoveQuantity={
-                item.quantity > 1
-                  ? () =>
-                      setRefeicoes((prevValue) =>
-                        prevValue.map((item) =>
-                          item.id === item.id
-                            ? { ...item, quantity: item.quantity - 1 }
-                            : item
-                        )
+      {isDataLoaded ?? (
+        <>
+          <Section title="Refeições">
+            {isLoading ? (
+              <CardSkeleton />
+            ) : refeicoes.length ? (
+              refeicoes.map((item) => (
+                <Card
+                  key={item.id}
+                  name={item.name}
+                  price={Number(item.price).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                  text={item.description}
+                  image={item.image}
+                  isAdmin={isAdmin}
+                  quantity={item.quantity}
+                  id={item.id}
+                  handleAddFavorites={() => dispatch(addToFavorites(item))}
+                  handleRemoveFavorites={() =>
+                    dispatch(removeFromFavorites(item))
+                  }
+                  isFavorite={favorites.some(
+                    (favorite) => favorite.id === item.id
+                  )}
+                  handleAddQuantity={() =>
+                    setRefeicoes((prevValue) =>
+                      prevValue.map((item) =>
+                        item.id === item.id
+                          ? { ...item, quantity: item.quantity + 1 }
+                          : item
                       )
-                  : null
-              }
-              handleAddOrder={() =>
-                dispatch(addToOrder({ ...item, quantity: item.quantity }))
-              }
-            />
-          ))
-        ) : (
-          <ProductNotFound />
-        )}
-      </Section>
-      <Section title="Sobremesas">
-        {isLoading ? (
-          <CardSkeleton />
-        ) : sobremesas.length ? (
-          sobremesas.map((item) => (
-            <Card
-              key={item.id}
-              price={Number(item.price).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
-              name={item.name}
-              text={item.description}
-              image={item.image}
-              isAdmin={isAdmin}
-              id={item.id}
-              quantity={item.quantity}
-              handleAddFavorites={() => dispatch(addToFavorites(item))}
-              handleRemoveFavorites={() => dispatch(removeFromFavorites(item))}
-              isFavorite={favorites.some((favorite) => favorite.id === item.id)}
-              handleAddQuantity={() =>
-                setSobremesas((prevValue) =>
-                  prevValue.map((item) =>
-                    item.id === item.id
-                      ? { ...item, quantity: item.quantity + 1 }
-                      : item
-                  )
-                )
-              }
-              handleRemoveQuantity={() =>
-                item.quantity > 1
-                  ? () =>
-                      setSobremesas((prevValue) =>
-                        prevValue.map((item) =>
-                          item.id === item.id
-                            ? { ...item, quantity: item.quantity - 1 }
-                            : item
-                        )
+                    )
+                  }
+                  handleRemoveQuantity={
+                    item.quantity > 1
+                      ? () =>
+                          setRefeicoes((prevValue) =>
+                            prevValue.map((item) =>
+                              item.id === item.id
+                                ? { ...item, quantity: item.quantity - 1 }
+                                : item
+                            )
+                          )
+                      : null
+                  }
+                  handleAddOrder={() =>
+                    dispatch(addToOrder({ ...item, quantity: item.quantity }))
+                  }
+                />
+              ))
+            ) : (
+              <ProductNotFound />
+            )}
+          </Section>
+          <Section title="Sobremesas">
+            {isLoading ? (
+              <CardSkeleton />
+            ) : sobremesas.length ? (
+              sobremesas.map((item) => (
+                <Card
+                  key={item.id}
+                  price={Number(item.price).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                  name={item.name}
+                  text={item.description}
+                  image={item.image}
+                  isAdmin={isAdmin}
+                  id={item.id}
+                  quantity={item.quantity}
+                  handleAddFavorites={() => dispatch(addToFavorites(item))}
+                  handleRemoveFavorites={() =>
+                    dispatch(removeFromFavorites(item))
+                  }
+                  isFavorite={favorites.some(
+                    (favorite) => favorite.id === item.id
+                  )}
+                  handleAddQuantity={() =>
+                    setSobremesas((prevValue) =>
+                      prevValue.map((item) =>
+                        item.id === item.id
+                          ? { ...item, quantity: item.quantity + 1 }
+                          : item
                       )
-                  : null
-              }
-              handleAddOrder={() =>
-                dispatch(addToOrder({ ...item, quantity: item.quantity }))
-              }
-            />
-          ))
-        ) : (
-          <ProductNotFound />
-        )}
-      </Section>
-      <Section title="Bebidas">
-        {isLoading ? (
-          <CardSkeleton />
-        ) : bebidas.length ? (
-          bebidas.map((item) => (
-            <Card
-              key={item.id}
-              price={Number(item.price).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
-              name={item.name}
-              text={item.description}
-              image={item.image}
-              isAdmin={isAdmin}
-              id={item.id}
-              quantity={item.quantity}
-              handleAddFavorites={() => dispatch(addToFavorites(item))}
-              handleRemoveFavorites={() => dispatch(removeFromFavorites(item))}
-              isFavorite={favorites.some((favorite) => favorite.id === item.id)}
-              handleAddQuantity={() =>
-                setBebidas((prevValue) =>
-                  prevValue.map((item) =>
-                    item.id === item.id
-                      ? { ...item, quantity: item.quantity + 1 }
-                      : item
-                  )
-                )
-              }
-              handleRemoveQuantity={() =>
-                item.quantity > 1
-                  ? () =>
-                      setBebidas((prevValue) =>
-                        prevValue.map((item) =>
-                          item.id === item.id
-                            ? { ...item, quantity: item.quantity - 1 }
-                            : item
-                        )
+                    )
+                  }
+                  handleRemoveQuantity={() =>
+                    item.quantity > 1
+                      ? () =>
+                          setSobremesas((prevValue) =>
+                            prevValue.map((item) =>
+                              item.id === item.id
+                                ? { ...item, quantity: item.quantity - 1 }
+                                : item
+                            )
+                          )
+                      : null
+                  }
+                  handleAddOrder={() =>
+                    dispatch(addToOrder({ ...item, quantity: item.quantity }))
+                  }
+                />
+              ))
+            ) : (
+              <ProductNotFound />
+            )}
+          </Section>
+          <Section title="Bebidas">
+            {isLoading ? (
+              <CardSkeleton />
+            ) : bebidas.length ? (
+              bebidas.map((item) => (
+                <Card
+                  key={item.id}
+                  price={Number(item.price).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                  name={item.name}
+                  text={item.description}
+                  image={item.image}
+                  isAdmin={isAdmin}
+                  id={item.id}
+                  quantity={item.quantity}
+                  handleAddFavorites={() => dispatch(addToFavorites(item))}
+                  handleRemoveFavorites={() =>
+                    dispatch(removeFromFavorites(item))
+                  }
+                  isFavorite={favorites.some(
+                    (favorite) => favorite.id === item.id
+                  )}
+                  handleAddQuantity={() =>
+                    setBebidas((prevValue) =>
+                      prevValue.map((item) =>
+                        item.id === item.id
+                          ? { ...item, quantity: item.quantity + 1 }
+                          : item
                       )
-                  : null
-              }
-              handleAddOrder={() =>
-                dispatch(addToOrder({ ...item, quantity: item.quantity }))
-              }
-            />
-          ))
-        ) : (
-          <ProductNotFound />
-        )}
-      </Section>
+                    )
+                  }
+                  handleRemoveQuantity={() =>
+                    item.quantity > 1
+                      ? () =>
+                          setBebidas((prevValue) =>
+                            prevValue.map((item) =>
+                              item.id === item.id
+                                ? { ...item, quantity: item.quantity - 1 }
+                                : item
+                            )
+                          )
+                      : null
+                  }
+                  handleAddOrder={() =>
+                    dispatch(addToOrder({ ...item, quantity: item.quantity }))
+                  }
+                />
+              ))
+            ) : (
+              <ProductNotFound />
+            )}
+          </Section>
+        </>
+      )}
     </Container>
   );
 };
