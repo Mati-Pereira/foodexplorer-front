@@ -13,10 +13,13 @@ import { useState } from "react";
 import { clearOrders } from "../../context/features/orders.slice";
 import { api } from "../../services/api";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const [payment, setPayment] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const orders = useSelector((state) => state.persisted.order.orders);
   const totalPrice = orders.reduce(
@@ -45,6 +48,7 @@ const Orders = () => {
       )
       .then(() => {
         toast.success("Pedido realizado com sucesso!");
+        navigate("/");
         dispatch(clearOrders());
       })
       .catch((err) => {
