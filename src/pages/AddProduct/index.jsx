@@ -10,8 +10,8 @@ import {
 } from "./styles";
 import Input from "../../components/Input";
 import DetailsAnchor from "../../components/DetailsAnchor";
-import FileInput from "../../components/FileInput";
-import SelectInput from "../../components/SelectInput";
+import InputFile from "../../components/InputFile";
+import InputSelect from "../../components/InputSelect";
 import EditTag from "../../components/EditTag";
 import InputPrice from "../../components/InputPrice";
 import Textarea from "../../components/Textarea";
@@ -135,7 +135,7 @@ const AddProduct = () => {
         <Form>
           <Rows>
             <FirstRow>
-              <FileInput onChange={handleImageProduct} name="file" required />
+              <InputFile onChange={handleImageProduct} name="file" required />
               <Input
                 label="Nome"
                 placeholder="Ex.: Salada Ceasar"
@@ -144,7 +144,7 @@ const AddProduct = () => {
                 onChange={(e) => setName(e.target.value)}
                 required
               />
-              <SelectInput onChange={handleSelectedCategory} value={category} />
+              <InputSelect onChange={handleSelectedCategory} value={category} />
             </FirstRow>
             <SecondRow>
               <TagsContainer>
