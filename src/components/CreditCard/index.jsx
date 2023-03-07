@@ -1,12 +1,13 @@
 import { Container, SecondRow } from "./styles";
 import { useState } from "react";
 import InputOrder from "../InputOrder";
+import Loading from "../Loading";
 import Button from "../Button";
 import pedidos from "/pedidos.svg";
 import { useTheme } from "styled-components";
 import PropTypes from "prop-types";
 
-const CreditCard = ({ onSubmit }) => {
+const CreditCard = ({ onSubmit, isLoading }) => {
   const {
     colors: { red_500 },
   } = useTheme();
@@ -84,8 +85,14 @@ const CreditCard = ({ onSubmit }) => {
         </SecondRow>
 
         <Button color={red_500} type="submit">
-          <img src={pedidos} alt="icon pedidos" />
-          Pedido
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <img src={pedidos} alt="icon pedidos" />
+              <span>Pedido</span>
+            </>
+          )}
         </Button>
       </form>
     </Container>
@@ -94,6 +101,7 @@ const CreditCard = ({ onSubmit }) => {
 
 CreditCard.propTypes = {
   onSubmit: PropTypes.func,
+  isLoading: PropTypes.bool,
 };
 
 export default CreditCard;

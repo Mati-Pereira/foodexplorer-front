@@ -1,7 +1,7 @@
 import { Container, Label, Option, Select } from "./styles";
 import PropTypes from "prop-types";
 
-const Selectinput = ({ onChange, ...rest }) => {
+const InputSelect = ({ onChange, ...rest }) => {
   return (
     <Container>
       <Label>Categoria</Label>
@@ -14,8 +14,8 @@ const Selectinput = ({ onChange, ...rest }) => {
   );
 };
 
-Selectinput.propTypes = {
+InputSelect.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default Selectinput;
+export default InputSelect;

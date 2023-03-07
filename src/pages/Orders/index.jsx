@@ -16,6 +16,8 @@ import { toast } from "react-toastify";
 
 const Orders = () => {
   const [payment, setPayment] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const orders = useSelector((state) => state.persisted.order.orders);
   const totalPrice = orders.reduce(
     (acc, order) => acc + order.price * order.quantity,
@@ -25,6 +27,7 @@ const Orders = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const description = orders.map((order) => {
       return `${order.quantity} x ${order.name}, `;
     });
@@ -43,7 +46,11 @@ const Orders = () => {
       .then(() => {
         toast.success("Pedido realizado com sucesso!");
         dispatch(clearOrders());
-      });
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return (
@@ -98,7 +105,11 @@ const Orders = () => {
             Crédito
           </Button>
         </PagamentoHeader>
-        {payment ? <Pix /> : <CreditCard onSubmit={handleSubmit} />}
+        {payment ? (
+          <Pix />
+        ) : (
+          <CreditCard onSubmit={handleSubmit} isLoading={isLoading} />
+        )}
       </Pagamentos>
     </Content>
   );

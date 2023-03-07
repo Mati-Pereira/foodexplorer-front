@@ -2,7 +2,7 @@ import { Container, Content, Label } from "./styles";
 import { AiOutlineUpload } from "react-icons/ai";
 import PropTypes from "prop-types";
 
-const FileInput = ({ onChange, ...rest }) => {
+const InputFile = ({ onChange, ...rest }) => {
   return (
     <Container>
       <Label>Imagem do Prato</Label>
@@ -23,8 +23,8 @@ const FileInput = ({ onChange, ...rest }) => {
   );
 };
 
-FileInput.propTypes = {
+InputFile.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default FileInput;
+export default InputFile;
