@@ -139,7 +139,7 @@ const AddProduct = () => {
       setIngredients(
         response.data.ingredients.map((ingredient) => ingredient.name)
       );
-      setPrice(response.data.price);
+      setPrice(Number(response.data.price));
       setImage(response.data.image);
     });
   }, []);
@@ -149,7 +149,6 @@ const AddProduct = () => {
       toast.success("Imagem selecionada com sucesso!");
     }
   }, [typeof image === "object"]);
-
   return (
     <>
       <DetailsAnchor to="/" />

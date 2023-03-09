@@ -31,7 +31,7 @@ InputPrice.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.number,
 };
 
 export default InputPrice;
