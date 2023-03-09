@@ -106,7 +106,7 @@ const Home = () => {
       <Section title="Refeições">
         {isLoading ? (
           <CardSkeleton />
-        ) : refeicoes.length ? (
+        ) : refeicoes.length && refeicoes ? (
           refeicoes.map((item) => (
             <Card
               key={item.id}
@@ -156,7 +156,7 @@ const Home = () => {
       <Section title="Sobremesas">
         {isLoading ? (
           <CardSkeleton />
-        ) : sobremesas.length ? (
+        ) : sobremesas.length && sobremesas ? (
           sobremesas.map((item) => (
             <Card
               key={item.id}
@@ -206,7 +206,7 @@ const Home = () => {
       <Section title="Bebidas">
         {isLoading ? (
           <CardSkeleton />
-        ) : bebidas.length ? (
+        ) : bebidas.length && bebidas ? (
           bebidas.map((item) => (
             <Card
               key={item.id}
