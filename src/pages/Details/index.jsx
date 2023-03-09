@@ -17,6 +17,7 @@ import { addToOrder } from "../../context/features/orders.slice";
 const Details = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
+  const orders = useSelector((state) => state.persisted.order.orders);
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -25,8 +26,12 @@ const Details = () => {
   } = useTheme();
   const { isAdmin } = useSelector((state) => state.persisted.auth);
   const handleAddProduct = () => {
-    dispatch(addToOrder({ ...data, quantity }));
-    toast.success("Produto adicionado ao carrinho!");
+    if (orders.find((order) => order.id === data.id)) {
+      toast.error("Produto já adicionado ao pedido");
+    } else {
+      dispatch(addToOrder({ ...data, quantity }));
+      toast.success("Produto adicionado ao carrinho!");
+    }
   };
   const handleRemoveQuantity = () => {
     if (quantity > 1) {

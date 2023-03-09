@@ -27,6 +27,7 @@ const Home = () => {
 
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const searchValue = useSelector((state) => state.search.value);
+  const orders = useSelector((state) => state.persisted.order.orders);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -144,9 +145,14 @@ const Home = () => {
                       )
                   : null
               }
-              handleAddOrder={() =>
-                dispatch(addToOrder({ ...item, quantity: item.quantity }))
-              }
+              handleAddOrder={() => {
+                if (orders.find((order) => order.id === item.id)) {
+                  toast.error("Item já adicionado ao pedido");
+                } else {
+                  dispatch(addToOrder({ ...item, quantity: item.quantity }));
+                  toast.success("Item adicionado ao pedido");
+                }
+              }}
             />
           ))
         ) : (
@@ -194,9 +200,14 @@ const Home = () => {
                       )
                   : null
               }
-              handleAddOrder={() =>
-                dispatch(addToOrder({ ...item, quantity: item.quantity }))
-              }
+              handleAddOrder={() => {
+                if (orders.find((order) => order.id === item.id)) {
+                  toast.error("Item já adicionado ao pedido");
+                } else {
+                  dispatch(addToOrder({ ...item, quantity: item.quantity }));
+                  toast.success("Item adicionado ao pedido");
+                }
+              }}
             />
           ))
         ) : (
@@ -244,9 +255,14 @@ const Home = () => {
                       )
                   : null
               }
-              handleAddOrder={() =>
-                dispatch(addToOrder({ ...item, quantity: item.quantity }))
-              }
+              handleAddOrder={() => {
+                if (orders.find((order) => order.id === item.id)) {
+                  toast.error("Item já adicionado ao pedido");
+                } else {
+                  dispatch(addToOrder({ ...item, quantity: item.quantity }));
+                  toast.success("Item adicionado ao pedido");
+                }
+              }}
             />
           ))
         ) : (

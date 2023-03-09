@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
 
 export const ordersSlice = createSlice({
   name: "orders",
@@ -9,7 +8,6 @@ export const ordersSlice = createSlice({
   reducers: {
     addToOrder: (state, action) => {
       if (!state.orders.some((order) => order.id === action.payload.id)) {
-        toast.success("Produto adicionado ao pedido!");
         state.orders.push(action.payload);
       }
     },
