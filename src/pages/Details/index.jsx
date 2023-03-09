@@ -6,21 +6,36 @@ import Button from "../../components/Button";
 import Loading from "../../components/Loading";
 import PropTypes from "prop-types";
 import { useTheme } from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { addToOrder } from "../../context/features/orders.slice";
 
 const Details = () => {
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
   const {
     colors: { red_500 },
   } = useTheme();
   const { isAdmin } = useSelector((state) => state.persisted.auth);
+  const handleAddProduct = () => {
+    dispatch(addToOrder({ ...data, quantity }));
+    toast.success("Produto adicionado ao carrinho!");
+  };
+  const handleRemoveQuantity = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
+  const handleAddQuantity = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
   useEffect(() => {
     setIsLoading(true);
     api
@@ -65,8 +80,18 @@ const Details = () => {
                   </AddProduct>
                 ) : (
                   <AddProduct>
-                    <Quantity quantity={5} />
-                    <Button color={red_500}>Incluir</Button>
+                    <Quantity
+                      quantity={quantity}
+                      handleAddQuantity={handleAddQuantity}
+                      handleRemoveQuantity={handleRemoveQuantity}
+                    />
+                    <Button onClick={handleAddProduct} color={red_500}>
+                      Incluir{" "}
+                      {Number(data.price).toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </Button>
                   </AddProduct>
                 )}
               </Text>

@@ -10,7 +10,7 @@ const Favorites = () => {
     <Content>
       <h1>Meus favoritos</h1>
       <CardGroup>
-        {favorites.length ? (
+        {favorites && favorites.length ? (
           favorites.map((favorite) => (
             <CardFavorites
               key={favorite.id}
