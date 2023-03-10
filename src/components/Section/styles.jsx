@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.section`
   max-width: 62.5rem;
   margin: auto;
   > h2 {

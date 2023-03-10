@@ -15,7 +15,6 @@ import {
 import { toast } from "react-toastify";
 import { addToOrder } from "../../context/features/orders.slice";
 import CardSkeleton from "../../components/CardSkeleton";
-// import { persistor } from "../../context/app/store";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -28,6 +27,7 @@ const Home = () => {
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const searchValue = useSelector((state) => state.search.value);
   const orders = useSelector((state) => state.persisted.order.orders);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -89,11 +89,6 @@ const Home = () => {
         setIsLoading(false);
       });
   }, [searchValue]);
-
-  // useEffect(() => {
-  //   persistor.purge();
-  //   persistor.flush();
-  // }, []);
 
   return (
     <Container>
