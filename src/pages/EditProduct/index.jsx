@@ -35,7 +35,8 @@ const AddProduct = () => {
   const [inputIngredient, setInputIngredient] = useState("");
   const [price, setPrice] = useState();
   const [image, setImage] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isEditLoading, setIsEditLoading] = useState(false);
+  const [isDeleteLoading, setIsDeleteLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -73,7 +74,7 @@ const AddProduct = () => {
 
   const handleEditProduct = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    setIsEditLoading(true);
     if (inputIngredient.length) {
       return toast.error("Existem ingredientes no input do formulário.");
     }
@@ -111,7 +112,7 @@ const AddProduct = () => {
       })
       .then(() => {
         toast.success("Produto atualizado com sucesso!");
-        setIsLoading(false);
+        setIsEditLoading(false);
         navigate(-1);
       })
       .catch((error) => {
@@ -120,15 +121,21 @@ const AddProduct = () => {
         } else {
           toast.error(error.message);
         }
-        setIsLoading(false);
+        setIsEditLoading(false);
       });
   };
 
   const handleDeleteProduct = async () => {
-    await api.delete(`products/${id}`).then(() => {
-      toast.success("Produto excluído com sucesso!");
-      navigate("/");
-    });
+    setIsDeleteLoading(true);
+    await api
+      .delete(`products/${id}`)
+      .then(() => {
+        toast.success("Produto excluído com sucesso!");
+        navigate("/");
+      })
+      .finally(() => {
+        setIsDeleteLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -209,10 +216,10 @@ const AddProduct = () => {
                 type="button"
                 onClick={handleDeleteProduct}
               >
-                Deletar Prato
+                {isDeleteLoading ? <Loading /> : "Deletar Prato"}
               </Button>
               <Button color={red_300} type="button" onClick={handleEditProduct}>
-                {isLoading ? <Loading /> : "Salvar alterações"}
+                {isEditLoading ? <Loading /> : "Salvar alterações"}
               </Button>
             </Buttons>
           </Rows>
