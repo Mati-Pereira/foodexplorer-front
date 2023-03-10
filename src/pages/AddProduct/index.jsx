@@ -34,12 +34,15 @@ const AddProduct = () => {
   const [price, setPrice] = useState();
   const [image, setImage] = useState();
   const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
 
   const handleClickNewIngredient = () => {
-    setIngredients([...ingredients, inputIngredient]);
-    setInputIngredient("");
+    if (inputIngredient.length) {
+      setIngredients([...ingredients, inputIngredient]);
+      setInputIngredient("");
+    } else {
+      toast.error("Digite algum ingrediente");
+    }
   };
 
   const handleDeleteIngredient = (index) => {

@@ -136,9 +136,7 @@ const AddProduct = () => {
       setName(response.data.name);
       setCategory(response.data.category);
       setDescription(response.data.description);
-      setIngredients(
-        response.data.ingredients.map((ingredient) => ingredient.name)
-      );
+      setIngredients(response.data.ingredients);
       setPrice(Number(response.data.price));
       setImage(response.data.image);
     });
