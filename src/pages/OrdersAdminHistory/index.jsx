@@ -18,7 +18,8 @@ const OrdersAdminHistory = () => {
     });
     const data = response.data;
     const newData = data.map((data) => {
-      const time = data.updated_at.split(" ");
+      console.log(data);
+      const time = data.updated_at.split("T");
       return {
         id: data.id,
         status: data.status,
