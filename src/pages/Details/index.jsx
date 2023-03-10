@@ -15,16 +15,19 @@ import { Link } from "react-router-dom";
 import { addToOrder } from "../../context/features/orders.slice";
 
 const Details = () => {
-  const { id } = useParams();
-  const [data, setData] = useState({});
   const orders = useSelector((state) => state.persisted.order.orders);
+  const { isAdmin } = useSelector((state) => state.persisted.auth);
+
+  const [data, setData] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const { id } = useParams();
+
   const {
     colors: { red_500 },
   } = useTheme();
-  const { isAdmin } = useSelector((state) => state.persisted.auth);
+
   const handleAddProduct = () => {
     if (orders.find((order) => order.id === data.id)) {
       toast.error("Produto já adicionado ao pedido");
@@ -41,6 +44,7 @@ const Details = () => {
   const handleAddQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
+
   useEffect(() => {
     setIsLoading(true);
     api
@@ -66,7 +70,7 @@ const Details = () => {
         {isLoading ? (
           <Loading />
         ) : (
-          data && (
+          data !== null && (
             <>
               <img src={`${api.defaults?.baseURL}/${data.image}`} />
               <Text>
