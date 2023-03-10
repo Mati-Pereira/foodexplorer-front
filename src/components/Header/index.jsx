@@ -23,22 +23,26 @@ import { setSearch } from "../../context/features/search.slice";
 import { useState } from "react";
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { AiOutlineClose } from "react-icons/ai";
+import SignoutLoading from "../SignoutLoading";
 
 const Header = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
   const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const orders = useSelector((state) => state.persisted.order.orders);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
+    setIsLoading(true);
     const res = await api.get("/favorites", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
     });
-    if (favorites.length > 0) {
+    if (favorites.length) {
       if (!res.data.favoriteList) {
         await api.post(
           "/favorites",
@@ -69,6 +73,7 @@ const Header = () => {
     dispatch(cleanFavorites());
     toast.success("Você saiu com sucesso!");
     navigate("/login");
+    setIsLoading(false);
   };
 
   const handleGoHome = async () => {
@@ -129,7 +134,11 @@ const Header = () => {
             </Pedidos>
           </>
         )}
-        <img src={sair} alt="sair icon" onClick={handleSignOut} />
+        {isLoading ? (
+          <SignoutLoading />
+        ) : (
+          <img src={sair} alt="sair icon" onClick={handleSignOut} />
+        )}
       </Container>
       <MenuMobile>
         <IoReorderThreeOutline onClick={() => setMenuMobileIsOpen(true)} />
