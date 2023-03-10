@@ -39,7 +39,7 @@ export const Pedidos = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 12rem;
+  max-width: 12rem;
 `;
 
 export const LogoContainer = styled.div`
@@ -89,7 +89,13 @@ export const MenuMobile = styled.section`
   @media (max-width: 768px) {
     display: flex;
   }
+  > img {
+    cursor: pointer;
+    margin: 0 auto 0 25%;
+  }
   > svg {
+    position: absolute;
+    left: 1rem;
     color: ${({ theme }) => theme.colors.white};
     font-size: 3rem;
     cursor: pointer;

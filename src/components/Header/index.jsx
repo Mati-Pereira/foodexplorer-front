@@ -215,11 +215,12 @@ const Header = () => {
           </MenuDropdown>
         ) : null}
         <Logo src={logo} alt="logo" onClick={handleGoHome} />
-
-        <Anchor to={`${isAdmin ? "/orderadminhistory" : "/orders"}`}>
-          <img src={pedidos} alt="icon pedidos" />
-          {!isAdmin ? <span>{orders.length}</span> : null}
-        </Anchor>
+        {!isAdmin ? (
+          <Anchor to="/orders">
+            <img src={pedidos} alt="icon pedidos" />
+            <span>{orders.length}</span>
+          </Anchor>
+        ) : null}
       </MenuMobile>
     </>
   );
