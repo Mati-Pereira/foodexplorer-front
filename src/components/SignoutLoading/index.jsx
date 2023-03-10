@@ -7,14 +7,14 @@ const SignoutLoading = () => {
   } = useTheme();
   return (
     <RotatingLines
+      strokeColor={white}
       visible={true}
       color={white}
+      width="2rem"
       wrapperStyle={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100%",
-        width: "100%",
       }}
     />
   );
