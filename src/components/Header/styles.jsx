@@ -124,6 +124,7 @@ export const MenuDropdown = styled.div`
   justify-content: center;
   z-index: 5;
   gap: 2rem;
+  overflow-x: hidden;
 
   > a {
     position: relative;
