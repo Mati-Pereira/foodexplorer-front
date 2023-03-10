@@ -25,12 +25,7 @@ const Section = ({ title, children }) => {
   return (
     <Container>
       <h2>{title}</h2>
-      <Carousel
-        responsive={responsive}
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-      >
-        {children}
-      </Carousel>
+      <Carousel responsive={responsive}>{children}</Carousel>
     </Container>
   );
 };
