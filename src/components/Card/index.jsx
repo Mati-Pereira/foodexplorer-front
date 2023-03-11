@@ -5,7 +5,6 @@ import Quantity from "../Quantity";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { useTheme } from "styled-components";
-import { api } from "../../services/api";
 import { Link } from "react-router-dom";
 import Anchor from "../Anchor";
 
@@ -30,7 +29,7 @@ const Card = ({
   return (
     <Container>
       <Link to={`/details/${id}`}>
-        <Image src={`${api.defaults.baseURL}/${image}`} alt="food picture" />
+        <Image src={image} alt="food picture" />
         <Title>{name}</Title>
         <Text>{text}</Text>
         <Price>{price}</Price>
