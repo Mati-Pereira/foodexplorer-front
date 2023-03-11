@@ -11,10 +11,13 @@ import { ThreeDots } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [data, setData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const {
@@ -25,7 +28,7 @@ const Signup = () => {
     e.preventDefault();
     setIsLoading(true);
     await api
-      .post("/users", { username, email, password })
+      .post("/users", data)
       .then(() => toast.success("Cadastro realizado com sucesso!"))
       .then(() => navigate("/login"))
       .catch((error) => {
@@ -45,32 +48,41 @@ const Signup = () => {
         <h1>Crie sua conta</h1>
         <Form onSubmit={handleSignup}>
           <Input
-            id="nome"
+            id="username"
             label="Seu nome"
+            name="username"
             placeholder="Exemplo: Maria da Silva"
             type="text"
             required
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={data.username}
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
           />
           <Input
             id="email"
             placeholder="Exemplo: exemplo@exemplo.com.br"
+            name="email"
             type="email"
             label="Email"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={data.email}
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
           />
           <Input
             id="password"
             placeholder="No mínimo 6 caracteres"
+            name="password"
             min={6}
             type="password"
             label="Senha"
             required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={data.password}
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
           />
           <Button color={red_500} type="submit">
             {isLoading ? (

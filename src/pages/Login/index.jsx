@@ -22,8 +22,7 @@ const Login = () => {
     colors: { red_500 },
   } = useTheme();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     dispatch(signIn({ email, password }));
     navigate("/");
   };
