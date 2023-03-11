@@ -18,7 +18,6 @@ const OrdersAdminHistory = () => {
     });
     const data = response.data;
     const newData = data.map((data) => {
-      console.log(data);
       const time = data.updated_at.split("T");
       return {
         id: data.id,
@@ -72,29 +71,30 @@ const OrdersAdminHistory = () => {
               </tr>
             </thead>
             <tbody>
-              {orders.map((order, index) => (
-                <tr key={index}>
-                  <td>
-                    <select
-                      name="status"
-                      id="status"
-                      value={order.status}
-                      onChange={(e) => handleStatus(e.target.value, order.id)}
-                    >
-                      <option value="pending" defaultChecked>
-                        Pendente
-                      </option>
-                      <option value="preparing">Preparando</option>
-                      <option value="delivered">Entregue</option>
-                    </select>
-                  </td>
-                  <td>{String(order.id).padStart(5, "0")}</td>
-                  <td>{order.description}</td>
-                  <td>
-                    {order.date} às {order.hour}
-                  </td>
-                </tr>
-              ))}
+              {orders &&
+                orders.map((order) => (
+                  <tr key={order.id}>
+                    <td>
+                      <select
+                        name="status"
+                        id="status_id"
+                        value={order.status}
+                        onChange={(e) => handleStatus(e.target.value, order.id)}
+                      >
+                        <option value="pending" defaultChecked>
+                          Pendente
+                        </option>
+                        <option value="preparing">Preparando</option>
+                        <option value="delivered">Entregue</option>
+                      </select>
+                    </td>
+                    <td>{String(order.id).padStart(5, "0")}</td>
+                    <td>{order.description}</td>
+                    <td>
+                      {order.date} às {order.hour}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         ) : (

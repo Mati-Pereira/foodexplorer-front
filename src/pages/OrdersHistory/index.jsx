@@ -21,7 +21,6 @@ const OrdersHistory = () => {
       const data = response.data;
       const newData = data.map((data) => {
         const time = data.updated_at.split("T");
-        console.log(time);
         return {
           id: data.id,
           status: data.status,
@@ -46,7 +45,7 @@ const OrdersHistory = () => {
         <h1>Histórico de pedidos</h1>
         {isLoading ? (
           <TableSkeleton />
-        ) : orders.length > 0 ? (
+        ) : orders.length ? (
           <table>
             <thead>
               <tr>
@@ -91,9 +90,9 @@ const OrdersHistory = () => {
           <MobileSkeleton />
         ) : orders.length ? (
           <Orders>
-            {orders.map((order, index) => (
+            {orders.map((order) => (
               <MobileProductOrder
-                key={index}
+                key={order.id}
                 status={order.status}
                 id={String(order.id).padStart(5, "0")}
                 description={order.description}
