@@ -72,7 +72,7 @@ const Details = () => {
         ) : (
           data !== null && (
             <>
-              <img src={data.image} />
+              <img src={`${api.defaults.baseURL}/${data.image}`} />
               <Text>
                 <h1>{data.name}</h1>
                 <p>{data.description}</p>

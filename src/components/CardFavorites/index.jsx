@@ -1,9 +1,10 @@
 import { Button, Container } from "./styles";
 import PropTypes from "prop-types";
+import { api } from "../../services/api";
 const CardFavorites = ({ image, name, onClick }) => {
   return (
     <Container>
-      <img src={image} alt="food-image" />
+      <img src={`${api.defaults.baseURL}/${image}`} alt="food-image" />
       <div>
         <span>{name}</span>
         <Button onClick={onClick}>Remover dos favoritos</Button>

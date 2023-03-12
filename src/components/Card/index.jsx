@@ -7,6 +7,7 @@ import { BsPencil } from "react-icons/bs";
 import { useTheme } from "styled-components";
 import { Link } from "react-router-dom";
 import Anchor from "../Anchor";
+import { api } from "../../services/api";
 
 const Card = ({
   image,
@@ -29,7 +30,7 @@ const Card = ({
   return (
     <Container>
       <Link to={`/details/${id}`}>
-        <Image src={image} alt="food picture" />
+        <Image src={`${api.defaults.baseURL}/${image}`} alt="food picture" />
         <Title>{name}</Title>
         <Text>{text}</Text>
         <Price>{price}</Price>
