@@ -96,7 +96,6 @@ const AddProduct = () => {
         description,
         ingredients,
         price,
-        // image: fileUpload.get("image"),
       })
     );
     await api
