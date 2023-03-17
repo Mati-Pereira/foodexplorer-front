@@ -26,7 +26,7 @@ import { api } from "../../services/api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-const AddProduct = () => {
+const EditProduct = () => {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [category, setCategory] = useState("refeicao");
@@ -37,7 +37,7 @@ const AddProduct = () => {
   const [image, setImage] = useState();
   const [isEditLoading, setIsEditLoading] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-
+  console.log("ingredients", ingredients);
   const navigate = useNavigate();
 
   const {
@@ -49,11 +49,10 @@ const AddProduct = () => {
     setInputIngredient("");
   };
 
-  const handleDeleteIngredient = () => {
-    setIngredients(
-      ingredients.filter((ingredient) => ingredient !== inputIngredient)
-    );
-    setInputIngredient("");
+  const handleDeleteIngredient = (id) => {
+    const newIngredients = [...ingredients];
+    newIngredients.filter((ingredient) => ingredient.id !== id);
+    setIngredients(newIngredients);
   };
 
   const handlePriceChange = (values) => {
@@ -156,6 +155,7 @@ const AddProduct = () => {
       toast.success("Imagem selecionada com sucesso!");
     }
   }, [typeof image === "object"]);
+
   return (
     <>
       <DetailsAnchor to="/" />
@@ -181,11 +181,12 @@ const AddProduct = () => {
                 <label>
                   Ingredientes
                   <Tags>
-                    {ingredients.map((tag, index) => (
+                    {ingredients.map((ingredient) => (
                       <EditTag
-                        text={tag}
-                        key={index}
-                        onClick={handleDeleteIngredient}
+                        text={ingredient}
+                        key={ingredient.id}
+                        value={ingredient}
+                        onClick={() => handleDeleteIngredient(ingredient.id)}
                       />
                     ))}
                     <InputTag
@@ -231,4 +232,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;
