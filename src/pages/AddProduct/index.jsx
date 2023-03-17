@@ -46,9 +46,9 @@ const AddProduct = () => {
   };
 
   const handleDeleteIngredient = (index) => {
-    const newTags = [...ingredients];
-    newTags.splice(index, 1);
-    setIngredients(newTags);
+    const newIngredients = [...ingredients];
+    newIngredients.splice(index, 1);
+    setIngredients(newIngredients);
   };
 
   const handlePriceChange = (values) => {

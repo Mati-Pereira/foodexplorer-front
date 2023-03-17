@@ -28,6 +28,7 @@ import { useEffect } from "react";
 
 const EditProduct = () => {
   const { id } = useParams();
+
   const [name, setName] = useState("");
   const [category, setCategory] = useState("refeicao");
   const [description, setDescription] = useState("");
@@ -37,7 +38,7 @@ const EditProduct = () => {
   const [image, setImage] = useState();
   const [isEditLoading, setIsEditLoading] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-  console.log("ingredients", ingredients);
+
   const navigate = useNavigate();
 
   const {
@@ -49,9 +50,9 @@ const EditProduct = () => {
     setInputIngredient("");
   };
 
-  const handleDeleteIngredient = (id) => {
+  const handleDeleteIngredient = (index) => {
     const newIngredients = [...ingredients];
-    newIngredients.filter((ingredient) => ingredient.id !== id);
+    newIngredients.splice(index, 1);
     setIngredients(newIngredients);
   };
 
@@ -181,12 +182,12 @@ const EditProduct = () => {
                 <label>
                   Ingredientes
                   <Tags>
-                    {ingredients.map((ingredient) => (
+                    {ingredients.map((ingredient, index) => (
                       <EditTag
                         text={ingredient}
-                        key={ingredient.id}
+                        key={index}
                         value={ingredient}
-                        onClick={() => handleDeleteIngredient(ingredient.id)}
+                        onClick={() => handleDeleteIngredient(index)}
                       />
                     ))}
                     <InputTag
