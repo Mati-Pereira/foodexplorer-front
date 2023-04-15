@@ -30,31 +30,37 @@ const Orders = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    const description = orders.map((order) => {
-      return `${order.quantity} x ${order.name}, `;
-    });
-    await api
-      .post(
-        "/orders",
-        {
-          description: description.join("").slice(0, -2),
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+    try {
+      setIsLoading(true);
+      const description = orders.map((order) => {
+        return `${order.quantity} x ${order.name}, `;
+      });
+      await api
+        .post(
+          "/orders",
+          {
+            description: description.join("").slice(0, -2),
           },
-        }
-      )
-      .then(() => {
-        toast.success("Pedido realizado com sucesso!");
-        navigate("/");
-        dispatch(clearOrders());
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      })
-      .finally(() => setIsLoading(false));
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        )
+        .then(() => {
+          toast.success("Pedido realizado com sucesso!");
+          navigate("/");
+          dispatch(clearOrders());
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
+        })
+        .finally(() => setIsLoading(false));
+    } catch (err) {
+      toast.error(err.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

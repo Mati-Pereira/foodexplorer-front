@@ -48,46 +48,60 @@ const Home = () => {
   }, [favorites]);
 
   useEffect(() => {
-    api
-      .get(`/products?name=${searchValue}`)
-      .then((res) => {
-        setRefeicoes(
-          res.data
-            .filter((item) => item.category === "refeicao")
-            .map((item) => {
-              return {
-                ...item,
-                quantity: 1,
-              };
-            })
-        );
-        setSobremesas(
-          res.data
-            .filter((item) => item.category === "sobremesa")
-            .map((item) => {
-              return {
-                ...item,
-                quantity: 1,
-              };
-            })
-        );
-        setBebidas(
-          res.data
-            .filter((item) => item.category === "bebida")
-            .map((item) => {
-              return {
-                ...item,
-                quantity: 1,
-              };
-            })
-        );
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      })
-      .finally(() => {
+    const getProducts = async () => {
+      try {
+        setIsLoading(true);
+        await api
+          .get(`/products?name=${searchValue}`)
+          .then((res) => {
+            setRefeicoes(
+              res.data
+                .filter((item) => item.category === "refeicao")
+                .map((item) => {
+                  return {
+                    ...item,
+                    quantity: 1,
+                  };
+                })
+            );
+            setSobremesas(
+              res.data
+                .filter((item) => item.category === "sobremesa")
+                .map((item) => {
+                  return {
+                    ...item,
+                    quantity: 1,
+                  };
+                })
+            );
+            setBebidas(
+              res.data
+                .filter((item) => item.category === "bebida")
+                .map((item) => {
+                  return {
+                    ...item,
+                    quantity: 1,
+                  };
+                })
+            );
+          })
+          .catch((err) => {
+            if (err.response) {
+              toast.error(err.response.data.message);
+            } else {
+              toast.error(err.message);
+            }
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      } catch (error) {
+        toast.error(error.message);
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+    getProducts();
   }, [searchValue]);
 
   return (

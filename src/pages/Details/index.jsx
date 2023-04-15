@@ -46,22 +46,28 @@ const Details = () => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    api
-      .get(`/products/${id}`)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        if (error.message) {
-          toast.error(error.response.data.message);
-        } else {
-          toast.error("Ocorreu um erro inesperado!");
-        }
-      })
-      .finally(() => {
+    const getProduct = async () => {
+      setIsLoading(true);
+      try {
+        await api
+          .get(`/products/${id}`)
+          .then((response) => {
+            setData(response.data);
+          })
+          .catch((error) => {
+            if (error.message) {
+              toast.error(error.response.data.message);
+            } else {
+              toast.error("Ocorreu um erro inesperado!");
+            }
+          });
+      } catch {
+        toast.error("Ocorreu um erro inesperado!");
+      } finally {
         setIsLoading(false);
-      });
+      }
+    };
+    getProduct();
   }, [id]);
   return (
     <>

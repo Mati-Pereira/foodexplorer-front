@@ -5,6 +5,7 @@ import OrderStatus from "../../components/OrderStatus";
 import MobileProductOrder from "../../components/MobileProductOrder";
 import TableSkeleton from "../../components/TableSkeleton";
 import MobileSkeleton from "../../components/MobileSkeleton";
+import { toast } from "react-toastify";
 
 const OrdersHistory = () => {
   const [orders, setOrders] = useState([]);
@@ -12,30 +13,35 @@ const OrdersHistory = () => {
 
   useEffect(() => {
     const fetchOrder = async () => {
-      setIsLoading(true);
-      const response = await api.get("/orders", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      });
-      const data = response.data;
-      const newData = data.map((data) => {
-        const time = data.updated_at.split("T");
-        return {
-          id: data.id,
-          status: data.status,
-          description: data.description,
-          date: time[0]
-            .replaceAll("-", "/")
-            .split("/")
-            .reverse()
-            .join("/")
-            .slice(0, 5),
-          hour: time[1].slice(0, 5),
-        };
-      });
-      setOrders(newData);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        const response = await api.get("/orders", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        });
+        const data = response.data;
+        const newData = data.map((data) => {
+          const time = data.updated_at.split("T");
+          return {
+            id: data.id,
+            status: data.status,
+            description: data.description,
+            date: time[0]
+              .replaceAll("-", "/")
+              .split("/")
+              .reverse()
+              .join("/")
+              .slice(0, 5),
+            hour: time[1].slice(0, 5),
+          };
+        });
+        setOrders(newData);
+      } catch (err) {
+        toast.error(err.response.data.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchOrder();
   }, []);

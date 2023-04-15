@@ -75,67 +75,79 @@ const EditProduct = () => {
   const handleEditProduct = async (e) => {
     e.preventDefault();
     setIsEditLoading(true);
-    if (inputIngredient.length) {
-      return toast.error("Existem ingredientes no input do formulário.");
+    try {
+      if (inputIngredient.length) {
+        return toast.error("Existem ingredientes no input do formulário.");
+      }
+
+      if (
+        !name ||
+        !category ||
+        !description ||
+        !ingredients.length ||
+        !price ||
+        !image
+      ) {
+        return toast.error("Preencha todos os campos.");
+      }
+
+      const fileUpload = new FormData();
+
+      fileUpload.append("image", image);
+      fileUpload.append(
+        "data",
+        JSON.stringify({
+          name,
+          category,
+          description,
+          ingredients,
+          price,
+        })
+      );
+
+      await api
+        .put(`/products/${id}`, fileUpload, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          toast.success("Produto atualizado com sucesso!");
+          setIsEditLoading(false);
+          navigate(-1);
+        })
+        .catch((error) => {
+          if (error.response) {
+            toast.error(error.response.data.message);
+          } else {
+            toast.error(error.message);
+          }
+          setIsEditLoading(false);
+        });
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsEditLoading(false);
     }
-
-    if (
-      !name ||
-      !category ||
-      !description ||
-      !ingredients.length ||
-      !price ||
-      !image
-    ) {
-      return toast.error("Preencha todos os campos.");
-    }
-
-    const fileUpload = new FormData();
-
-    fileUpload.append("image", image);
-    fileUpload.append(
-      "data",
-      JSON.stringify({
-        name,
-        category,
-        description,
-        ingredients,
-        price,
-      })
-    );
-
-    await api
-      .put(`/products/${id}`, fileUpload, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then(() => {
-        toast.success("Produto atualizado com sucesso!");
-        setIsEditLoading(false);
-        navigate(-1);
-      })
-      .catch((error) => {
-        if (error.response) {
-          toast.error(error.response.data.message);
-        } else {
-          toast.error(error.message);
-        }
-        setIsEditLoading(false);
-      });
   };
 
   const handleDeleteProduct = async () => {
-    setIsDeleteLoading(true);
-    await api
-      .delete(`products/${id}`)
-      .then(() => {
-        toast.success("Produto excluído com sucesso!");
-        navigate("/");
-      })
-      .finally(() => {
-        setIsDeleteLoading(false);
-      });
+    try {
+      setIsDeleteLoading(true);
+      await api
+        .delete(`products/${id}`)
+        .then(() => {
+          toast.success("Produto excluído com sucesso!");
+          navigate("/");
+        })
+        .finally(() => {
+          setIsDeleteLoading(false);
+        });
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsDeleteLoading(false);
+    }
   };
 
   useEffect(() => {

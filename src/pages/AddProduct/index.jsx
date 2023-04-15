@@ -70,53 +70,58 @@ const AddProduct = () => {
   const handleCreateProduct = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    if (inputIngredient.length) {
-      return toast.error("Existem ingredientes no input do formulário.");
+    try {
+      if (inputIngredient.length) {
+        return toast.error("Existem ingredientes no input do formulário.");
+      }
+      if (
+        !name ||
+        !category ||
+        !description ||
+        !ingredients.length ||
+        !price ||
+        !image
+      ) {
+        return toast.error("Preencha todos os campos.");
+      }
+
+      const fileUpload = new FormData();
+
+      fileUpload.append("image", image);
+      fileUpload.append(
+        "data",
+        JSON.stringify({
+          name,
+          category,
+          description,
+          ingredients,
+          price,
+        })
+      );
+      await api
+        .post("/products", fileUpload, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then(() => {
+          toast.success("Produto criado com sucesso!");
+          navigate(-1);
+        })
+        .catch((error) => {
+          if (error.response) {
+            toast.error(error.response.data.message);
+          }
+          toast.error(error.message);
+        });
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
-
-    if (
-      !name ||
-      !category ||
-      !description ||
-      !ingredients.length ||
-      !price ||
-      !image
-    ) {
-      return toast.error("Preencha todos os campos.");
-    }
-
-    const fileUpload = new FormData();
-
-    fileUpload.append("image", image);
-    fileUpload.append(
-      "data",
-      JSON.stringify({
-        name,
-        category,
-        description,
-        ingredients,
-        price,
-      })
-    );
-    await api
-      .post("/products", fileUpload, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then(() => {
-        toast.success("Produto criado com sucesso!");
-        navigate(-1);
-      })
-      .catch((error) => {
-        if (error.response) {
-          toast.error(error.response.data.message);
-        }
-        toast.error(error.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
   };
 
   const {
