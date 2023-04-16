@@ -22,7 +22,7 @@ const OrdersHistory = () => {
         });
         const data = response.data;
         const newData = data.map((data) => {
-          const time = data.updated_at.split("T");
+          const time = data.updated_at.split(" ");
           return {
             id: data.id,
             status: data.status,
