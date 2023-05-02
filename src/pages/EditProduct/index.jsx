@@ -38,6 +38,7 @@ const EditProduct = () => {
   const [image, setImage] = useState();
   const [isEditLoading, setIsEditLoading] = useState(false);
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
 
   const navigate = useNavigate();
 
@@ -151,16 +152,28 @@ const EditProduct = () => {
   };
 
   useEffect(() => {
-    api.get(`products/${id}`).then((response) => {
-      setName(response.data.name);
-      setCategory(response.data.category);
-      setDescription(response.data.description);
-      setIngredients(
-        response.data.ingredients.map((ingredient) => ingredient.name)
-      );
-      setPrice(Number(response.data.price));
-      setImage(response.data.image);
-    });
+    const getProduct = async () => {
+      setIsFetching(true);
+      await api
+        .get(`products/${id}`)
+        .then((response) => {
+          setName(response.data.name);
+          setCategory(response.data.category);
+          setDescription(response.data.description);
+          setIngredients(
+            response.data.ingredients.map((ingredient) => ingredient.name)
+          );
+          setPrice(Number(response.data.price));
+          setImage(response.data.image);
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        })
+        .finally(() => {
+          setIsFetching(false);
+        });
+    };
+    getProduct();
   }, []);
 
   useEffect(() => {
@@ -168,6 +181,8 @@ const EditProduct = () => {
       toast.success("Imagem selecionada com sucesso!");
     }
   }, [typeof image === "object"]);
+
+  if (isFetching) return <Loading />;
 
   return (
     <>

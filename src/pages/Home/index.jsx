@@ -98,6 +98,7 @@ const Home = () => {
             <Card
               key={item.id}
               name={item.name}
+              ingredients={item.ingredients}
               price={Number(item.price).toLocaleString("pt-BR", {
                 style: "currency",
                 currency: "BRL",
