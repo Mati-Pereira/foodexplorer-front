@@ -10,6 +10,7 @@ import ProductNotFound from "../../components/ProductNotFound";
 import { toast } from "react-toastify";
 import { addToOrder } from "../../context/features/orders.slice";
 import CardSkeleton from "../../components/CardSkeleton";
+import { useDebounce } from "use-debounce";
 
 const Home = () => {
   const { isAdmin } = useSelector((state) => state.persisted.auth);
@@ -22,6 +23,8 @@ const Home = () => {
   const searchValue = useSelector((state) => state.search.value);
   const orders = useSelector((state) => state.persisted.order.orders);
 
+  const [value] = useDebounce(searchValue, 750);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const Home = () => {
       try {
         setIsLoading(true);
         await api
-          .get(`/products?name=${searchValue}`)
+          .get(`/products?name=${value}`)
           .then((res) => {
             setRefeicoes(
               res.data
@@ -79,7 +82,7 @@ const Home = () => {
       }
     };
     getProducts();
-  }, [searchValue]);
+  }, [value]);
 
   return (
     <Container>
