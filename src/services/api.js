@@ -1,6 +1,6 @@
 import axios from "axios";
 export const api = axios.create({
-  baseURL: "https://foodexplorer-back.onrender.com",
+  baseURL: import.meta.env?.VITE_BACKEND,
   headers: {
     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
   },
