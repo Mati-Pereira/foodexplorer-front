@@ -2,7 +2,6 @@ import { AddProduct, Container, Image, Price, Text, Title } from "./styles";
 import PropTypes from "prop-types";
 import Button from "../Button";
 import Quantity from "../Quantity";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BsPencil } from "react-icons/bs";
 import { useTheme } from "styled-components";
 import { Link } from "react-router-dom";
@@ -19,10 +18,7 @@ const Card = ({
   handleRemoveQuantity,
   isAdmin,
   id,
-  handleAddFavorites,
-  handleRemoveFavorites,
   handleAddOrder,
-  isFavorite,
 }) => {
   const {
     colors: { red_500 },
@@ -47,26 +43,14 @@ const Card = ({
               Incluir
             </Button>
           </AddProduct>
-          {isFavorite ? (
-            <AiFillHeart onClick={handleRemoveFavorites} />
-          ) : (
-            <AiOutlineHeart onClick={handleAddFavorites} />
-          )}
         </div>
       )}
-      {isAdmin ? (
+      {isAdmin && (
         <div>
           <Anchor to={`edit/${id}`}>
             <BsPencil className="edit" />
           </Anchor>
-          {isFavorite ? (
-            <AiFillHeart onClick={handleRemoveFavorites} />
-          ) : (
-            <AiOutlineHeart onClick={handleAddFavorites} />
-          )}
         </div>
-      ) : (
-        <AiOutlineHeart />
       )}
     </Container>
   );
@@ -82,9 +66,6 @@ Card.propTypes = {
   quantity: PropTypes.number,
   isAdmin: PropTypes.bool,
   id: PropTypes.number,
-  handleAddFavorites: PropTypes.func,
-  handleRemoveFavorites: PropTypes.func,
-  isFavorite: PropTypes.bool,
   handleAddOrder: PropTypes.func,
   handleAddQuantity: PropTypes.func,
   handleRemoveQuantity: PropTypes.func,

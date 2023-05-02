@@ -4,7 +4,6 @@ import Details from "../pages/Details";
 import EditProduct from "../pages/EditProduct";
 import Home from "../pages/Home";
 import { useSelector } from "react-redux";
-import Favorites from "../pages/Favorites";
 import Orders from "../pages/Orders";
 import OrdersHistory from "../pages/OrdersHistory";
 import OrdersAdminHistory from "../pages/OrdersAdminHistory";
@@ -19,7 +18,6 @@ const AppRoutes = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/favorites" element={<Favorites />} />
         <Route path="/details/:id" element={<Details />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/ordershistory" element={<OrdersHistory />} />

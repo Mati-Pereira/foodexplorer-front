@@ -7,11 +7,6 @@ import { api } from "../../services/api";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductNotFound from "../../components/ProductNotFound";
-import {
-  addToFavorites,
-  getFromDatabases,
-  removeFromFavorites,
-} from "../../context/features/favorites.slice";
 import { toast } from "react-toastify";
 import { addToOrder } from "../../context/features/orders.slice";
 import CardSkeleton from "../../components/CardSkeleton";
@@ -24,28 +19,10 @@ const Home = () => {
   const [sobremesas, setSobremesas] = useState([]);
   const [bebidas, setBebidas] = useState([]);
 
-  const favorites = useSelector((state) => state.persisted.favorite.favorites);
   const searchValue = useSelector((state) => state.search.value);
   const orders = useSelector((state) => state.persisted.order.orders);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    api
-      .get("/favorites", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.favoriteList) {
-          const favoritesList = JSON.parse(response.data.favoriteList);
-          if (!favorites.length) {
-            dispatch(getFromDatabases(favoritesList));
-          }
-        }
-      });
-  }, [favorites]);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -130,9 +107,6 @@ const Home = () => {
               isAdmin={isAdmin}
               quantity={item.quantity}
               id={item.id}
-              handleAddFavorites={() => dispatch(addToFavorites(item))}
-              handleRemoveFavorites={() => dispatch(removeFromFavorites(item))}
-              isFavorite={favorites.some((favorite) => favorite.id === item.id)}
               handleAddQuantity={() =>
                 setRefeicoes((prevValue) =>
                   prevValue.map((item) =>
@@ -185,9 +159,6 @@ const Home = () => {
               isAdmin={isAdmin}
               id={item.id}
               quantity={item.quantity}
-              handleAddFavorites={() => dispatch(addToFavorites(item))}
-              handleRemoveFavorites={() => dispatch(removeFromFavorites(item))}
-              isFavorite={favorites.some((favorite) => favorite.id === item.id)}
               handleAddQuantity={() =>
                 setSobremesas((prevValue) =>
                   prevValue.map((item) =>
@@ -240,9 +211,6 @@ const Home = () => {
               isAdmin={isAdmin}
               id={item.id}
               quantity={item.quantity}
-              handleAddFavorites={() => dispatch(addToFavorites(item))}
-              handleRemoveFavorites={() => dispatch(removeFromFavorites(item))}
-              isFavorite={favorites.some((favorite) => favorite.id === item.id)}
               handleAddQuantity={() =>
                 setBebidas((prevValue) =>
                   prevValue.map((item) =>
