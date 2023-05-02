@@ -172,7 +172,7 @@ const Home = () => {
                   )
                 )
               }
-              handleRemoveQuantity={() =>
+              handleRemoveQuantity={
                 item.quantity > 1
                   ? () =>
                       setSobremesas((prevValue) =>
@@ -224,7 +224,7 @@ const Home = () => {
                   )
                 )
               }
-              handleRemoveQuantity={() =>
+              handleRemoveQuantity={
                 item.quantity > 1
                   ? () =>
                       setBebidas((prevValue) =>
