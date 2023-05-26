@@ -10,6 +10,7 @@ const Loading = () => {
       color={white}
       wrapperStyle={{
         display: "flex",
+        flex: "1",
         justifyContent: "center",
         alignItems: "center",
         height: "100%",
