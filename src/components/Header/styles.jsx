@@ -101,7 +101,8 @@ export const MenuMobile = styled.section`
     cursor: pointer;
   }
   > a {
-    position: relative;
+    position: absolute;
+    right: 0;
     > span {
       display: inline-block;
       position: absolute;
@@ -148,5 +149,19 @@ export const MenuDropdown = styled.div`
     svg {
       cursor: pointer;
     }
+  }
+`;
+
+export const Mobile = styled.div`
+  position: absolute;
+  left: 5rem;
+  padding: 0.5rem 0;
+  > span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: ${({ theme }) => theme.colors.blue};
+    font-family: "Poppins";
+    font-size: 0.7rem;
   }
 `;

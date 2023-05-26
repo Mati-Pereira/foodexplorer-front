@@ -10,6 +10,7 @@ import {
   MenuMobile,
   Pedidos,
   MenuDropdown,
+  Mobile,
 } from "./styles";
 import pedidos from "/pedidos.svg";
 import sair from "/sair.svg";
@@ -150,7 +151,10 @@ const Header = () => {
             )}
           </MenuDropdown>
         ) : null}
-        <Logo src={logo} alt="logo" onClick={handleGoHome} />
+        <Mobile>
+          <Logo src={logo} alt="logo" onClick={handleGoHome} />
+          {isAdmin ? <span className="admin-span">admin</span> : null}
+        </Mobile>
         {!isAdmin ? (
           <Anchor to="/orders">
             <img src={pedidos} alt="icon pedidos" />
