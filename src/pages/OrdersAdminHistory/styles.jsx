@@ -84,6 +84,7 @@ export const MobileContent = styled.div`
     font-weight: 500;
     font-size: 2rem;
     color: ${({ theme }) => theme.colors.gray_300};
+    text-align: center;
   }
 `;
 

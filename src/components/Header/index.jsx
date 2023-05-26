@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { IoReorderThreeOutline } from "react-icons/io5";
+import { AiOutlineClose } from "react-icons/ai";
 import Anchor from "../Anchor";
 import {
   Container,
@@ -18,11 +21,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { setSearch } from "../../context/features/search.slice";
-import { useState } from "react";
-import { IoReorderThreeOutline } from "react-icons/io5";
-import { AiOutlineClose } from "react-icons/ai";
 
 const Header = () => {
+  const [menuMobileIsOpen, setMenuMobileIsOpen] = useState(false);
+
   const { isAdmin } = useSelector((state) => state.persisted.auth);
   const orders = useSelector((state) => state.persisted.order.orders);
 
@@ -39,7 +41,13 @@ const Header = () => {
     navigate("/");
   };
 
-  const [menuMobileIsOpen, setMenuMobileIsOpen] = useState(false);
+  useEffect(() => {
+    if (menuMobileIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [menuMobileIsOpen]);
 
   return (
     <>

@@ -136,9 +136,9 @@ const OrdersAdminHistory = () => {
               fontSize: "1.5rem",
               color: "#ccc",
               display: "flex",
+              flex: "1",
               justifyContent: "center",
               alignItems: "center",
-              height: "50vh",
             }}
           >
             Nenhum pedido encontrado
