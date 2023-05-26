@@ -116,7 +116,7 @@ const OrdersAdminHistory = () => {
         <h1>Histórico de pedidos</h1>
         {isLoading ? (
           <MobileSkeleton />
-        ) : (
+        ) : orders.length ? (
           <Orders>
             {orders.map((order, index) => (
               <MobileProductAdminOrder
@@ -129,6 +129,20 @@ const OrdersAdminHistory = () => {
               />
             ))}
           </Orders>
+        ) : (
+          <h1
+            style={{
+              textAlign: "center",
+              fontSize: "1.5rem",
+              color: "#ccc",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "50vh",
+            }}
+          >
+            Nenhum pedido encontrado
+          </h1>
         )}
       </MobileContent>
     </>
