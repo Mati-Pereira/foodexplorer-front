@@ -89,10 +89,6 @@ export const MenuMobile = styled.section`
   @media (max-width: 768px) {
     display: flex;
   }
-  > img {
-    cursor: pointer;
-    margin: 0 auto 0 25%;
-  }
   > svg {
     position: absolute;
     left: 1rem;
@@ -154,8 +150,9 @@ export const MenuDropdown = styled.div`
 
 export const Mobile = styled.div`
   position: absolute;
-  left: 5rem;
   padding: 0.5rem 0;
+  left: 50%;
+  transform: translate(-50%);
   > span {
     position: absolute;
     bottom: 0;
