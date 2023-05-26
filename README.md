@@ -3,6 +3,19 @@
 
 FoodExplorer é um site que permite aos usuários comprar alimentos. É um mercado online onde os usuários podem encontrar uma ampla variedade de produtos alimentícios. O aplicativo permite que os usuários busquem produtos pelo nome ou pelo ingrediente.
 
+## Como usar
+
+Você pode logar como dois tipos de usuários: admin e comum. Para logar como admin existe apenas um usuário e como este projeto não é comercial vou disponibilizar aqui
+
+```
+email: admin@email.com
+senha: 123456789
+```
+
+Para logar como comum, basta se registrar caso não tenho criado o usuário.
+
+**Observações**: Como estou usando um plano gratuito do Render, plataforma usado para host do backend, quando o servidor fica em inatividade por um tempo, ele começa a desligar em um certo tempo. Então, no primeiro acesso depois um tempo sem utilizar a aplicação, pode demorar alguns minutos até o servidor voltar a funcionar normalmente.
+
 ## Requisitos
 
 - [x] Armazenamento dos dados de admin, restaurante e usuários em banco de dados.
