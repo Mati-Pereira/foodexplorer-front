@@ -1,6 +1,7 @@
 import {
   Button,
   Content,
+  NotFound,
   PagamentoHeader,
   Pagamentos,
   Pedidos,
@@ -10,58 +11,18 @@ import { useDispatch, useSelector } from "react-redux";
 import Pix from "../../components/Pix";
 import CreditCard from "../../components/CreditCard";
 import { useState } from "react";
-import { clearOrders } from "../../context/features/orders.slice";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { removeOrder } from "../../context/features/orders.slice";
 
 const Orders = () => {
   const [payment, setPayment] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const orders = useSelector((state) => state.persisted.order.orders);
   const totalPrice = orders.reduce(
     (acc, order) => acc + order.price * order.quantity,
     0
   );
-  const dispatch = useDispatch();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      setIsLoading(true);
-      const description = orders.map((order) => {
-        return `${order.quantity} x ${order.name}, `;
-      });
-      await api
-        .post(
-          "/orders",
-          {
-            description: description.join("").slice(0, -2),
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-            },
-          }
-        )
-        .then(() => {
-          toast.success("Pedido realizado com sucesso!");
-          navigate("/");
-          dispatch(clearOrders());
-        })
-        .catch((err) => {
-          toast.error(err.response.data.message);
-        })
-        .finally(() => setIsLoading(false));
-    } catch (err) {
-      toast.error(err.response.data.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <Content>
@@ -78,22 +39,11 @@ const Orders = () => {
                 style: "currency",
                 currency: "BRL",
               })}
-              onClick={() => dispatch(clearOrders())}
+              onClick={() => dispatch(removeOrder(order))}
             />
           ))
         ) : (
-          <h2
-            style={{
-              height: "300px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "80%",
-              margin: "0 auto",
-            }}
-          >
-            Nenhum pedido encontrado
-          </h2>
+          <NotFound>Nenhum pedido encontrado</NotFound>
         )}
         <h3>
           Total:{" "}
@@ -115,11 +65,7 @@ const Orders = () => {
             Crédito
           </Button>
         </PagamentoHeader>
-        {payment ? (
-          <Pix />
-        ) : (
-          <CreditCard onSubmit={handleSubmit} isLoading={isLoading} />
-        )}
+        {payment ? <Pix /> : <CreditCard />}
       </Pagamentos>
     </Content>
   );

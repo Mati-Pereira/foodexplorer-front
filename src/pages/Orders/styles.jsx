@@ -80,3 +80,12 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.green_500};
   }
 `;
+
+export const NotFound = styled.h2`
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+`;

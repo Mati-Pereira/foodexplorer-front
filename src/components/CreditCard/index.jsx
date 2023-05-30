@@ -5,15 +5,26 @@ import Loading from "../Loading";
 import Button from "../Button";
 import pedidos from "/pedidos.svg";
 import { useTheme } from "styled-components";
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { clearOrders } from "../../context/features/orders.slice";
+import { creditCardSchema } from "../../validation/creditCard";
 
-const CreditCard = ({ onSubmit, isLoading }) => {
+const CreditCard = () => {
   const {
     colors: { red_500 },
   } = useTheme();
   const [expire, setExpire] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [cvc, setCvc] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const orders = useSelector((state) => state.persisted.order.orders);
 
   const handleExpireChange = (event) => {
     const input = event.target.value;
@@ -49,9 +60,49 @@ const CreditCard = ({ onSubmit, isLoading }) => {
     setCvc(formattedSSN);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const description = orders.map((order) => {
+        return `${order.quantity} x ${order.name}, `;
+      });
+      await creditCardSchema.validate({
+        cardNumber,
+        expire,
+        cvc,
+      });
+      setIsLoading(true);
+      await api
+        .post(
+          "/orders",
+          {
+            description: description.join("").slice(0, -2),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            },
+          }
+        )
+        .then(() => {
+          toast.success("Pedido realizado com sucesso!");
+          navigate("/");
+          dispatch(clearOrders());
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
+    } catch (err) {
+      toast.error(err.message);
+      return;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Container>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <InputOrder
           id="card-number"
           label="Número do Cartão"
@@ -59,7 +110,6 @@ const CreditCard = ({ onSubmit, isLoading }) => {
           type="text"
           value={cardNumber}
           onChange={handleCardNumberChange}
-          required
         />
         <SecondRow>
           <InputOrder
@@ -70,7 +120,6 @@ const CreditCard = ({ onSubmit, isLoading }) => {
             placeholder="MM/YY"
             onChange={handleExpireChange}
             value={expire}
-            required
           />
           <InputOrder
             id="card-cvc"
@@ -80,7 +129,6 @@ const CreditCard = ({ onSubmit, isLoading }) => {
             placeholder="000"
             onChange={handleCvcChange}
             value={cvc}
-            required
           />
         </SecondRow>
 
@@ -97,11 +145,6 @@ const CreditCard = ({ onSubmit, isLoading }) => {
       </form>
     </Container>
   );
-};
-
-CreditCard.propTypes = {
-  onSubmit: PropTypes.func,
-  isLoading: PropTypes.bool,
 };
 
 export default CreditCard;
