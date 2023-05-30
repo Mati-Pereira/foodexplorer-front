@@ -111,10 +111,10 @@ const Home = () => {
               isAdmin={isAdmin}
               quantity={item.quantity}
               id={item.id}
-              handleAddQuantity={() =>
+              handleAddQuantity={(id) =>
                 setRefeicoes((prevValue) =>
                   prevValue.map((item) =>
-                    item.id === item.id
+                    item.id === id
                       ? { ...item, quantity: item.quantity + 1 }
                       : item
                   )
@@ -122,10 +122,10 @@ const Home = () => {
               }
               handleRemoveQuantity={
                 item.quantity > 1
-                  ? () =>
+                  ? (id) =>
                       setRefeicoes((prevValue) =>
                         prevValue.map((item) =>
-                          item.id === item.id
+                          item.id === id
                             ? { ...item, quantity: item.quantity - 1 }
                             : item
                         )
@@ -163,10 +163,10 @@ const Home = () => {
               isAdmin={isAdmin}
               id={item.id}
               quantity={item.quantity}
-              handleAddQuantity={() =>
+              handleAddQuantity={(id) =>
                 setSobremesas((prevValue) =>
                   prevValue.map((item) =>
-                    item.id === item.id
+                    item.id === id
                       ? { ...item, quantity: item.quantity + 1 }
                       : item
                   )
@@ -174,10 +174,10 @@ const Home = () => {
               }
               handleRemoveQuantity={
                 item.quantity > 1
-                  ? () =>
+                  ? (id) =>
                       setSobremesas((prevValue) =>
                         prevValue.map((item) =>
-                          item.id === item.id
+                          item.id === id
                             ? { ...item, quantity: item.quantity - 1 }
                             : item
                         )
@@ -215,10 +215,10 @@ const Home = () => {
               isAdmin={isAdmin}
               id={item.id}
               quantity={item.quantity}
-              handleAddQuantity={() =>
+              handleAddQuantity={(id) =>
                 setBebidas((prevValue) =>
                   prevValue.map((item) =>
-                    item.id === item.id
+                    item.id === id
                       ? { ...item, quantity: item.quantity + 1 }
                       : item
                   )
@@ -226,10 +226,10 @@ const Home = () => {
               }
               handleRemoveQuantity={
                 item.quantity > 1
-                  ? () =>
+                  ? (id) =>
                       setBebidas((prevValue) =>
                         prevValue.map((item) =>
-                          item.id === item.id
+                          item.id === id
                             ? { ...item, quantity: item.quantity - 1 }
                             : item
                         )

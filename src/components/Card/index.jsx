@@ -36,8 +36,8 @@ const Card = ({
           <AddProduct>
             <Quantity
               quantity={quantity}
-              handleAddQuantity={handleAddQuantity}
-              handleRemoveQuantity={handleRemoveQuantity}
+              handleAddQuantity={() => handleAddQuantity(id)}
+              handleRemoveQuantity={() => handleRemoveQuantity(id)}
             />
             <Button color={red_500} onClick={handleAddOrder}>
               Incluir
