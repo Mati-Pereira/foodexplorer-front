@@ -62,6 +62,12 @@ const CreditCard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!orders.length) {
+      return toast.error(
+        "Adicione pelo menos um produto para realizar o pagamento"
+      );
+    }
     try {
       const description = orders.map((order) => {
         return `${order.quantity} x ${order.name}, `;
@@ -90,7 +96,7 @@ const CreditCard = () => {
           dispatch(clearOrders());
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          toast.error(err.response.data.message);
         });
     } catch (err) {
       toast.error(err.message);
