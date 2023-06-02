@@ -126,6 +126,7 @@ export const MenuDropdown = styled.div`
   z-index: 5;
   gap: 2rem;
   overflow-x: hidden;
+  overflow-y: hidden;
 
   > a {
     position: relative;
@@ -133,7 +134,7 @@ export const MenuDropdown = styled.div`
     border-bottom: 1px solid ${({ theme }) => theme.colors.gray_600};
   }
   > div {
-    width: 60%;
+    width: 90%;
   }
   > span {
     display: flex;
